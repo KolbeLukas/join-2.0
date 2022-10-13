@@ -1,0 +1,45 @@
+.logo {
+    position: absolute;
+    top: calc(50% - 335px/2);
+    left: calc(50% - 274px/2);
+    animation: move 1.3s ease-in-out;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes move {
+    from {
+        height: 335px;
+        width: 274px;
+        top: calc(50% - 335px/2);
+        left: calc(50% - 274px/2);
+    }
+
+    to {
+        height: calc(335px / 2.5);
+        width: calc(274px / 2.5);
+        top: 50px;
+        left: 50px;
+    }
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    opacity: 0;
+    animation: show 1.3s ease-in-out;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
