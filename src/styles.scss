@@ -1,7 +1,7 @@
 /**
 * Generated theme by Material Theme Generator
 * https://materialtheme.arcsine.dev
-* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzJhMzY0NyIsIj9lcjwjYmZjM2M4IiwiO2VyPCMxOTIyMmZ$LCIlPmBePCMyOWFiZTIiLCI~ZXI8I2JmZTZmNiIsIjtlcjwjMTk5MWQ2fiwid2Fybj5gXjwjZmYzZDAwIiwiP2VyPCNmZmM1YjMiLCI7ZXI8I2ZmMjcwMH4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz5mYWxzZSwidmVyc2lvbj4xM30=
+* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzJhMzY0NyIsIj9lcjwjYmZjM2M4IiwiO2VyPCMxOTIyMmZ$LCIlPmBePCMyOWFiZTIiLCI~ZXI8I2JmZTZmNiIsIjtlcjwjMTk5MWQ2fiwid2Fybj5gXjwjZmYzZDAwIiwiP2VyPCNmZmM1YjMiLCI7ZXI8I2ZmMjcwMH4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz50cnVlLCJ2ZXJzaW9uPjEzfQ==
 */
 
 @use '@angular/material' as mat;
@@ -61,6 +61,33 @@ $mat-light-theme-foreground: (
     slider-off-active: $dark-disabled-text,
 );
 
+// Dark Theme text
+$light-text: #ffffff;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+$mat-dark-theme-foreground: (
+    base: $light-text,
+    divider: $light-dividers,
+    dividers: $light-dividers,
+    disabled: $light-disabled-text,
+    disabled-button: rgba($light-text, 0.3),
+    disabled-text: $light-disabled-text,
+    elevation: black,
+    hint-text: $light-disabled-text,
+    secondary-text: $light-accent-text,
+    accent-text: $light-accent-text,
+    icon: $light-text,
+    icons: $light-text,
+    text: $light-text,
+    slider-min: $light-text,
+    slider-off: rgba($light-text, 0.3),
+    slider-off-active: rgba($light-text, 0.3),
+);
+
 // Background config
 // Light bg
 $light-background: #fafafa;
@@ -91,6 +118,34 @@ $mat-light-theme-background: (
     disabled-list-option: $light-bg-darker-10,
 );
 
+// Dark bg
+$dark-background: #2c2c2c;
+$dark-bg-lighter-5: lighten($dark-background, 5%);
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
+$light-bg-alpha-4: rgba(#fafafa, 0.04);
+$light-bg-alpha-12: rgba(#fafafa, 0.12);
+
+// Background palette for dark themes.
+$mat-dark-theme-background: (
+    background: $dark-background,
+    status-bar: $dark-bg-lighter-20,
+    app-bar: $dark-bg-lighter-5,
+    hover: $light-bg-alpha-4,
+    card: $dark-bg-lighter-5,
+    dialog: $dark-bg-lighter-5,
+    tooltip: $dark-bg-lighter-20,
+    disabled-button: $light-bg-alpha-12,
+    raised-button: $dark-bg-lighter-5,
+    focused-button: $light-focused,
+    selected-button: $dark-bg-lighter-20,
+    selected-disabled-button: $dark-bg-lighter-30,
+    disabled-button-toggle: $dark-bg-lighter-10,
+    unselected-chip: $dark-bg-lighter-20,
+    disabled-list-option: $dark-bg-lighter-10,
+);
+
 // Compute font config
 @include mat.core($fontConfig);
 
@@ -100,7 +155,9 @@ body {
     --primary-color: #2a3647;
     --primary-lighter-color: #bfc3c8;
     --primary-darker-color: #19222f;
+    --text-primary-color: #{$light-primary-text};
     --text-primary-lighter-color: #{$dark-primary-text};
+    --text-primary-darker-color: #{$light-primary-text};
 }
 
 $mat-primary: (
@@ -109,7 +166,10 @@ $mat-primary: (
     darker: #19222f,
     200: #2a3647,
     // For slide toggle,
-    contrast : (lighter: $dark-primary-text, )
+    contrast : (main: $light-primary-text,
+        lighter: $dark-primary-text,
+        darker: $light-primary-text,
+    )
 );
 $theme-primary: mat.define-palette($mat-primary, main, lighter, darker);
 
@@ -120,6 +180,7 @@ body {
     --accent-darker-color: #1991d6;
     --text-accent-color: #{$dark-primary-text};
     --text-accent-lighter-color: #{$dark-primary-text};
+    --text-accent-darker-color: #{$light-primary-text};
 }
 
 $mat-accent: (
@@ -130,6 +191,7 @@ $mat-accent: (
     // For slide toggle,
     contrast : (main: $dark-primary-text,
         lighter: $dark-primary-text,
+        darker: $light-primary-text,
     )
 );
 $theme-accent: mat.define-palette($mat-accent, main, lighter, darker);
@@ -139,7 +201,9 @@ body {
     --warn-color: #ff3d00;
     --warn-lighter-color: #ffc5b3;
     --warn-darker-color: #ff2700;
+    --text-warn-color: #{$light-primary-text};
     --text-warn-lighter-color: #{$dark-primary-text};
+    --text-warn-darker-color: #{$light-primary-text};
 }
 
 $mat-warn: (
@@ -148,10 +212,13 @@ $mat-warn: (
     darker: #ff2700,
     200: #ff3d00,
     // For slide toggle,
-    contrast : (lighter: $dark-primary-text, )
+    contrast : (main: $light-primary-text,
+        lighter: $dark-primary-text,
+        darker: $light-primary-text,
+    )
 );
 $theme-warn: mat.define-palette($mat-warn, main, lighter, darker);
-
+;
 
 $theme: (
     primary: $theme-primary,
@@ -161,9 +228,21 @@ $theme: (
     foreground: $mat-light-theme-foreground,
     background: $mat-light-theme-background,
 );
+$altTheme: (
+    primary: $theme-primary,
+    accent: $theme-accent,
+    warn: $theme-warn,
+    is-dark: true,
+    foreground: $mat-dark-theme-foreground,
+    background: $mat-dark-theme-background,
+);
 
 // Theme Init
 @include mat.all-component-themes($theme);
+
+.theme-alternate {
+    @include mat.all-component-themes($altTheme);
+}
 
 // Specific component overrides, pieces that are not in line with the general theming
 
