@@ -11,11 +11,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { SummaryComponent } from './summary/summary.component';
+import { MainComponent } from './main/main.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    SummaryComponent,
+    MainComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
