@@ -1,10 +1,70 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #F5F5F5;
+    opacity: 0;
+    animation: show .6s ease-in-out;
+    animation-delay: 1.2s;
+    animation-fill-mode: forwards;
+}
+
+mat-card {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    mat-card-title {
+        font-size: 40px;
+        line-height: 40px;
+        padding-bottom: 20px;
+        position: relative;
+
+        &:before {
+            content: "";
+            position: absolute;
+            left: 10%;
+            bottom: 0;
+            width: 80%;
+            border-bottom: 2px solid #29ABE2;
+        }
+    }
+}
+
+.new-user {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    opacity: 0;
+    animation: show .6s ease-in-out;
+    animation-delay: 1.2s;
+    animation-fill-mode: forwards;
+
+    span {
+        margin-right: 30px;
+    }
+}
+
 .logo {
     position: absolute;
     top: calc(50% - 335px/2);
     left: calc(50% - 274px/2);
-    animation: move 1.3s ease-in-out;
+    animation: move .6s ease-in-out;
     animation-delay: 1s;
     animation-fill-mode: forwards;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes move {
@@ -20,26 +80,5 @@
         width: calc(274px / 2.5);
         top: 50px;
         left: 50px;
-    }
-}
-
-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    opacity: 0;
-    animation: show 1.3s ease-in-out;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
-}
-
-@keyframes show {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
     }
 }
