@@ -1,35 +1,23 @@
-/**
-* Generated theme by Material Theme Generator
-* https://materialtheme.arcsine.dev
-* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzJhMzY0NyIsIj9lcjwjYmZjM2M4IiwiO2VyPCMxOTIyMmZ$LCIlPmBePCMyOWFiZTIiLCI~ZXI8I2JmZTZmNiIsIjtlcjwjMTk5MWQ2fiwid2Fybj5gXjwjZmYzZDAwIiwiP2VyPCNmZmM1YjMiLCI7ZXI8I2ZmMjcwMH4sIj9UZXh0PCMwMDAwMDAiLCI~PTwjZmFmYWZhIiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMyYzJjMmN$LCJmb250cz5bYEA8KC00fixgQDwoLTN$LGBAPCgtMn4sYEA8KC0xfixgQDxoZWFkbGluZX4sYEA8dGl0bGV$LGBAPHN1YiktMn4sYEA8c3ViKS0xfixgQDxib2R5LTJ$LGBAPGJvZHktMX4sYEA8YnV0dG9ufixgQDxjYXB0aW9ufixgQDxpbnB1dCIsInNpemU$bnVsbH1dLCJpY29uczxGaWxsZWQiLCI~bmVzcz50cnVlLCJ2ZXJzaW9uPjEzfQ==
-*/
-
 @use '@angular/material' as mat;
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-
 // Fonts
-// @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 @import 'material-icons/iconfont/material-icons.css';
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-// @import "~@fontsource/roboto";
-@import "./assets/fonts/fonts.scss";
+@import './assets/fonts/inter.scss';
 
 $fontConfig: (
-    display-4: mat.define-typography-level(112px, 112px, 300, 'Roboto'),
-    display-3: mat.define-typography-level(56px, 56px, 400, 'Roboto'),
-    display-2: mat.define-typography-level(45px, 48px, 400, 'Roboto'),
-    display-1: mat.define-typography-level(34px, 40px, 400, 'Roboto'),
-    headline: mat.define-typography-level(24px, 32px, 400, 'Roboto'),
-    title: mat.define-typography-level(20px, 32px, 500, 'Roboto'),
-    subheading-2: mat.define-typography-level(16px, 28px, 400, 'Roboto'),
-    subheading-1: mat.define-typography-level(15px, 24px, 500, 'Roboto'),
-    body-2: mat.define-typography-level(16px, 24px, 500, 'Roboto'),
-    body-1: mat.define-typography-level(16px, 20px, 400, 'Roboto'),
-    button: mat.define-typography-level(16px, 14px, 500, 'Roboto'),
-    caption: mat.define-typography-level(12px, 20px, 400, 'Roboto'),
-    input: mat.define-typography-level(inherit, 1.125, 400, 'Roboto')
+    display-4: mat.define-typography-level(112px, 112px, 300, 'Inter'),
+    display-3: mat.define-typography-level(56px, 56px, 400, 'Inter'),
+    display-2: mat.define-typography-level(45px, 48px, 400, 'Inter'),
+    display-1: mat.define-typography-level(34px, 40px, 400, 'Inter'),
+    headline: mat.define-typography-level(24px, 32px, 400, 'Inter'),
+    title: mat.define-typography-level(20px, 32px, 500, 'Inter'),
+    subheading-2: mat.define-typography-level(16px, 28px, 400, 'Inter'),
+    subheading-1: mat.define-typography-level(15px, 24px, 500, 'Inter'),
+    body-2: mat.define-typography-level(16px, 24px, 500, 'Inter'),
+    body-1: mat.define-typography-level(16px, 20px, 400, 'Inter'),
+    button: mat.define-typography-level(16px, 14px, 500, 'Inter'),
+    caption: mat.define-typography-level(12px, 20px, 400, 'Inter'),
+    input: mat.define-typography-level(inherit, 1.125, 400, 'Inter')
 );
 
 // Foreground Elements
@@ -266,7 +254,7 @@ $altTheme: (
     font-family: 'Material Icons', 'Material Icons';
 
     .mat-badge-content {
-        font-family: 'Roboto';
+        font-family: 'Inter';
     }
 }
 
@@ -281,5 +269,11 @@ body {
 
 body {
     margin: 0;
-    font-family: "Roboto", "Helvetica Neue", sans-serif;
+    font-family: 'Inter', "Helvetica Neue", sans-serif;
+}
+
+mat-card {
+    border-radius: 20px !important;
+    box-sizing: border-box;
+    font-family: 'Inter', "Helvetica Neue", sans-serif !important
 }
