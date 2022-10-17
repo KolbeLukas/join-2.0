@@ -14,6 +14,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SummaryComponent } from './summary/summary.component';
 import { MainComponent } from './main/main.component';
 import { MenuComponent } from './menu/menu.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { MenuComponent } from './menu/menu.component';
     LoginComponent,
     SummaryComponent,
     MainComponent,
-    MenuComponent
+    MenuComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,8 @@ import { MenuComponent } from './menu/menu.component';
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
