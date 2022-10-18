@@ -1,0 +1,72 @@
+<div class="top-container">
+    <header>
+        <h2>Board</h2>
+        <div>
+            <mat-form-field appearance="legacy" color="accent">
+                <mat-label>Find Task</mat-label>
+                <input matInput placeholder="Find Task">
+                <mat-icon matSuffix>search</mat-icon>
+            </mat-form-field>
+            <button class="dark-btn" mat-flat-button color="primary">Add task
+                <mat-icon matSuffix>add</mat-icon>
+            </button>
+        </div>
+    </header>
+</div>
+
+<main cdkDropListGroup>
+    <div class="content">
+        <div class="headers">
+            <h3>To do</h3>
+            <button>
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="drop-container" cdkDropList [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let todo of todos">
+                <app-board-card [card]="todo"></app-board-card>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="headers">
+            <h3>In progress</h3>
+            <button>
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="drop-container" cdkDropList [cdkDropListData]="inProgress" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let inProgress of inProgress">
+                <app-board-card [card]="inProgress"></app-board-card>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="headers">
+            <h3>Feedback</h3>
+            <button>
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="drop-container" cdkDropList [cdkDropListData]="feedback" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let feedback of feedback">
+                <app-board-card [card]="feedback"></app-board-card>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="headers">
+            <h3>Done</h3>
+            <button>
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+        <div class="drop-container" cdkDropList [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let done of done">
+                <app-board-card [card]="done"></app-board-card>
+            </div>
+        </div>
+    </div>
+</main>

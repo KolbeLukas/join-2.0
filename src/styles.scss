@@ -277,3 +277,19 @@ mat-card {
     box-sizing: border-box;
     font-family: 'Inter', "Helvetica Neue", sans-serif !important
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e6e6e6;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c0c0c0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+}

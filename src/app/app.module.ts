@@ -16,6 +16,9 @@ import { MainComponent } from './main/main.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './header/header.component';
+import { BoardComponent } from './board/board.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { BoardCardComponent } from './board-card/board-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { HeaderComponent } from './header/header.component';
     SummaryComponent,
     MainComponent,
     MenuComponent,
-    HeaderComponent
+    HeaderComponent,
+    BoardComponent,
+    BoardCardComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,8 @@ import { HeaderComponent } from './header/header.component';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    MatToolbarModule
+    MatToolbarModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]
