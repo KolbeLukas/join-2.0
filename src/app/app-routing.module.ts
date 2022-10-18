@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddTaskComponent } from './add-task/add-task.component';
 import { BoardComponent } from './board/board.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
     children: [
       { path: 'summary', component: SummaryComponent },
       { path: 'board', component: BoardComponent },
+      { path: 'addtask', component: AddTaskComponent },
     ]
   },
 

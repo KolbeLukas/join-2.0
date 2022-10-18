@@ -14,7 +14,7 @@ export class BoardComponent implements OnInit {
     title: 'todo',
     description: 'This card has divider and indeterminate progress as footer',
     assignedTo: ['SW', 'AB', 'WB'],
-    prio: '/assets/img/icon/low_prio.png'
+    prio: '/assets/img/icon/prio_low.png'
   },
   ];
   inProgress = [{
@@ -22,21 +22,21 @@ export class BoardComponent implements OnInit {
     title: 'in progress',
     description: 'This card has divider and indeterminate progress as footer',
     assignedTo: ['SW', 'AB', 'WB'],
-    prio: '/assets/img/icon/low_prio.png'
+    prio: '/assets/img/icon/prio_medium.png'
   }];
   feedback = [{
     category: 'feedback',
     title: 'feedback',
     description: 'This card has divider and indeterminate progress as footer',
     assignedTo: ['SW', 'AB', 'WB'],
-    prio: '/assets/img/icon/low_prio.png'
+    prio: '/assets/img/icon/prio_urgent.png'
   }];
   done = [{
     category: 'done',
     title: 'done',
     description: 'This card has divider and indeterminate progress as footer',
     assignedTo: ['SW', 'AB', 'WB'],
-    prio: '/assets/img/icon/low_prio.png'
+    prio: '/assets/img/icon/prio_low.png'
   }];
 
   constructor() { }

@@ -19,6 +19,12 @@ import { HeaderComponent } from './header/header.component';
 import { BoardComponent } from './board/board.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { BoardCardComponent } from './board-card/board-card.component';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,8 @@ import { BoardCardComponent } from './board-card/board-card.component';
     MenuComponent,
     HeaderComponent,
     BoardComponent,
-    BoardCardComponent
+    BoardCardComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +49,12 @@ import { BoardCardComponent } from './board-card/board-card.component';
     MatInputModule,
     MatCheckboxModule,
     MatToolbarModule,
-    DragDropModule
+    DragDropModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    TextFieldModule,
+    MatButtonToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,73 @@
+<h2>Add Task</h2>
+
+<main>
+    <div class="left-half">
+        <mat-form-field appearance="outline">
+            <mat-label>Title</mat-label>
+            <input matInput placeholder="Enter a title">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput placeholder="Enter a description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Select task category</mat-label>
+            <mat-select>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Select contacts to assign</mat-label>
+            <mat-select>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div class="right-half">
+        <mat-form-field appearance="outline">
+            <mat-label>Due date</mat-label>
+            <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="prio">
+            <h3>Prio</h3>
+            <div>
+                <mat-button-toggle-group>
+                    <mat-button-toggle value="urgent">
+                        <span>Urgent</span>
+                        <img src="/assets/img/icon/prio_urgent.png">
+                    </mat-button-toggle>
+                    <mat-button-toggle value="medium">
+                        <span>Medium</span>
+                        <img src="/assets/img/icon/prio_medium.png">
+                    </mat-button-toggle>
+                    <mat-button-toggle value="low">
+                        <span>Low</span>
+                        <img src="/assets/img/icon/prio_low.png">
+                    </mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Subtask</mat-label>
+            <input matInput placeholder="Add new subtask">
+            <mat-icon matSuffix>add</mat-icon>
+        </mat-form-field>
+    </div>
+</main>
+
+<div class="btns">
+    <button class="light-btn" mat-flat-button>
+        Clear
+        <mat-icon>close</mat-icon>
+    </button>
+    <button class="dark-btn" mat-flat-button color="primary">
+        Creat task
+        <mat-icon>done</mat-icon>
+    </button>
+</div>
