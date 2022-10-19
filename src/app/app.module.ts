@@ -25,6 +25,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { ContactsComponent } from './contacts/contacts.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     HeaderComponent,
     BoardComponent,
     BoardCardComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    ContactsComponent,
+    ContactsDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatDatepickerModule,
     MatNativeDateModule,
     TextFieldModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDividerModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
