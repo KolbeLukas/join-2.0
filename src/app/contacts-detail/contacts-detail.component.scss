@@ -1,5 +1,79 @@
 :host {
-    display: flex;
+    display: block;
     box-sizing: border-box;
     padding-top: 46px;
+}
+
+
+.name-container {
+    display: flex;
+
+    .contact-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 70px;
+        width: 70px;
+        font-size: 30px;
+        color: white;
+        border: 1px solid brown;
+        border-radius: 100%;
+        background-color: brown;
+        margin-right: 16px;
+    }
+
+    .name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 30px;
+
+        span {
+            font-size: 35px;
+            font-weight: 500;
+            line-height: 120%;
+        }
+
+        button {
+            padding-inline: 0 5px;
+        }
+    }
+}
+
+.info-container {
+    padding-top: 30px;
+
+    .info-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+
+        h2 {
+            font-size: 18px;
+            margin: 0 50px 0 0;
+        }
+
+        button {
+            padding-inline: 0 5px;
+
+            mat-icon {
+                color: #2A3647;
+            }
+        }
+    }
+
+    .infos {
+        display: flex;
+        flex-direction: column;
+
+        h3 {
+            font-weight: 600;
+        }
+
+        a {
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #29ABE2;
+        }
+    }
 }

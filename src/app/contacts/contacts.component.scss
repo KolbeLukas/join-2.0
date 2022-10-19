@@ -54,13 +54,13 @@
             border-radius: 5px;
             transition: all 145ms ease-in-out;
 
-            .employee-icon {
+            .contact-icon {
                 border: 1px solid #E5E5E5;
                 transition: all 145ms ease-in-out;
             }
         }
 
-        .employee-icon {
+        .contact-icon {
             display: flex;
             justify-content: center;
             align-items: center;
@@ -74,7 +74,7 @@
             margin-right: 16px;
         }
 
-        .employee-name {
+        .contact-name {
             display: flex;
             flex-direction: column;
 
@@ -93,7 +93,7 @@ button {
     bottom: 0;
     margin-right: 5%;
     margin-bottom: 5%;
-    padding-inline: 10px 6px;
+    padding-inline: 10px 8px;
 
     &:hover {
         background-color: #29ABE2;
