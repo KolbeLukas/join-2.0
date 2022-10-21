@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "join-33125": {
+      "hosting": {
+        "join-2.0": [
+          "join-33125"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "join-33125"
+  }
+}

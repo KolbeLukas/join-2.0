@@ -1,73 +1,103 @@
 <h2>Add Task</h2>
+<form [formGroup]="newTask" (ngSubmit)="createTask()" #form1="ngForm" novalidate>
+    <main>
+        <div class="left-half">
+            <mat-form-field appearance="outline">
+                <mat-label>Title</mat-label>
+                <input formControlName="title" matInput placeholder="Enter a title">
+                <mat-error *ngIf="errorHandling('title', 'required')">
+                    You must provide a <strong>title</strong>
+                </mat-error>
+            </mat-form-field>
 
-<main>
-    <div class="left-half">
-        <mat-form-field appearance="outline">
-            <mat-label>Title</mat-label>
-            <input matInput placeholder="Enter a title">
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea matInput placeholder="Enter a description" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
-                cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Select task category</mat-label>
-            <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Select contacts to assign</mat-label>
-            <mat-select>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea formControlName="description" matInput placeholder="Enter a description" cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                <mat-error *ngIf="errorHandling('description', 'required')">
+                    You must provide a <strong>description</strong>
+                </mat-error>
+            </mat-form-field>
 
-    <div class="right-half">
-        <mat-form-field appearance="outline">
-            <mat-label>Due date</mat-label>
-            <input matInput [matDatepicker]="picker" placeholder="MM/DD/YYYY">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
-        <div class="prio">
-            <h3>Prio</h3>
-            <div>
-                <mat-button-toggle-group>
-                    <mat-button-toggle value="urgent">
-                        <span>Urgent</span>
-                        <img src="/assets/img/icon/prio_urgent.png">
-                    </mat-button-toggle>
-                    <mat-button-toggle value="medium">
-                        <span>Medium</span>
-                        <img src="/assets/img/icon/prio_medium.png">
-                    </mat-button-toggle>
-                    <mat-button-toggle value="low">
-                        <span>Low</span>
-                        <img src="/assets/img/icon/prio_low.png">
-                    </mat-button-toggle>
-                </mat-button-toggle-group>
-            </div>
+            <mat-form-field appearance="outline">
+                <mat-label>Select task category</mat-label>
+                <mat-select formControlName="category">
+                    <mat-option value="sales">Sales</mat-option>
+                    <mat-option value="backoffice">Backoffice</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('category', 'required')">
+                    You must select a <strong>category</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Select contacts to assign</mat-label>
+                <mat-select formControlName="contact" multiple>
+                    <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
+                    <mat-option value="one">First option</mat-option>
+                    <mat-option value="two">Second option</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('contact', 'required')">
+                    You must select at least one <strong>contact</strong>
+                </mat-error>
+            </mat-form-field>
         </div>
-        <mat-form-field appearance="outline">
-            <mat-label>Subtask</mat-label>
-            <input matInput placeholder="Add new subtask">
-            <mat-icon matSuffix>add</mat-icon>
-        </mat-form-field>
-    </div>
-</main>
 
-<div class="btns">
-    <button class="light-btn" mat-flat-button>
-        Clear
-        <mat-icon>close</mat-icon>
-    </button>
-    <button class="dark-btn" mat-flat-button color="primary">
-        Creat task
-        <mat-icon>done</mat-icon>
-    </button>
-</div>
+        <div class="right-half">
+            <mat-form-field appearance="outline">
+                <mat-label>Due date</mat-label>
+                <input formControlName="dueDate" matInput [matDatepicker]="picker" placeholder="DD.MM.YYYY">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="errorHandling('dueDate', 'required')">
+                    You must select a <strong>date</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="prio-container">
+                <div class="prio" [class.field-invalid]="form1.submitted && newTask.controls['prio'].invalid">
+                    <h3>Prio *</h3>
+                    <div>
+                        <mat-button-toggle-group formControlName="prio">
+                            <mat-button-toggle value="urgent">
+                                <span>Urgent</span>
+                                <img src="/assets/img/icon/prio_urgent.png">
+                            </mat-button-toggle>
+                            <mat-button-toggle value="medium">
+                                <span>Medium</span>
+                                <img src="/assets/img/icon/prio_medium.png">
+                            </mat-button-toggle>
+                            <mat-button-toggle value="low">
+                                <span>Low</span>
+                                <img src="/assets/img/icon/prio_low.png">
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </div>
+                <div *ngIf="form1.submitted && newTask.controls['prio'].invalid" class="error-prio">
+                    <span> You must select a <strong>prio</strong></span>
+                </div>
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Subtask (under construction)</mat-label>
+                <input matInput placeholder="Add new subtask (under construction)">
+                <mat-icon matSuffix>add</mat-icon>
+                <!-- <mat-error *ngIf="errorHandling('dueDate', 'required')">
+                    You must select at least one <strong>contact</strong>
+                </mat-error> -->
+            </mat-form-field>
+        </div>
+    </main>
+
+    <div class="btns">
+        <button class="light-btn" mat-flat-button>
+            Clear
+            <mat-icon>close</mat-icon>
+        </button>
+        <button type="submit" class="dark-btn" mat-flat-button color="primary">
+            Creat task
+            <mat-icon>done</mat-icon>
+        </button>
+    </div>
+</form>

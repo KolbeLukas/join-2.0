@@ -1,25 +1,25 @@
 <div class="top-half">
     <img class="logo" src="/assets/img/logo_white.png">
     <nav>
-        <a [class.active]="active" routerLink="summary">
+        <a [class.active]="currentRoute == '/main/summary'" routerLink="summary">
             <div>
                 <img src="/assets/img/icon/summary.png">
             </div>
             <span>Summary</span>
         </a>
-        <a routerLink="board">
+        <a [class.active]="currentRoute == '/main/board'" routerLink="board">
             <div>
                 <img src="/assets/img/icon/board.png">
             </div>
             <span>Board</span>
         </a>
-        <a routerLink="addtask">
+        <a [class.active]="currentRoute == '/main/addtask'" routerLink="addtask">
             <div>
                 <img src="/assets/img/icon/add_task.png">
             </div>
             <span>Add Task</span>
         </a>
-        <a routerLink="contacts">
+        <a [class.active]="currentRoute == '/main/contacts'" routerLink="contacts">
             <div>
                 <img src="/assets/img/icon/contacts.png">
             </div>

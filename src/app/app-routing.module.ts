@@ -16,10 +16,10 @@ const routes: Routes = [
       { path: 'summary', component: SummaryComponent },
       { path: 'board', component: BoardComponent },
       { path: 'addtask', component: AddTaskComponent },
-      { path: 'contacts', component: ContactsComponent },
+      { path: 'contacts', component: ContactsComponent }
     ]
   },
-
+  { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({
