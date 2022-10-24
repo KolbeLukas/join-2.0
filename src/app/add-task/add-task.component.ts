@@ -1,5 +1,5 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, NgZone, OnInit, ViewChild, Inject } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
@@ -14,6 +14,8 @@ export class AddTaskComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
   newTask!: FormGroup
+  newCategory = false;
+  minDate = new Date;
 
   constructor(private dateAdapter: DateAdapter<any>,
     private firebaseService: FirebaseService,
@@ -29,6 +31,7 @@ export class AddTaskComponent implements OnInit {
       title: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       category: new FormControl('', [Validators.required]),
+      categoryColor: new FormControl(''),
       contact: new FormControl('', [Validators.required]),
       dueDate: new FormControl('', [Validators.required]),
       prio: new FormControl('', [Validators.required]),
@@ -36,10 +39,10 @@ export class AddTaskComponent implements OnInit {
   }
 
   createTask() {
-    if (!this.newTask.invalid) {
+    if (this.newTask.valid) {
       this.newTask.value.dueDate = this.changeDateAppearance(this.newTask.value.dueDate._d);
       this.firebaseService.createTask(this.newTask.value);
-      this.formDirective.resetForm();
+      this.clearForm();
     }
   }
 
@@ -56,5 +59,22 @@ export class AddTaskComponent implements OnInit {
 
   triggerResize() {
     this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
+
+  createNewCategory() {
+    this.newCategory = true;
+    this.newTask.controls['category'].reset();
+    console.log(this.newCategory)
+  }
+
+  closeNewCategory() {
+    this.newCategory = false;
+    this.newTask.controls['category'].reset();
+    console.log(this.newCategory)
+  }
+
+  clearForm() {
+    this.newCategory = false;
+    this.formDirective.resetForm();
   }
 }

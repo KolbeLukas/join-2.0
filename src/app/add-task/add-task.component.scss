@@ -17,66 +17,205 @@ h2 {
 main {
     display: flex;
     padding-inline: 5%;
+}
 
-    .left-half {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        padding-right: 40px;
-        border-right: 1px solid #D1D1D1;
+.left-half {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-right: 40px;
+    border-right: 1px solid #D1D1D1;
+}
+
+.category-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.cat-option-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
     }
 
-    .right-half {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        padding-left: 40px;
+    .pink {
+        background-color: #FC71FF;
+    }
 
-        .prio-container {
-            margin-bottom: 25.5px;
-            position: relative;
+    .turquoise {
+        background-color: #1FD7C1;
+    }
+}
 
-            .prio {
-                border: 2px solid transparent;
+.pseudo-check {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+}
 
-                h3 {
-                    margin-bottom: 0;
-                    color: rgba(0, 0, 0, 0.6);
-                }
+.category-color {
+    display: flex;
+    height: 20px;
+    margin-left: 25px;
+    margin-top: -15px;
+    margin-bottom: 25.5px;
+}
 
-                mat-button-toggle-group {
-                    border: unset;
-                    border-radius: unset;
-                    width: 100%;
+.container {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    cursor: pointer;
+    user-select: none;
 
-                    mat-button-toggle {
-                        border: solid 1px #e0e0e0;
-                        border-radius: 4px;
-                        width: 33.33%;
+    &:hover input~.checkmark {
+        opacity: 0.6;
+        transition: all 125ms ease-in-out;
+    }
 
-                        &:not(:last-child) {
-                            margin-right: 10px;
-                        }
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
 
-                        span {
-                            margin-right: 10px;
-                        }
-                    }
-                }
+    input:checked~.light-blue {
+        background-color: #8AA4FF;
+    }
+
+    input:checked~.red {
+        background-color: #FF0000;
+    }
+
+    input:checked~.green {
+        background-color: #2AD300;
+    }
+
+    input:checked~.orange {
+        background-color: #FF8A00;
+    }
+
+    input:checked~.blue {
+        background-color: #E200BE;
+    }
+
+    input:checked~.blue {
+        background-color: #0038FF;
+    }
+
+    input:checked~.checkmark:after {
+        display: block;
+    }
+}
+
+.light-blue {
+    background-color: #8AA4FF;
+}
+
+.red {
+    background-color: #FF0000;
+}
+
+.green {
+    background-color: #2AD300;
+}
+
+.orange {
+    background-color: #FF8A00;
+}
+
+.purple {
+    background-color: #E200BE;
+}
+
+.blue {
+    background-color: #0038FF;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+
+    &:after {
+        content: "";
+        position: absolute;
+        display: none;
+        top: 5px;
+        left: 5px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: white;
+    }
+}
+
+.position-error {
+    position: relative;
+    top: 35px;
+}
+
+.right-half {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding-left: 40px;
+}
+
+.prio-container {
+    margin-bottom: 25.5px;
+    position: relative;
+}
+
+.prio {
+    border: 2px solid transparent;
+
+    h3 {
+        margin-bottom: 0;
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    mat-button-toggle-group {
+        border: unset;
+        border-radius: unset;
+        width: 100%;
+
+        mat-button-toggle {
+            border: solid 1px #e0e0e0;
+            border-radius: 4px;
+            width: 33.33%;
+
+            &:not(:last-child) {
+                margin-right: 10px;
             }
 
-            .error-prio {
-                position: absolute;
-                margin-top: 4px;
-                padding-left: 12px;
-                animation: fadeIn .5s;
-
-                span {
-                    color: #ff3d00;
-                    font-size: 75%;
-                }
+            span {
+                margin-right: 10px;
             }
         }
+    }
+}
+
+.error-prio {
+    position: absolute;
+    margin-top: 4px;
+    padding-left: 12px;
+    animation: fadeIn .5s;
+
+    span {
+        color: #ff3d00;
+        font-size: 75%;
     }
 }
 

@@ -1,5 +1,5 @@
 <h2>Add Task</h2>
-<form [formGroup]="newTask" (ngSubmit)="createTask()" #form1="ngForm" novalidate>
+<form [formGroup]="newTask" id="newForm" (ngSubmit)="createTask()" #form="ngForm" novalidate>
     <main>
         <div class="left-half">
             <mat-form-field appearance="outline">
@@ -19,16 +19,62 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline">
-                <mat-label>Select task category</mat-label>
-                <mat-select formControlName="category">
-                    <mat-option value="sales">Sales</mat-option>
-                    <mat-option value="backoffice">Backoffice</mat-option>
-                </mat-select>
-                <mat-error *ngIf="errorHandling('category', 'required')">
-                    You must select a <strong>category</strong>
-                </mat-error>
-            </mat-form-field>
+            <div class="category-container">
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="!newCategory">Select task category</mat-label>
+                    <mat-label *ngIf="newCategory">New category name</mat-label>
+                    <input *ngIf="newCategory" formControlName="category" matInput placeholder="New category name">
+                    <mat-icon *ngIf="newCategory" (click)="closeNewCategory()" matSuffix>close</mat-icon>
+                    <mat-select *ngIf="!newCategory" formControlName="category">
+                        <mat-option (click)="createNewCategory()">New category</mat-option>
+                        <mat-option value="Sales">
+                            <div class="cat-option-content">
+                                <span>Sales</span>
+                                <div class="pink"></div>
+                            </div>
+                            <input class="pseudo-check" type="radio" name="categoryColor"
+                                formControlName="categoryColor" value="pink">
+                        </mat-option>
+                        <mat-option value="Backoffice">
+                            <div class="cat-option-content">
+                                <span>Backoffice</span>
+                                <div class="turquoise"></div>
+                            </div>
+                            <input class="pseudo-check" type="radio" name="categoryColor"
+                                formControlName="categoryColor" value="turquoise">
+                        </mat-option>
+                    </mat-select>
+                    <mat-error [class.position-error]="newCategory" *ngIf="errorHandling('category', 'required')">
+                        You must select a <strong>category</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div class="category-color" *ngIf="newCategory">
+                    <label class="container">
+                        <input formControlName="categoryColor" type="radio" value="light-blue" name="categoryColor">
+                        <span class="checkmark light-blue"></span>
+                    </label>
+                    <label class="container">
+                        <input formControlName="categoryColor" type="radio" value="red" name="categoryColor">
+                        <span class="checkmark red"></span>
+                    </label>
+                    <label class="container">
+                        <input formControlName="categoryColor" type="radio" value="green" name="categoryColor">
+                        <span class="checkmark green"></span>
+                    </label>
+                    <label class="container">
+                        <input formControlName="categoryColor" type="radio" value="orange" name="categoryColor">
+                        <span class="checkmark orange"></span>
+                    </label>
+                    <label class="container">
+                        <input formControlName="categoryColor" type="radio" value="purple" name="categoryColor">
+                        <span class="checkmark purple"></span>
+                    </label>
+                    <label class="container">
+                        <input formControlName="categoryColor" type="radio" value="blue" name="categoryColor">
+                        <span class="checkmark blue"></span>
+                    </label>
+                </div>
+            </div>
 
             <mat-form-field appearance="outline">
                 <mat-label>Select contacts to assign</mat-label>
@@ -46,16 +92,17 @@
         <div class="right-half">
             <mat-form-field appearance="outline">
                 <mat-label>Due date</mat-label>
-                <input formControlName="dueDate" matInput [matDatepicker]="picker" placeholder="DD.MM.YYYY">
+                <input formControlName="dueDate" matInput [min]="minDate" [matDatepicker]="picker"
+                    placeholder="DD.MM.YYYY">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                <mat-datepicker #picker color="primary"></mat-datepicker>
                 <mat-error *ngIf="errorHandling('dueDate', 'required')">
                     You must select a <strong>date</strong>
                 </mat-error>
             </mat-form-field>
 
             <div class="prio-container">
-                <div class="prio" [class.field-invalid]="form1.submitted && newTask.controls['prio'].invalid">
+                <div class="prio" [class.field-invalid]="form.submitted && newTask.controls['prio'].invalid">
                     <h3>Prio *</h3>
                     <div>
                         <mat-button-toggle-group formControlName="prio">
@@ -74,7 +121,7 @@
                         </mat-button-toggle-group>
                     </div>
                 </div>
-                <div *ngIf="form1.submitted && newTask.controls['prio'].invalid" class="error-prio">
+                <div *ngIf="form.submitted && newTask.controls['prio'].invalid" class="error-prio">
                     <span> You must select a <strong>prio</strong></span>
                 </div>
             </div>
@@ -89,15 +136,15 @@
             </mat-form-field>
         </div>
     </main>
-
-    <div class="btns">
-        <button class="light-btn" mat-flat-button>
-            Clear
-            <mat-icon>close</mat-icon>
-        </button>
-        <button type="submit" class="dark-btn" mat-flat-button color="primary">
-            Creat task
-            <mat-icon>done</mat-icon>
-        </button>
-    </div>
 </form>
+
+<div class="btns">
+    <button (click)="clearForm()" class="light-btn" mat-flat-button>
+        Clear
+        <mat-icon>close</mat-icon>
+    </button>
+    <button type="submit" form="newForm" class="dark-btn" mat-flat-button color="primary">
+        Creat task
+        <mat-icon>done</mat-icon>
+    </button>
+</div>

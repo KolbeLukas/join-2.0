@@ -35,6 +35,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
     MatListModule,
     ReactiveFormsModule,
     MatChipsModule,
+    MatRadioModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
