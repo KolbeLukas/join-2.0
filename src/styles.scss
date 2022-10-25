@@ -303,3 +303,19 @@ mat-list-item {
 .mat-form-field-subscript-wrapper {
     overflow: visible !important;
 }
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: transparent;
+}
+
+.mat-radio-button.mat-accent .mat-radio-outer-circle {
+    border-color: transparent;
+}
+
+.mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: rgb(255, 255, 255);
+}
+
+.mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    background-color: transparent;
+}

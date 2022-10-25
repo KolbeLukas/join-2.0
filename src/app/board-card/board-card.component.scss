@@ -6,7 +6,6 @@ mat-card {
 
     mat-card-subtitle {
         width: fit-content;
-        background-color: #FF7A00;
         color: white;
         padding: 2px 15px;
         border-radius: 7px;
@@ -62,4 +61,36 @@ mat-card {
 
 .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.pink {
+    background-color: #FC71FF;
+}
+
+.turquoise {
+    background-color: #1FD7C1;
+}
+
+.light-blue {
+    background-color: #8AA4FF;
+}
+
+.red {
+    background-color: #FF0000;
+}
+
+.green {
+    background-color: #2AD300;
+}
+
+.orange {
+    background-color: #FF8A00;
+}
+
+.purple {
+    background-color: #E200BE;
+}
+
+.blue {
+    background-color: #0038FF;
 }

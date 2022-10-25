@@ -61,12 +61,19 @@ main {
     opacity: 0;
 }
 
-.category-color {
+mat-radio-group {
     display: flex;
     height: 20px;
-    margin-left: 25px;
-    margin-top: -15px;
-    margin-bottom: 25.5px;
+    width: calc(100% - 25px);
+    margin-top: -13px;
+    margin-bottom: 23.5px;
+    padding-left: 25px;
+    border: 2px solid transparent;
+
+    mat-radio-button {
+        position: absolute;
+        left: 0;
+    }
 }
 
 .container {
@@ -75,45 +82,6 @@ main {
     padding-left: 40px;
     cursor: pointer;
     user-select: none;
-
-    &:hover input~.checkmark {
-        opacity: 0.6;
-        transition: all 125ms ease-in-out;
-    }
-
-    input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-    }
-
-    input:checked~.light-blue {
-        background-color: #8AA4FF;
-    }
-
-    input:checked~.red {
-        background-color: #FF0000;
-    }
-
-    input:checked~.green {
-        background-color: #2AD300;
-    }
-
-    input:checked~.orange {
-        background-color: #FF8A00;
-    }
-
-    input:checked~.blue {
-        background-color: #E200BE;
-    }
-
-    input:checked~.blue {
-        background-color: #0038FF;
-    }
-
-    input:checked~.checkmark:after {
-        display: block;
-    }
 }
 
 .light-blue {
@@ -164,6 +132,10 @@ main {
 .position-error {
     position: relative;
     top: 35px;
+}
+
+.color-error {
+    border: 1px solid red;
 }
 
 .right-half {

@@ -48,42 +48,44 @@
                         You must select a <strong>category</strong>
                     </mat-error>
                 </mat-form-field>
-                <div class="category-color" *ngIf="newCategory">
+
+                <mat-radio-group *ngIf="newCategory" formControlName="categoryColor"
+                    [class.field-invalid]="form.submitted && newTask.controls['categoryColor'].invalid">
                     <label class="container">
-                        <input formControlName="categoryColor" type="radio" value="light-blue" name="categoryColor">
                         <span class="checkmark light-blue"></span>
+                        <mat-radio-button value="light-blue"></mat-radio-button>
                     </label>
                     <label class="container">
-                        <input formControlName="categoryColor" type="radio" value="red" name="categoryColor">
                         <span class="checkmark red"></span>
+                        <mat-radio-button value="red"></mat-radio-button>
                     </label>
                     <label class="container">
-                        <input formControlName="categoryColor" type="radio" value="green" name="categoryColor">
                         <span class="checkmark green"></span>
+                        <mat-radio-button value="green"></mat-radio-button>
                     </label>
                     <label class="container">
-                        <input formControlName="categoryColor" type="radio" value="orange" name="categoryColor">
                         <span class="checkmark orange"></span>
+                        <mat-radio-button value="orange"></mat-radio-button>
                     </label>
                     <label class="container">
-                        <input formControlName="categoryColor" type="radio" value="purple" name="categoryColor">
                         <span class="checkmark purple"></span>
+                        <mat-radio-button value="purple"></mat-radio-button>
                     </label>
                     <label class="container">
-                        <input formControlName="categoryColor" type="radio" value="blue" name="categoryColor">
                         <span class="checkmark blue"></span>
+                        <mat-radio-button value="blue"></mat-radio-button>
                     </label>
-                </div>
+                </mat-radio-group>
             </div>
 
             <mat-form-field appearance="outline">
                 <mat-label>Select contacts to assign</mat-label>
-                <mat-select formControlName="contact" multiple>
+                <mat-select formControlName="assignedTo" multiple>
                     <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                    <mat-option value="one">First option</mat-option>
-                    <mat-option value="two">Second option</mat-option>
+                    <mat-option value="SW">SW</mat-option>
+                    <mat-option value="AM">AM</mat-option>
                 </mat-select>
-                <mat-error *ngIf="errorHandling('contact', 'required')">
+                <mat-error *ngIf="errorHandling('assignedTo', 'required')">
                     You must select at least one <strong>contact</strong>
                 </mat-error>
             </mat-form-field>

@@ -1,15 +1,15 @@
-<mat-card cdkDrag>
-    <mat-card-subtitle>{{ card.category }}</mat-card-subtitle>
+<mat-card cdkDrag [cdkDragData]="card">
+    <mat-card-subtitle class="{{ card.categoryColor }}">{{ card.category }}</mat-card-subtitle>
     <mat-card-title>{{ card.title }}</mat-card-title>
     <mat-card-content>
         <p>{{ card.description }}</p>
     </mat-card-content>
     <div class="card-bottom">
         <div class="contact-box">
-            <div class="contact" *ngFor="let emloyee of card.assignedTo">
-                <span>{{ emloyee }}</span>
+            <div class="contact" *ngFor="let contact of card.assignedTo">
+                <span>{{ contact }}</span>
             </div>
         </div>
-        <img src="{{ card.prio }}">
+        <img src="/assets/img/icon/prio_{{ card.prio }}.png">
     </div>
 </mat-card>

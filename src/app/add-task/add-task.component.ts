@@ -4,6 +4,7 @@ import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular
 import { take } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
 import { DateAdapter } from '@angular/material/core';
+import { Task } from 'src/models/task.class';
 
 @Component({
   selector: 'app-add-task',
@@ -13,7 +14,8 @@ import { DateAdapter } from '@angular/material/core';
 export class AddTaskComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
-  newTask!: FormGroup
+  newTask!: FormGroup;
+  task = new Task();
   newCategory = false;
   minDate = new Date;
 
@@ -24,23 +26,25 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {
     this.setForm();
     this.dateAdapter.setLocale('de');
+    console.log(this.newTask.controls['category'].hasError('required'))
   }
 
   setForm() {
     this.newTask = new FormGroup({
-      title: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      category: new FormControl('', [Validators.required]),
-      categoryColor: new FormControl(''),
-      contact: new FormControl('', [Validators.required]),
-      dueDate: new FormControl('', [Validators.required]),
-      prio: new FormControl('', [Validators.required]),
+      title: new FormControl(this.task.title, [Validators.required]),
+      description: new FormControl(this.task.description, [Validators.required]),
+      category: new FormControl(this.task.category, [Validators.required]),
+      categoryColor: new FormControl(this.task.categoryColor, [Validators.required]),
+      assignedTo: new FormControl(this.task.assignedTo, [Validators.required]),
+      dueDate: new FormControl(this.task.dueDate, [Validators.required]),
+      prio: new FormControl(this.task.prio, [Validators.required]),
     });
   }
 
   createTask() {
     if (this.newTask.valid) {
       this.newTask.value.dueDate = this.changeDateAppearance(this.newTask.value.dueDate._d);
+      this.newTask.value.state = 'todo';
       this.firebaseService.createTask(this.newTask.value);
       this.clearForm();
     }
@@ -64,13 +68,13 @@ export class AddTaskComponent implements OnInit {
   createNewCategory() {
     this.newCategory = true;
     this.newTask.controls['category'].reset();
-    console.log(this.newCategory)
+    this.newTask.controls['categoryColor'].reset();
+    console.log(this.newTask.controls['categoryColor'].hasError('required'))
   }
 
   closeNewCategory() {
     this.newCategory = false;
     this.newTask.controls['category'].reset();
-    console.log(this.newCategory)
   }
 
   clearForm() {

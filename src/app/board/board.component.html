@@ -22,7 +22,7 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div class="drop-container" cdkDropList [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
+        <div class="drop-container" cdkDropList id="todo" [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
             <div *ngFor="let todo of todos">
                 <app-board-card [card]="todo"></app-board-card>
             </div>
@@ -36,7 +36,8 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div class="drop-container" cdkDropList [cdkDropListData]="inProgress" (cdkDropListDropped)="drop($event)">
+        <div class="drop-container" cdkDropList id="inProgress" [cdkDropListData]="inProgress"
+            (cdkDropListDropped)="drop($event)">
             <div *ngFor="let inProgress of inProgress">
                 <app-board-card [card]="inProgress"></app-board-card>
             </div>
@@ -49,7 +50,8 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div class="drop-container" cdkDropList [cdkDropListData]="feedback" (cdkDropListDropped)="drop($event)">
+        <div class="drop-container" cdkDropList id="feedback" [cdkDropListData]="feedback"
+            (cdkDropListDropped)="drop($event)">
             <div *ngFor="let feedback of feedback">
                 <app-board-card [card]="feedback"></app-board-card>
             </div>
@@ -63,7 +65,7 @@
                 <mat-icon>add</mat-icon>
             </button>
         </div>
-        <div class="drop-container" cdkDropList [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
+        <div class="drop-container" cdkDropList id="done" [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
             <div *ngFor="let done of done">
                 <app-board-card [card]="done"></app-board-card>
             </div>
