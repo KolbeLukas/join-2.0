@@ -7,7 +7,7 @@
                 <input matInput placeholder="Find Task">
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
-            <button class="dark-btn" mat-flat-button color="primary">Add task
+            <button class="dark-btn" (click)="openDialog('todo')" mat-flat-button color="primary">Add task
                 <mat-icon matSuffix>add</mat-icon>
             </button>
         </div>
@@ -18,7 +18,7 @@
     <div class="content">
         <div class="headers">
             <h3>To do</h3>
-            <button>
+            <button (click)="openDialog('todo')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -32,7 +32,7 @@
     <div class="content">
         <div class="headers">
             <h3>In progress</h3>
-            <button>
+            <button (click)="openDialog('inProgress')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -46,7 +46,7 @@
     <div class="content">
         <div class="headers">
             <h3>Feedback</h3>
-            <button>
+            <button (click)="openDialog('feedback')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -61,7 +61,7 @@
     <div class="content">
         <div class="headers">
             <h3>Done</h3>
-            <button>
+            <button (click)="openDialog('done')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

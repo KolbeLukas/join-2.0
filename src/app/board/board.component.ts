@@ -1,6 +1,8 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { AddTaskComponent } from '../add-task/add-task.component';
 import { FirebaseService } from '../firebase.service';
 
 @Component({
@@ -17,7 +19,8 @@ export class BoardComponent implements OnInit {
   feedback: string[] = [];
   done: string[] = [];
 
-  constructor(private readonly firebaseService: FirebaseService) { }
+  constructor(private readonly firebaseService: FirebaseService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.data$ = this.firebaseService.getAllTasks();
@@ -68,5 +71,14 @@ export class BoardComponent implements OnInit {
   updateTaskState(task: any, state: any) {
     task.state = state;
     this.firebaseService.updateTask(task);
+  }
+
+  openDialog(state: string) {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      data: {
+        state: state,
+      },
+    });
+    dialogRef.componentInstance.openedAsDialog = true;
   }
 }

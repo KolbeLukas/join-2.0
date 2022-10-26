@@ -1,5 +1,5 @@
 <h2>Add Task</h2>
-<form [formGroup]="newTask" id="newForm" (ngSubmit)="createTask()" #form="ngForm" novalidate>
+<form [formGroup]="newTask" id="newForm" (ngSubmit)="createTask(state)" #form="ngForm" novalidate>
     <main>
         <div class="left-half">
             <mat-form-field appearance="outline">

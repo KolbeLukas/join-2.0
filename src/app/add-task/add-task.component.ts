@@ -1,10 +1,11 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild, Inject, Input, Optional } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
 import { DateAdapter } from '@angular/material/core';
 import { Task } from 'src/models/task.class';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-task',
@@ -14,19 +15,24 @@ import { Task } from 'src/models/task.class';
 export class AddTaskComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
+  @Input() openedAsDialog: boolean = false;
   newTask!: FormGroup;
   task = new Task();
   newCategory = false;
   minDate = new Date;
+  state = 'todo';
 
   constructor(private dateAdapter: DateAdapter<any>,
     private firebaseService: FirebaseService,
-    private _ngZone: NgZone) { }
+    private _ngZone: NgZone,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     this.setForm();
     this.dateAdapter.setLocale('de');
-    console.log(this.newTask.controls['category'].hasError('required'))
+    if (this.openedAsDialog) {
+      this.state = this.data.state;
+    }
   }
 
   setForm() {
@@ -41,10 +47,10 @@ export class AddTaskComponent implements OnInit {
     });
   }
 
-  createTask() {
+  createTask(state: string) {
     if (this.newTask.valid) {
       this.newTask.value.dueDate = this.changeDateAppearance(this.newTask.value.dueDate._d);
-      this.newTask.value.state = 'todo';
+      this.newTask.value.state = state;
       this.firebaseService.createTask(this.newTask.value);
       this.clearForm();
     }
