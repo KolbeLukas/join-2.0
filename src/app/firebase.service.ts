@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { collectionData, deleteDoc, docData, Firestore, orderBy, updateDoc } from '@angular/fire/firestore';
+import { collectionData, deleteDoc, docData, Firestore, orderBy, updateDoc, Query, query } from '@angular/fire/firestore';
 import { addDoc, collection, CollectionReference, doc, DocumentData } from '@firebase/firestore';
 import { Observable } from 'rxjs';
 
@@ -8,13 +8,15 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseService {
   private tasksCollection: CollectionReference<DocumentData>;
+  private sortedCollection: Query<DocumentData>
 
   constructor(public readonly firestore: Firestore) {
     this.tasksCollection = collection(firestore, 'tasks');
+    this.sortedCollection = query(this.tasksCollection, orderBy('dueDate', 'asc'));
   }
 
   getAllTasks() {
-    return collectionData(this.tasksCollection, { idField: 'id' }) as Observable<any>;
+    return collectionData(this.sortedCollection, { idField: 'id' }) as Observable<any>;
   }
 
   getOneTask(id: string) {
