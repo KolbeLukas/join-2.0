@@ -9,15 +9,15 @@
     <div class="content">
         <div class="first-row d-flex">
             <mat-card>
-                <span>5</span>
+                <span>{{ todos }}</span>
                 <span>Tasks in Board</span>
             </mat-card>
             <mat-card>
-                <span>2</span>
+                <span>{{ inProgress }}</span>
                 <span>Tasks in Progress</span>
             </mat-card>
             <mat-card>
-                <span>2</span>
+                <span>{{ feedback }}</span>
                 <span>Awaiting Feedback</span>
             </mat-card>
         </div>
@@ -26,12 +26,13 @@
             <div class="urgent">
                 <img src="/assets/img/icon/urgent.png">
                 <div>
-                    <span>1</span>
+                    <span>{{ urgent }}</span>
                     <span>Urgent</span>
                 </div>
             </div>
             <div class="deadline">
-                <span>October 16, 2022</span>
+                <!-- October 16, 2022 -->
+                <span>{{ deadline }}</span>
                 <span>Upcoming Deadline</span>
             </div>
         </mat-card>
@@ -40,14 +41,14 @@
             <mat-card>
                 <img src="/assets/img/icon/todo.png">
                 <div>
-                    <span>1</span>
+                    <span>{{ todos }}</span>
                     <span>To-do</span>
                 </div>
             </mat-card>
             <mat-card>
                 <img src="/assets/img/icon/done.png">
                 <div>
-                    <span>1</span>
+                    <span>{{ done }}</span>
                     <span>Done</span>
                 </div>
             </mat-card>

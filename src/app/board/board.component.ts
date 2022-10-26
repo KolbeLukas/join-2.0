@@ -12,7 +12,7 @@ import { FirebaseService } from '../firebase.service';
 })
 export class BoardComponent implements OnInit {
 
-  data$!: Observable<any>;
+  allTasks$!: Observable<any>;
   card: any;
   todos: string[] = [];
   inProgress: string[] = [];
@@ -23,10 +23,10 @@ export class BoardComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.data$ = this.firebaseService.getAllTasks();
-    this.data$.subscribe(data => {
+    this.allTasks$ = this.firebaseService.getAllTasks();
+    this.allTasks$.subscribe(allTasks => {
       this.clear();
-      data.forEach((task: any) => {
+      allTasks.forEach((task: any) => {
         this.sortByState(task);
       });
     });
@@ -41,7 +41,7 @@ export class BoardComponent implements OnInit {
 
   sortByState(task: any) {
     if (task.state == 'todo') {
-      this.todos.push(task)
+      this.todos.push(task);
     };
     if (task.state == 'inProgress') {
       this.inProgress.push(task);
