@@ -215,9 +215,12 @@ mat-radio-group {
 .btns {
     position: absolute;
     right: 16px;
+    left: 16px;
     bottom: 0;
-    padding-right: 5%;
+    padding-inline: 5%;
     padding-bottom: 5%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .dark-btn {

@@ -1,11 +1,11 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, NgZone, OnInit, ViewChild, Inject, Input, Optional } from '@angular/core';
+import { Component, NgZone, OnInit, ViewChild, Inject, Input, Optional, Injector } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { take } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
 import { DateAdapter } from '@angular/material/core';
 import { Task } from 'src/models/task.class';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-task',
@@ -16,6 +16,7 @@ export class AddTaskComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
   @Input() openedAsDialog: boolean = false;
+  dialogRef?: MatDialogRef<AddTaskComponent>
   newTask!: FormGroup;
   task = new Task();
   newCategory = false;
@@ -25,13 +26,22 @@ export class AddTaskComponent implements OnInit {
   constructor(private dateAdapter: DateAdapter<any>,
     private firebaseService: FirebaseService,
     private _ngZone: NgZone,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    private injector: Injector) { }
 
   ngOnInit(): void {
     this.setForm();
     this.dateAdapter.setLocale('de');
     if (this.openedAsDialog) {
       this.state = this.data.state;
+      this.dialogRef = <MatDialogRef<AddTaskComponent>>(
+        this.injector.get(MatDialogRef));
+    }
+  }
+
+  closeDialog() {
+    if (this.dialogRef) {
+      this.dialogRef.close();
     }
   }
 
@@ -53,6 +63,7 @@ export class AddTaskComponent implements OnInit {
       this.newTask.value.state = state;
       this.firebaseService.createTask(this.newTask.value);
       this.clearForm();
+      this.closeDialog();
     }
   }
 

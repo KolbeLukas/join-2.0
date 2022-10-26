@@ -75,6 +75,7 @@ export class BoardComponent implements OnInit {
 
   openDialog(state: string) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
+      width: '100%',
       data: {
         state: state,
       },

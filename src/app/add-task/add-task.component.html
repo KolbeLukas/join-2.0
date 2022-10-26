@@ -141,12 +141,20 @@
 </form>
 
 <div class="btns">
-    <button (click)="clearForm()" class="light-btn" mat-flat-button>
-        Clear
-        <mat-icon>close</mat-icon>
-    </button>
-    <button type="submit" form="newForm" class="dark-btn" mat-flat-button color="primary">
-        Creat task
-        <mat-icon>done</mat-icon>
-    </button>
+    <div><button *ngIf="openedAsDialog" (click)="closeDialog()" class="light-btn" mat-flat-button>
+            Close
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="right-btns">
+        <button (click)="clearForm()" class="light-btn" mat-flat-button>
+            Clear
+            <mat-icon>close</mat-icon>
+        </button>
+        <button type="submit" form="newForm" class="dark-btn" mat-flat-button color="primary">
+            Creat task
+            <mat-icon>done</mat-icon>
+        </button>
+    </div>
 </div>
