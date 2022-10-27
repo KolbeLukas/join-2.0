@@ -4,10 +4,11 @@ export class Task {
     category: string;
     categoryColor: string;
     assignedTo: string;
-    dueDate: string;
+    dueDate: any;
     prio: string;
     state = 'todo';
     id!: string;
+    // timeStamp = {};
 
     constructor(obj?: any) {
         this.title = obj ? obj.title : '';
@@ -17,6 +18,7 @@ export class Task {
         this.assignedTo = obj ? obj.assignedTo : '';
         this.dueDate = obj ? obj.dueDate : '';
         this.prio = obj ? obj.prio : '';
+        // this.timeStamp = obj ? obj.timeStamp : '';
     }
 
     public toJSON() {

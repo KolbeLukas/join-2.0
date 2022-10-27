@@ -7,7 +7,7 @@
                 <input matInput placeholder="Find Task">
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
-            <button class="dark-btn" (click)="openDialog('todo')" mat-flat-button color="primary">Add task
+            <button class="dark-btn" (click)="addTaskDialog('todo')" mat-flat-button color="primary">Add task
                 <mat-icon matSuffix>add</mat-icon>
             </button>
         </div>
@@ -18,13 +18,13 @@
     <div class="content">
         <div class="headers">
             <h3>To do</h3>
-            <button (click)="openDialog('todo')">
+            <button (click)="addTaskDialog('todo')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
         <div class="drop-container" cdkDropList id="todo" [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
             <div *ngFor="let todo of todos">
-                <app-board-card [card]="todo"></app-board-card>
+                <app-board-card [card]="todo" (click)="openTask(todo)"></app-board-card>
             </div>
         </div>
     </div>
@@ -32,28 +32,28 @@
     <div class="content">
         <div class="headers">
             <h3>In progress</h3>
-            <button (click)="openDialog('inProgress')">
+            <button (click)="addTaskDialog('inProgress')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
         <div class="drop-container" cdkDropList id="inProgress" [cdkDropListData]="inProgress"
             (cdkDropListDropped)="drop($event)">
             <div *ngFor="let inProgress of inProgress">
-                <app-board-card [card]="inProgress"></app-board-card>
+                <app-board-card [card]="inProgress" (click)="openTask(inProgress)"></app-board-card>
             </div>
         </div>
     </div>
     <div class="content">
         <div class="headers">
             <h3>Feedback</h3>
-            <button (click)="openDialog('feedback')">
+            <button (click)="addTaskDialog('feedback')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
         <div class="drop-container" cdkDropList id="feedback" [cdkDropListData]="feedback"
             (cdkDropListDropped)="drop($event)">
             <div *ngFor="let feedback of feedback">
-                <app-board-card [card]="feedback"></app-board-card>
+                <app-board-card [card]="feedback" (click)="openTask(feedback)"></app-board-card>
             </div>
         </div>
     </div>
@@ -61,13 +61,13 @@
     <div class="content">
         <div class="headers">
             <h3>Done</h3>
-            <button (click)="openDialog('done')">
+            <button (click)="addTaskDialog('done')">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
         <div class="drop-container" cdkDropList id="done" [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
             <div *ngFor="let done of done">
-                <app-board-card [card]="done"></app-board-card>
+                <app-board-card [card]="done" (click)="openTask(done)"></app-board-card>
             </div>
         </div>
     </div>

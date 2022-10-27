@@ -16,7 +16,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class AddTaskComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
-  @Input() openedAsDialog: boolean = false;
+  @Input() openedAsDialogNewTask: boolean = false;
+  @Input() openedAsDialogEditTask: boolean = false;
   dialogRef?: MatDialogRef<AddTaskComponent>
   newTask!: FormGroup;
   task = new Task();
@@ -31,12 +32,33 @@ export class AddTaskComponent implements OnInit {
     private injector: Injector) { }
 
   ngOnInit(): void {
+    this.checkOpenNewTask();
+    this.checkOpenEditTask();
     this.setForm();
     this.dateAdapter.setLocale('de');
-    if (this.openedAsDialog) {
+  }
+
+  checkOpenNewTask() {
+    if (this.openedAsDialogNewTask) {
       this.state = this.data.state;
       this.dialogRef = <MatDialogRef<AddTaskComponent>>(
         this.injector.get(MatDialogRef));
+    }
+  }
+
+  checkOpenEditTask() {
+    if (this.openedAsDialogEditTask) {
+      this.task = this.data.task;
+      this.dialogRef = <MatDialogRef<AddTaskComponent>>(
+        this.injector.get(MatDialogRef));
+    }
+  }
+
+  setDate() {
+    if (this.openedAsDialogEditTask) {
+      return new Date(this.task.dueDate.date);
+    } else {
+      return new Date();
     }
   }
 
@@ -58,16 +80,32 @@ export class AddTaskComponent implements OnInit {
     });
   }
 
-
-
   createTask(state: string) {
+    console.log(this.newTask.value)
     if (this.newTask.valid) {
-      this.newTask.value.dueDate = this.changeDateAppearance(this.newTask.value.dueDate._d);
-      this.newTask.value.state = state;
-      this.firebaseService.createTask(this.newTask.value);
+      let date = this.newTask.value.dueDate;
+      this.adjustData(date, state)
+      if (this.openedAsDialogEditTask) {
+        this.newTask.value.id = this.task.id;
+        this.firebaseService.updateTask(this.newTask.value);
+        console.log(this.newTask.value)
+      } else {
+        this.firebaseService.createTask(this.newTask.value);
+      }
       this.clearForm();
       this.closeDialog();
     }
+  }
+
+  adjustData(date: any, state: any) {
+    this.dateToJason(date);
+    this.newTask.value.state = state;
+  }
+
+  dateToJason(date: any) {
+    this.newTask.value.dueDate = {};
+    this.newTask.value.dueDate.appearance = this.changeDateAppearance(date._d);
+    this.newTask.value.dueDate.date = date._d.toDateString();
   }
 
   changeDateAppearance(date: any) {

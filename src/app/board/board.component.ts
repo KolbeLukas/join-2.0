@@ -73,13 +73,23 @@ export class BoardComponent implements OnInit {
     this.firebaseService.updateTask(task);
   }
 
-  openDialog(state: string) {
+  addTaskDialog(state: string) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '100%',
       data: {
-        state: state,
+        state: state
       },
     });
-    dialogRef.componentInstance.openedAsDialog = true;
+    dialogRef.componentInstance.openedAsDialogNewTask = true;
+  }
+
+  openTask(task: any) {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      width: '100%',
+      data: {
+        task
+      },
+    });
+    dialogRef.componentInstance.openedAsDialogEditTask = true;
   }
 }

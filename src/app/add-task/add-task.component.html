@@ -94,7 +94,7 @@
         <div class="right-half">
             <mat-form-field appearance="outline">
                 <mat-label>Due date</mat-label>
-                <input formControlName="dueDate" matInput [min]="minDate" [matDatepicker]="picker"
+                <input formControlName="dueDate" matInput [value]="setDate()" [min]="minDate" [matDatepicker]="picker"
                     placeholder="DD.MM.YYYY">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker color="primary"></mat-datepicker>
@@ -144,7 +144,7 @@
 </form>
 
 <div class="btns">
-    <div><button *ngIf="openedAsDialog" (click)="closeDialog()" class="light-btn" mat-flat-button>
+    <div><button *ngIf="openedAsDialogNewTask" (click)="closeDialog()" class="light-btn" mat-flat-button>
             Close
             <mat-icon>close</mat-icon>
         </button>

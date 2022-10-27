@@ -31,7 +31,7 @@ export class SummaryComponent implements OnInit {
 
   getLowestDueDate(task: any, index: any) {
     if (index == 0) {
-      this.deadline = task.dueDate;
+      this.deadline = task.dueDate.appearance;
     }
   }
 
