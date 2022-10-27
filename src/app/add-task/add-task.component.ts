@@ -12,6 +12,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss'],
 })
+
 export class AddTaskComponent implements OnInit {
   @ViewChild('autosize') autosize!: CdkTextareaAutosize;
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
@@ -57,6 +58,8 @@ export class AddTaskComponent implements OnInit {
     });
   }
 
+
+
   createTask(state: string) {
     if (this.newTask.valid) {
       this.newTask.value.dueDate = this.changeDateAppearance(this.newTask.value.dueDate._d);
@@ -68,10 +71,12 @@ export class AddTaskComponent implements OnInit {
   }
 
   changeDateAppearance(date: any) {
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let day = date.getDate();
     let month = date.getMonth() + 1;
+    month = months[month];
     let year = date.getFullYear();
-    return day + '.' + month + '.' + year;
+    return month + ' ' + day + ', ' + year;
   }
 
   errorHandling(control: string, error: string) {

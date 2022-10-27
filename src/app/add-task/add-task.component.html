@@ -101,6 +101,9 @@
                 <mat-error *ngIf="errorHandling('dueDate', 'required')">
                     You must select a <strong>date</strong>
                 </mat-error>
+                <mat-error *ngIf="minDate >= newTask.value.dueDate && !errorHandling('dueDate', 'required')">
+                    You must select a <strong>later date</strong>
+                </mat-error>
             </mat-form-field>
 
             <div class="prio-container">
