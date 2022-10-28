@@ -49,24 +49,13 @@ export class AddTaskComponent implements OnInit {
   checkOpenEditTask() {
     if (this.openedAsDialogEditTask) {
       this.task = this.data.task;
+      this.state = this.data.task.state;
       this.dialogRef = <MatDialogRef<AddTaskComponent>>(
         this.injector.get(MatDialogRef));
     }
   }
 
-  setDate() {
-    if (this.openedAsDialogEditTask) {
-      return new Date(this.task.dueDate.date);
-    } else {
-      return new Date();
-    }
-  }
 
-  closeDialog() {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
-  }
 
   setForm() {
     this.newTask = new FormGroup({
@@ -75,20 +64,18 @@ export class AddTaskComponent implements OnInit {
       category: new FormControl(this.task.category, [Validators.required]),
       categoryColor: new FormControl(this.task.categoryColor, [Validators.required]),
       assignedTo: new FormControl(this.task.assignedTo, [Validators.required]),
-      dueDate: new FormControl(this.task.dueDate, [Validators.required]),
+      dueDate: new FormControl(new Date(this.task.dueDate.date), [Validators.required]),
       prio: new FormControl(this.task.prio, [Validators.required]),
     });
   }
 
   createTask(state: string) {
-    console.log(this.newTask.value)
     if (this.newTask.valid) {
       let date = this.newTask.value.dueDate;
       this.adjustData(date, state)
       if (this.openedAsDialogEditTask) {
         this.newTask.value.id = this.task.id;
         this.firebaseService.updateTask(this.newTask.value);
-        console.log(this.newTask.value)
       } else {
         this.firebaseService.createTask(this.newTask.value);
       }
@@ -140,5 +127,11 @@ export class AddTaskComponent implements OnInit {
   clearForm() {
     this.newCategory = false;
     this.formDirective.resetForm();
+  }
+
+  closeDialog() {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
   }
 }
