@@ -64,15 +64,15 @@ export class AddTaskComponent implements OnInit {
       category: new FormControl(this.task.category, [Validators.required]),
       categoryColor: new FormControl(this.task.categoryColor, [Validators.required]),
       assignedTo: new FormControl(this.task.assignedTo, [Validators.required]),
-      dueDate: new FormControl(new Date(this.task.dueDate.date), [Validators.required]),
+      dueDate: new FormControl(new Date(this.task.dueDate), [Validators.required]),
       prio: new FormControl(this.task.prio, [Validators.required]),
     });
   }
 
   createTask(state: string) {
     if (this.newTask.valid) {
-      let date = this.newTask.value.dueDate;
-      this.adjustData(date, state)
+      this.setDate();
+      this.newTask.value.state = state;
       if (this.openedAsDialogEditTask) {
         this.newTask.value.id = this.task.id;
         this.firebaseService.updateTask(this.newTask.value);
@@ -84,24 +84,16 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  adjustData(date: any, state: any) {
-    this.dateToJason(date);
-    this.newTask.value.state = state;
-  }
-
-  dateToJason(date: any) {
-    this.newTask.value.dueDate = {};
-    this.newTask.value.dueDate.appearance = this.changeDateAppearance(date._d);
-    this.newTask.value.dueDate.date = date._d.toDateString();
-  }
-
-  changeDateAppearance(date: any) {
-    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    month = months[month];
-    let year = date.getFullYear();
-    return month + ' ' + day + ', ' + year;
+  setDate() {
+    if (this.openedAsDialogEditTask) {
+      if (typeof this.newTask.value.dueDate._d == 'undefined') {
+        this.newTask.value.dueDate = this.newTask.value.dueDate.toDateString();
+      } else {
+        this.newTask.value.dueDate = this.newTask.value.dueDate._d.toDateString();
+      }
+    } else {
+      this.newTask.value.dueDate = this.newTask.value.dueDate._d.toDateString();
+    }
   }
 
   errorHandling(control: string, error: string) {

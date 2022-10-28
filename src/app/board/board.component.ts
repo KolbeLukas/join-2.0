@@ -11,7 +11,6 @@ import { FirebaseService } from '../firebase.service';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-
   allTasks$!: Observable<any>;
   card: any;
   todos: string[] = [];

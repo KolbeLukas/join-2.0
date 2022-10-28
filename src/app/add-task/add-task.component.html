@@ -144,19 +144,26 @@
 </form>
 
 <div class="btns">
-    <div><button *ngIf="openedAsDialogNewTask" (click)="closeDialog()" class="light-btn" mat-flat-button>
-            Close
+    <div><button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask" (click)="closeDialog()" class="light-btn"
+            mat-flat-button>
+            Cancel
             <mat-icon>close</mat-icon>
         </button>
     </div>
 
     <div class="right-btns">
-        <button (click)="clearForm()" class="light-btn" mat-flat-button>
+        <button *ngIf="!openedAsDialogEditTask" (click)="clearForm()" class="light-btn" mat-flat-button>
             Clear
             <mat-icon>close</mat-icon>
         </button>
-        <button type="submit" form="newForm" class="dark-btn" mat-flat-button color="primary">
+        <button *ngIf="!openedAsDialogEditTask" type="submit" form="newForm" class="dark-btn" mat-flat-button
+            color="primary">
             Creat task
+            <mat-icon>done</mat-icon>
+        </button>
+        <button *ngIf="openedAsDialogEditTask" type="submit" form="newForm" class="dark-btn" mat-flat-button
+            color="primary">
+            Update task
             <mat-icon>done</mat-icon>
         </button>
     </div>

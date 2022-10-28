@@ -31,8 +31,17 @@ export class SummaryComponent implements OnInit {
 
   getLowestDueDate(task: any, index: any) {
     if (index == 0) {
-      this.deadline = task.dueDate.appearance;
+      this.deadline = this.changeDateAppearance(new Date(task.dueDate));
     }
+  }
+
+  changeDateAppearance(date: any) {
+    let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    month = months[month];
+    let year = date.getFullYear();
+    return month + ' ' + day + ', ' + year;
   }
 
   clear() {
