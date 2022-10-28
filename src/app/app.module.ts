@@ -37,6 +37,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
+import { BoardTaskDetailComponent } from './board-task-detail/board-task-detail.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     BoardCardComponent,
     AddTaskComponent,
     ContactsComponent,
-    ContactsDetailComponent
+    ContactsDetailComponent,
+    BoardTaskDetailComponent
   ],
   imports: [
     CommonModule,

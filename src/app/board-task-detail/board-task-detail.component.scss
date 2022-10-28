@@ -1,0 +1,66 @@
+:host {
+    position: absolute;
+    top: -64px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.151);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    mat-card {
+        min-height: 80%;
+        min-width: 50%;
+        padding: 25px;
+
+        mat-card-subtitle {
+            width: fit-content;
+            color: white;
+            padding: 2px 15px;
+            border-radius: 7px;
+        }
+
+        button {
+            padding-inline: 10px 6px;
+
+            &:hover {
+                background-color: #29ABE2;
+                box-shadow: 0px 3px 4px 0px rgb(0 0 0 / 20%);
+                transition: all 145ms ease-in-out;
+            }
+        }
+    }
+}
+
+.pink {
+    background-color: #FC71FF;
+}
+
+.turquoise {
+    background-color: #1FD7C1;
+}
+
+.light-blue {
+    background-color: #8AA4FF;
+}
+
+.red {
+    background-color: #FF0000;
+}
+
+.green {
+    background-color: #2AD300;
+}
+
+.orange {
+    background-color: #FF8A00;
+}
+
+.purple {
+    background-color: #E200BE;
+}
+
+.blue {
+    background-color: #0038FF;
+}

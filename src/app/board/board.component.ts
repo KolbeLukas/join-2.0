@@ -13,6 +13,8 @@ import { FirebaseService } from '../firebase.service';
 export class BoardComponent implements OnInit {
   allTasks$!: Observable<any>;
   card: any;
+  overlayOpen = false;
+  details: any;
   todos: string[] = [];
   inProgress: string[] = [];
   feedback: string[] = [];
@@ -90,5 +92,14 @@ export class BoardComponent implements OnInit {
       },
     });
     dialogRef.componentInstance.openedAsDialogEditTask = true;
+  }
+
+  openOverlay(taskData: any) {
+    this.overlayOpen = true;
+    this.details = taskData;
+  }
+
+  closeOverlay() {
+    this.overlayOpen = false;
   }
 }

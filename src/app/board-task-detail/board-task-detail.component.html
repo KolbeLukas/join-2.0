@@ -1,0 +1,19 @@
+<mat-card>
+    <mat-card-subtitle class="{{ details.categoryColor }}">{{ details.category }}</mat-card-subtitle>
+    <mat-card-title>{{ details.title }}</mat-card-title>
+    <mat-card-content>
+        <p>{{ details.description }} {{ details.dueDate.date }}</p>
+    </mat-card-content>
+    <div class="card-bottom">
+        <div class="contact-box">
+            <div class="contact" *ngFor="let contact of details.assignedTo">
+                <span>{{ contact }}</span>
+            </div>
+        </div>
+        <img src="/assets/img/icon/prio_{{ details.prio }}.png">
+    </div>
+    <button (click)="openTask(details)" mat-flat-button color="primary">
+        Add task
+        <mat-icon matSuffix>add</mat-icon>
+    </button>
+</mat-card>
