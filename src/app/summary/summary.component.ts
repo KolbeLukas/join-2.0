@@ -38,7 +38,7 @@ export class SummaryComponent implements OnInit {
   changeDateAppearance(date: any) {
     let months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     let day = date.getDate();
-    let month = date.getMonth() + 1;
+    let month = date.getMonth();
     month = months[month];
     let year = date.getFullYear();
     return month + ' ' + day + ', ' + year;
