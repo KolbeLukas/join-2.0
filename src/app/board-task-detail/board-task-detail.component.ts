@@ -31,4 +31,8 @@ export class BoardTaskDetailComponent implements OnInit {
   closeOverlay() {
     this.close.emit();
   }
+
+  stopProp(event: any) {
+    event.stopPropagation();
+  }
 }
