@@ -64,7 +64,7 @@ export class AddTaskComponent implements OnInit {
       category: new FormControl(this.task.category, [Validators.required]),
       categoryColor: new FormControl(this.task.categoryColor, [Validators.required]),
       assignedTo: new FormControl(this.task.assignedTo, [Validators.required]),
-      dueDate: new FormControl(new Date(this.task.dueDate), [Validators.required]),
+      dueDate: new FormControl(new Date(this.task.dueDate.date), [Validators.required]),
       prio: new FormControl(this.task.prio, [Validators.required]),
     });
   }
@@ -85,14 +85,23 @@ export class AddTaskComponent implements OnInit {
   }
 
   setDate() {
+    let date = this.newTask.value.dueDate
+    this.newTask.value.dueDate = {};
     if (this.openedAsDialogEditTask) {
-      if (typeof this.newTask.value.dueDate._d == 'undefined') {
-        this.newTask.value.dueDate = this.newTask.value.dueDate.toDateString();
-      } else {
-        this.newTask.value.dueDate = this.newTask.value.dueDate._d.toDateString();
-      }
+      this.editDueDate(date);
     } else {
-      this.newTask.value.dueDate = this.newTask.value.dueDate._d.toDateString();
+      this.newTask.value.dueDate.date = date._d.toDateString();
+      this.newTask.value.dueDate.timestamp = date._d;
+    }
+  }
+
+  editDueDate(date: any) {
+    if (typeof date._d == 'undefined') {
+      this.newTask.value.dueDate.date = date.toDateString();
+      this.newTask.value.dueDate.timestamp = date;
+    } else {
+      this.newTask.value.dueDate.date = date._d.toDateString();
+      this.newTask.value.dueDate.timestamp = date._d;
     }
   }
 

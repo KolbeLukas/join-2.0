@@ -15,7 +15,7 @@ export class FirebaseService {
 
   constructor(public readonly firestore: Firestore) {
     this.tasksCollection = collection(firestore, 'tasks');
-    this.sortedCollection = query(this.tasksCollection, orderBy('dueDate', 'asc'));
+    this.sortedCollection = query(this.tasksCollection, orderBy('dueDate.timestamp', 'asc'));
   }
 
   getAllTasks() {
