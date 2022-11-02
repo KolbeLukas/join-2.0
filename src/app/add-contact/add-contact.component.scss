@@ -61,6 +61,12 @@
     width: 43%;
     box-sizing: border-box;
     padding-right: 30px;
+    position: relative;
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .btn-container {
@@ -97,6 +103,12 @@
     mat-icon {
         font-size: 22px;
     }
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 :host ::ng-deep .mat-form-field-outline-start {

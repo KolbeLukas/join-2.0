@@ -19,14 +19,14 @@ export class Task {
         this.prio = obj ? obj.prio : '';
     }
 
-    public toJSON() {
-        return {
-            title: this.title,
-            description: this.description,
-            category: this.category,
-            assignedTo: this.assignedTo,
-            dueDate: this.dueDate,
-            prio: this.prio
-        }
-    }
+    // public toJSON() {
+    //     return {
+    //         title: this.title,
+    //         description: this.description,
+    //         category: this.category,
+    //         assignedTo: this.assignedTo,
+    //         dueDate: this.dueDate,
+    //         prio: this.prio
+    //     }
+    // }
 }

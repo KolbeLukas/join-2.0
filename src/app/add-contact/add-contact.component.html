@@ -10,30 +10,46 @@
 </div>
 
 <div class="right-side">
-    <mat-form-field appearance="outline">
-        <mat-label>Name</mat-label>
-        <input matInput placeholder="Name">
-        <mat-icon matSuffix>person_outline</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Email</mat-label>
-        <input matInput placeholder="Emai">
-        <mat-icon matSuffix>mail_outline</mat-icon>
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Phone</mat-label>
-        <input matInput placeholder="Phone">
-        <mat-icon matSuffix>call</mat-icon>
-    </mat-form-field>
+    <form [formGroup]="newContact" id="newContact" (ngSubmit)="createContact()" novalidate>
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-icon matSuffix>person_outline</mat-icon>
+            <mat-error *ngIf="errorHandling('name', 'required')">
+                You must provide a <strong>name</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" type="email" formControlName="email">
+            <mat-icon matSuffix>mail_outline</mat-icon>
+            <mat-error *ngIf="errorHandling('email', 'required') || errorHandling('email', 'pattern')">
+                You must provide a <strong>email-address</strong> (e.g.: john@doe.com)
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="Phone" formControlName="phone">
+            <mat-icon matSuffix>call</mat-icon>
+            <mat-error *ngIf="errorHandling('phone', 'required') || errorHandling('phone', 'pattern')">
+                You must provide a <strong>phone-number</strong>
+            </mat-error>
+        </mat-form-field>
 
-    <div class="btn-container">
-        <button class="light-btn" mat-flat-button (click)="closeDialog()">
-            Cancel
-            <mat-icon>close</mat-icon>
-        </button>
-        <button type="submit" form="newForm" class="dark-btn" mat-flat-button color="primary">
-            Create contact
-            <mat-icon>done</mat-icon>
-        </button>
-    </div>
+        <div class="btn-container">
+            <button class="light-btn" mat-flat-button (click)="closeDialog()">
+                Cancel
+                <mat-icon>close</mat-icon>
+            </button>
+            <button type="submit" form="newContact" class="dark-btn" mat-flat-button color="primary">
+                Create contact
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    </form>
+
+
+    <button class="close-btn" (click)="closeDialog()" mat-icon-button color="primary">
+        <mat-icon>close</mat-icon>
+    </button>
 </div>
