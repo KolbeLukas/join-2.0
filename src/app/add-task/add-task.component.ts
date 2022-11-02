@@ -155,4 +155,8 @@ export class AddTaskComponent implements OnInit {
   openSnackBar(message: any) {
     this._snackBar.open(message);
   }
+
+  stopProp(event: any) {
+    event.stopPropagation();
+  }
 }

@@ -110,7 +110,7 @@ mat-radio-group {
 
 .checkmark {
     position: absolute;
-    top: 0;
+    top: 1px;
     left: 0;
     height: 20px;
     width: 20px;
@@ -293,7 +293,7 @@ mat-radio-group {
         }
 
         .delete-btn-overlay:hover {
-            background-color: rgb(240, 60, 0);
+            background-color: #ff2700;
             box-shadow: 0px 3px 4px 0px rgb(0 0 0 / 20%);
             transition: all 145ms ease-in-out;
         }
