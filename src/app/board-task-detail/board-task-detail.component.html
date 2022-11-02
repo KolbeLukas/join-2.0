@@ -1,21 +1,33 @@
-<div class="container" (click)="closeOverlay()">
+<div class="container" (click)="closeOverlay()" [class.show]="open">
     <mat-card (click)="stopProp($event)">
         <mat-card-subtitle class="{{ details.categoryColor }}">{{ details.category }}</mat-card-subtitle>
         <mat-card-title>{{ details.title }}</mat-card-title>
         <mat-card-content>
-            <p>{{ details.description }} {{ details.dueDate.date }}</p>
+            <p>{{ details.description }}</p>
         </mat-card-content>
-        <div class="card-bottom">
-            <div class="contact-box">
-                <div class="contact" *ngFor="let contact of details.assignedTo">
-                    <span>{{ contact }}</span>
-                </div>
+        <mat-card-content>
+            <span class="title">Due date:</span>
+            <span>{{ dueDate }}</span>
+        </mat-card-content>
+        <mat-card-content class="prio-container">
+            <span class="title">Priority:</span>
+            <div class="{{ details.prio }}">
+                <span>{{ details.prio }}</span>
+                <img src="/assets/img/icon/prio_{{ details.prio }}_white.png">
             </div>
-            <img src="/assets/img/icon/prio_{{ details.prio }}.png">
-        </div>
-        <button (click)="openTask(details)" mat-flat-button color="primary">
-            Add task
-            <mat-icon matSuffix>add</mat-icon>
+        </mat-card-content>
+        <mat-card-content>
+            <span class="title">Assigned To:</span>
+            <div class="assigned-to" *ngFor="let contact of details.assignedTo">
+                <div>{{ contact }}</div>
+                <span>Sven Wagner</span>
+            </div>
+        </mat-card-content>
+        <button class="edit-btn" (click)="openTask(details)" mat-flat-button color="primary">
+            <img src="/assets/img/icon/edit.png">
+        </button>
+        <button class="close-btn" (click)="closeOverlay()" mat-icon-button color="primary">
+            <mat-icon>close</mat-icon>
         </button>
     </mat-card>
 </div>

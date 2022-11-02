@@ -10,11 +10,25 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 export class BoardTaskDetailComponent implements OnInit {
   @Input() details: any;
   @Output() close = new EventEmitter<boolean>();
+  dueDate: any;
+  open = false;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    console.log(this.details)
+    this.changeDateAppearance();
+    setTimeout(() => {
+      this.open = true;
+    }, 60);
+    // this.open = true;
+  }
+
+  changeDateAppearance() {
+    let date = new Date(this.details.dueDate.date);
+    let day = date.getDate();
+    let month = date.getMonth();
+    let year = date.getFullYear();
+    this.dueDate = day + '.' + month + '.' + year;
   }
 
   openTask(task: any) {
@@ -30,6 +44,7 @@ export class BoardTaskDetailComponent implements OnInit {
 
   closeOverlay() {
     this.close.emit();
+    this.open = false;
   }
 
   stopProp(event: any) {
