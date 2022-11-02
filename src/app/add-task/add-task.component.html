@@ -1,4 +1,5 @@
-<h2>Add Task</h2>
+<h2 *ngIf="!openedAsDialogEditTask">Add Task</h2>
+<h2 *ngIf="openedAsDialogEditTask">Edit Task</h2>
 <form [formGroup]="newTask" id="newForm" (ngSubmit)="createTask(state)" #form="ngForm" novalidate>
     <main>
         <div class="left-half">
@@ -144,7 +145,8 @@
 </form>
 
 <div class="btns">
-    <div><button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask" (click)="closeDialog()" class="light-btn"
+    <div>
+        <button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask" (click)="closeDialog()" class="light-btn"
             mat-flat-button>
             Cancel
             <mat-icon>close</mat-icon>
@@ -161,10 +163,37 @@
             Creat task
             <mat-icon>done</mat-icon>
         </button>
+        <button *ngIf="openedAsDialogEditTask" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
+            Delete task
+            <mat-icon>delete_forever</mat-icon>
+        </button>
         <button *ngIf="openedAsDialogEditTask" type="submit" form="newForm" class="dark-btn" mat-flat-button
             color="primary">
             Update task
             <mat-icon>done</mat-icon>
         </button>
     </div>
+</div>
+<div class="delete-overlay" *ngIf="deleteOverlay">
+    <mat-card>
+        <mat-card-title>Delete Task</mat-card-title>
+        <mat-card-content>
+            <p>
+                You are about to delete this task permanently. There is no way to get it back.
+            </p>
+            <p>
+                Do you want to proceed?
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="closeDeleteOverlay()" class="light-btn" mat-flat-button>
+                Cancel
+                <mat-icon>close</mat-icon>
+            </button>
+            <button mat-flat-button (click)="deleteTask()" color="warn" class="delete-btn-overlay">
+                Delete
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>

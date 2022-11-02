@@ -255,6 +255,51 @@ mat-radio-group {
     }
 }
 
+.delete-btn {
+    border: 1px solid #D3D3D3;
+    margin-right: 20px;
+    padding-inline: 10px 6px;
+
+    &:hover {
+        border: 1px solid #ff3d00;
+        background-color: white;
+        color: #ff3d00;
+        box-shadow: 0px 3px 4px 0px rgb(0 0 0 / 20%);
+        transition: all 145ms ease-in-out;
+    }
+
+    mat-icon {
+        font-size: 22px;
+    }
+}
+
+.delete-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.05);
+
+    mat-card {
+        width: 60%;
+        padding: 30px;
+
+        mat-card-title {
+            color: #ff3d00;
+        }
+
+        .delete-btn-overlay:hover {
+            background-color: rgb(240, 60, 0);
+            box-shadow: 0px 3px 4px 0px rgb(0 0 0 / 20%);
+            transition: all 145ms ease-in-out;
+        }
+    }
+}
+
 :host ::ng-deep .mat-form-field-outline-start {
     background: white;
 }

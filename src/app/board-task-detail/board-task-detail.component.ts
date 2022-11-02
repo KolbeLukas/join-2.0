@@ -20,7 +20,6 @@ export class BoardTaskDetailComponent implements OnInit {
     setTimeout(() => {
       this.open = true;
     }, 60);
-    // this.open = true;
   }
 
   changeDateAppearance() {
@@ -44,7 +43,6 @@ export class BoardTaskDetailComponent implements OnInit {
 
   closeOverlay() {
     this.close.emit();
-    this.open = false;
   }
 
   stopProp(event: any) {

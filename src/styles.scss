@@ -319,3 +319,7 @@ mat-list-item {
 .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
     background-color: transparent;
 }
+
+.mat-snack-bar-container {
+    min-width: fit-content !important;
+}

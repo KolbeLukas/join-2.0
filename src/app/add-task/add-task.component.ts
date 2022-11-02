@@ -6,6 +6,8 @@ import { FirebaseService } from '../firebase.service';
 import { DateAdapter } from '@angular/material/core';
 import { Task } from 'src/models/task.class';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BoardComponent } from '../board/board.component';
 
 @Component({
   selector: 'app-add-task',
@@ -24,12 +26,14 @@ export class AddTaskComponent implements OnInit {
   newCategory = false;
   minDate = new Date;
   state = 'todo';
+  deleteOverlay = false;
 
   constructor(private dateAdapter: DateAdapter<any>,
     private firebaseService: FirebaseService,
     private _ngZone: NgZone,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
-    private injector: Injector) { }
+    private injector: Injector,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.checkOpenNewTask();
@@ -55,8 +59,6 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-
-
   setForm() {
     this.newTask = new FormGroup({
       title: new FormControl(this.task.title, [Validators.required]),
@@ -80,6 +82,7 @@ export class AddTaskComponent implements OnInit {
         this.firebaseService.createTask(this.newTask.value);
       }
       this.clearForm();
+      this.openSnackBar('New task created.');
       this.closeDialog();
     }
   }
@@ -117,7 +120,6 @@ export class AddTaskComponent implements OnInit {
     this.newCategory = true;
     this.newTask.controls['category'].reset();
     this.newTask.controls['categoryColor'].reset();
-    console.log(this.newTask.controls['categoryColor'].hasError('required'))
   }
 
   closeNewCategory() {
@@ -134,5 +136,23 @@ export class AddTaskComponent implements OnInit {
     if (this.dialogRef) {
       this.dialogRef.close();
     }
+  }
+
+  openDeleteOverlay() {
+    this.deleteOverlay = true;
+  }
+
+  closeDeleteOverlay() {
+    this.deleteOverlay = false;
+  }
+
+  deleteTask() {
+    this.firebaseService.deleteTask(this.task.id);
+    this.closeDialog();
+    this.openSnackBar('Task permanently deleted.');
+  }
+
+  openSnackBar(message: any) {
+    this._snackBar.open(message);
   }
 }
