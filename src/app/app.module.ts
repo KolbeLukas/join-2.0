@@ -39,6 +39,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BoardTaskDetailComponent } from './board-task-detail/board-task-detail.component';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { AddContactComponent } from './add-contact/add-contact.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
     AddTaskComponent,
     ContactsComponent,
     ContactsDetailComponent,
-    BoardTaskDetailComponent
+    BoardTaskDetailComponent,
+    AddContactComponent
   ],
   imports: [
     CommonModule,

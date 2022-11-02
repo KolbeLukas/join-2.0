@@ -1,0 +1,39 @@
+<div class="left-side">
+    <img src="/assets/img/logo_white.png">
+    <h2>Add contact</h2>
+    <span>Tasks are better with a team!</span>
+    <div class="line"></div>
+</div>
+
+<div class="middle">
+    <img src="/assets/img/contact_placeholder.png">
+</div>
+
+<div class="right-side">
+    <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name">
+        <mat-icon matSuffix>person_outline</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="Emai">
+        <mat-icon matSuffix>mail_outline</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput placeholder="Phone">
+        <mat-icon matSuffix>call</mat-icon>
+    </mat-form-field>
+
+    <div class="btn-container">
+        <button class="light-btn" mat-flat-button (click)="closeDialog()">
+            Cancel
+            <mat-icon>close</mat-icon>
+        </button>
+        <button type="submit" form="newForm" class="dark-btn" mat-flat-button color="primary">
+            Create contact
+            <mat-icon>done</mat-icon>
+        </button>
+    </div>
+</div>

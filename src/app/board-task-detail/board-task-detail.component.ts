@@ -25,7 +25,7 @@ export class BoardTaskDetailComponent implements OnInit {
   changeDateAppearance() {
     let date = new Date(this.details.dueDate.date);
     let day = date.getDate();
-    let month = date.getMonth();
+    let month = date.getMonth() + 1;
     let year = date.getFullYear();
     this.dueDate = day + '.' + month + '.' + year;
   }

@@ -323,3 +323,12 @@ mat-list-item {
 .mat-snack-bar-container {
     min-width: fit-content !important;
 }
+
+.custom-dialog-container .mat-dialog-container {
+    padding: 0;
+    border-radius: 20px;
+}
+
+.custom-addTask-container .mat-dialog-container {
+    border-radius: 20px;
+}

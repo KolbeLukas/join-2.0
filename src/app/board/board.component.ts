@@ -77,6 +77,7 @@ export class BoardComponent implements OnInit {
   addTaskDialog(state: string) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '100%',
+      panelClass: 'custom-addTask-container',
       data: {
         state: state
       },
@@ -87,6 +88,7 @@ export class BoardComponent implements OnInit {
   openTask(task: any) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '100%',
+      panelClass: 'custom-addTask-container',
       data: {
         task
       },
