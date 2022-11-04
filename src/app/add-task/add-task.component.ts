@@ -75,14 +75,8 @@ export class AddTaskComponent implements OnInit {
     if (this.newTask.valid) {
       this.setDate();
       this.newTask.value.state = state;
-      if (this.openedAsDialogEditTask) {
-        this.newTask.value.id = this.task.id;
-        this.firebaseService.updateTask(this.newTask.value);
-      } else {
-        this.firebaseService.createTask(this.newTask.value);
-      }
+      this.checkOpenAs();
       this.clearForm();
-      this.openSnackBar('New task created.');
       this.closeDialog();
     }
   }
@@ -95,6 +89,17 @@ export class AddTaskComponent implements OnInit {
     } else {
       this.newTask.value.dueDate.date = date._d.toDateString();
       this.newTask.value.dueDate.timestamp = date._d;
+    }
+  }
+
+  checkOpenAs() {
+    if (this.openedAsDialogEditTask) {
+      this.newTask.value.id = this.task.id;
+      this.firebaseService.updateTask(this.newTask.value);
+      this.openSnackBar('Task has been updated.');
+    } else {
+      this.firebaseService.createTask(this.newTask.value);
+      this.openSnackBar('New task created.');
     }
   }
 

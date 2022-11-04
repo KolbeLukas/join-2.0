@@ -4,8 +4,9 @@
             <div mat-subheader>{{ letter }}</div>
             <mat-divider></mat-divider>
             <div class="list-item" *ngFor="let contact of sortedContacts[i]" (click)="openContact(contact)">
-                <div class="contact-icon">
-                    <span>AW</span>
+                <div class="contact-icon"
+                    [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}">
+                    <span>{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</span>
                 </div>
                 <div class="contact-name">
                     <span>{{ contact.firstName }} {{ contact.lastName }}</span>

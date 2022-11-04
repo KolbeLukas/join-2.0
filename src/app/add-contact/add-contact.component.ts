@@ -35,8 +35,20 @@ export class AddContactComponent implements OnInit {
     return this.newContact.controls[control].hasError(error);
   }
 
+  color = '#';
+
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    this.color = '#';
+    for (var i = 0; i < 6; i++) {
+      this.color += letters[Math.floor(Math.random() * 16)];
+    }
+  }
+
   createContact() {
     if (this.newContact.valid) {
+      this.getRandomColor();
+      this.newContact.value.color = this.color;
       this.firebaseService.createContact(this.newContact.value);
       this.closeDialog();
     }

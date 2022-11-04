@@ -55,7 +55,7 @@
             transition: all 145ms ease-in-out;
 
             .contact-icon {
-                border: 1px solid #E5E5E5;
+                border: 1.5px solid #E5E5E5 !important;
                 transition: all 145ms ease-in-out;
             }
         }
@@ -68,9 +68,8 @@
             width: 35px;
             font-size: 12px;
             color: white;
-            border: 1px solid brown;
+            border: 1.5px solid;
             border-radius: 100%;
-            background-color: brown;
             margin-right: 16px;
         }
 
