@@ -3,7 +3,7 @@
         <div *ngFor="let letter of alphabet; let i = index">
             <div mat-subheader>{{ letter }}</div>
             <mat-divider></mat-divider>
-            <div class="list-item" *ngFor="let contact of sortedContacts[i]">
+            <div class="list-item" *ngFor="let contact of sortedContacts[i]" (click)="openContact(contact)">
                 <div class="contact-icon">
                     <span>AW</span>
                 </div>
@@ -21,7 +21,7 @@
         <h2>Contacts</h2>
         <span>Better with a team</span>
     </header>
-    <app-contacts-detail></app-contacts-detail>
+    <app-contacts-detail *ngIf="selectedContact" [contact]="selectedContact"></app-contacts-detail>
 </div>
 
 <button mat-flat-button color="primary" (click)="addContactDialog()">

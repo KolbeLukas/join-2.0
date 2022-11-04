@@ -13,6 +13,7 @@ export class ContactsComponent implements OnInit {
   allContacts$!: Observable<any>;
   alphabet: any = []
   sortedContacts: any = [];
+  selectedContact: any;
 
   constructor(private readonly firebaseService: FirebaseService,
     public dialog: MatDialog) { }
@@ -61,5 +62,9 @@ export class ContactsComponent implements OnInit {
       panelClass: 'custom-dialog-container'
     });
     dialogRef.componentInstance.openedAsDialogNewContact = true;
+  }
+
+  openContact(data: any) {
+    this.selectedContact = data;
   }
 }

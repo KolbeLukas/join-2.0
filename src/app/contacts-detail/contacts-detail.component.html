@@ -3,7 +3,7 @@
         <span>AW</span>
     </div>
     <div class="name">
-        <span>Anton Weber</span>
+        <span>{{ contact.firstName }} {{ contact.lastName }}</span>
         <button mat-button color="accent">
             <mat-icon>add</mat-icon>
             Add task
@@ -21,8 +21,8 @@
     </div>
     <div class="infos">
         <h3>Email</h3>
-        <a href="mailto:aweber@mail.de">aweber@mail.de</a>
+        <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
         <h3>Phone</h3>
-        <span>+49 1111 111 11 1</span>
+        <span>{{ contact.phone }}</span>
     </div>
 </div>

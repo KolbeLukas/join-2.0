@@ -37,7 +37,6 @@ export class AddContactComponent implements OnInit {
 
   createContact() {
     if (this.newContact.valid) {
-      console.log(this.newContact.value)
       this.firebaseService.createContact(this.newContact.value);
       this.closeDialog();
     }
