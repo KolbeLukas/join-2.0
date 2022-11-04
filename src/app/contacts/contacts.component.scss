@@ -3,6 +3,7 @@
     box-sizing: border-box;
     background: #F5F5F5;
     position: relative;
+    height: calc(100% - 64px);
 }
 
 .right-container {
@@ -38,7 +39,6 @@
     overflow-y: auto;
 
     mat-list {
-        height: 3000px;
         padding: 16px 24px 16px 40px;
     }
 

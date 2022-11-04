@@ -1,4 +1,4 @@
-import { Component, OnInit, Injector } from '@angular/core';
+import { Component, OnInit, Injector, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FirebaseService } from '../firebase.service';
@@ -11,6 +11,7 @@ import { FirebaseService } from '../firebase.service';
 export class AddContactComponent implements OnInit {
   dialogRef?: MatDialogRef<AddContactComponent>
   newContact!: FormGroup;
+  @Input() openedAsDialogNewContact: boolean = false;
 
   constructor(private firebaseService: FirebaseService,
     private injector: Injector) { }
@@ -23,7 +24,8 @@ export class AddContactComponent implements OnInit {
 
   setForm() {
     this.newContact = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
       phone: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')])
     });

@@ -11,21 +11,23 @@ import { Observable } from 'rxjs';
 })
 export class FirebaseService {
   private tasksCollection: CollectionReference<DocumentData>;
-  private sortedCollection: Query<DocumentData>;
+  private sortedTasks: Query<DocumentData>;
   private contactsCollection: CollectionReference<DocumentData>;
+  private sortedContacts: Query<DocumentData>;
 
   constructor(public readonly firestore: Firestore) {
     this.tasksCollection = collection(firestore, 'tasks');
-    this.sortedCollection = query(this.tasksCollection, orderBy('dueDate.timestamp', 'asc'));
+    this.sortedTasks = query(this.tasksCollection, orderBy('dueDate.timestamp', 'asc'));
     this.contactsCollection = collection(firestore, 'contacts');
+    this.sortedContacts = query(this.contactsCollection, orderBy('firstName', 'asc'));
   }
 
   getAllTasks() {
-    return collectionData(this.sortedCollection, { idField: 'id' }) as Observable<any>;
+    return collectionData(this.sortedTasks, { idField: 'id' }) as Observable<any>;
   }
 
   getAllContacts() {
-    return collectionData(this.contactsCollection, { idField: 'id' }) as Observable<any>;
+    return collectionData(this.sortedContacts, { idField: 'id' }) as Observable<any>;
   }
 
   getOneTask(id: string) {

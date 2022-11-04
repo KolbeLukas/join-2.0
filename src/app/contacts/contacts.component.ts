@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable } from 'rxjs';
 import { AddContactComponent } from '../add-contact/add-contact.component';
+import { FirebaseService } from '../firebase.service';
 
 @Component({
   selector: 'app-contacts',
@@ -8,23 +10,56 @@ import { AddContactComponent } from '../add-contact/add-contact.component';
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
+  allContacts$!: Observable<any>;
+  alphabet: any = []
+  sortedContacts: any = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private readonly firebaseService: FirebaseService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.allContacts$ = this.firebaseService.getAllContacts();
+    this.allContacts$.subscribe(allContacts => {
+      this.sortByFirstName(allContacts);
+      this.sortByLastName();
+    });
   }
 
-  openDialog(): void {
+  sortByFirstName(allContacts: any) {
+    this.alphabet = [];
+    this.sortedContacts = [];
+    allContacts.forEach((contact: any) => {
+      this.filterByFirstLetter(contact);
+    });
+  }
+
+  filterByFirstLetter(contact: any) {
+    let letter = contact.firstName.charAt(0);
+    if (this.alphabet.includes(letter)) {
+      let index = this.alphabet.findIndex((element: any) => element == letter);
+      this.sortedContacts[index].push(contact);
+    } else {
+      this.alphabet.push(letter);
+      this.sortedContacts.push([contact]);
+    }
+  }
+
+  sortByLastName() {
+    this.sortedContacts.forEach((letter: any) => {
+      letter.sort(function (a: { lastName: string; }, b: { lastName: string; }) {
+        let nameA = a.lastName.toUpperCase();
+        let nameB = b.lastName.toUpperCase();
+        return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+      });
+    });
+  }
+
+  addContactDialog(): void {
     const dialogRef = this.dialog.open(AddContactComponent, {
       width: '100%',
-      height: '500px',
+      height: '600px',
       panelClass: 'custom-dialog-container'
-      // data: {name: this.name, animal: this.animal},
     });
-
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    //    this.animal = result;
-    // });
+    dialogRef.componentInstance.openedAsDialogNewContact = true;
   }
 }

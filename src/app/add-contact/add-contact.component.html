@@ -12,11 +12,25 @@
 <div class="right-side">
     <form [formGroup]="newContact" id="newContact" (ngSubmit)="createContact()" novalidate>
         <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput placeholder="Name" formControlName="name">
+            <mat-label>FIrstname</mat-label>
+            <input matInput placeholder="Firstname" formControlName="firstName">
             <mat-icon matSuffix>person_outline</mat-icon>
-            <mat-error *ngIf="errorHandling('name', 'required')">
-                You must provide a <strong>name</strong>
+            <mat-error *ngIf="errorHandling('firstName', 'required')">
+                You must provide a <strong>firstname</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('firstName', 'pattern')">
+                Not allowed are <strong>Ä, Ü, Ö</strong> or <strong>special characters</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Lastname</mat-label>
+            <input matInput placeholder="Lastname" formControlName="lastName">
+            <mat-icon matSuffix>person_outline</mat-icon>
+            <mat-error *ngIf="errorHandling('lastName', 'required')">
+                You must provide a <strong>lastname</strong>
+            </mat-error>
+            <mat-error *ngIf="errorHandling('lastName', 'pattern')">
+                Not allowed are <strong>Ä, Ü, Ö</strong> or <strong>special characters</strong>
             </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
