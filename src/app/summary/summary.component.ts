@@ -15,11 +15,17 @@ export class SummaryComponent implements OnInit {
   done!: number;
   urgent!: number;
   deadline!: string;
+  dayTime!: string;
 
   constructor(private readonly firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
     this.allTasks$ = this.firebaseService.getAllTasks();
+    this.getData();
+    this.getDayTime();
+  }
+
+  getData() {
     this.allTasks$.subscribe(allTasks => {
       this.clear();
       allTasks.forEach((task: any, index: any) => {
@@ -67,6 +73,19 @@ export class SummaryComponent implements OnInit {
     };
     if (task.prio == 'urgent') {
       this.urgent++;
+    }
+  }
+
+  getDayTime() {
+    let today = new Date();
+    let curHr = today.getHours();
+
+    if (curHr < 12) {
+      this.dayTime = 'Good morning';
+    } else if (curHr < 18) {
+      this.dayTime = 'Good afternoon'
+    } else {
+      this.dayTime = 'Good evening'
     }
   }
 }

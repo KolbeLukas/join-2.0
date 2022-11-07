@@ -12,6 +12,7 @@ export class AddContactComponent implements OnInit {
   dialogRef?: MatDialogRef<AddContactComponent>
   newContact!: FormGroup;
   @Input() openedAsDialogNewContact: boolean = false;
+  color = '#';
 
   constructor(private firebaseService: FirebaseService,
     private injector: Injector) { }
@@ -19,7 +20,7 @@ export class AddContactComponent implements OnInit {
   ngOnInit(): void {
     this.dialogRef = <MatDialogRef<AddContactComponent>>(
       this.injector.get(MatDialogRef));
-    this.setForm()
+    this.setForm();
   }
 
   setForm() {
@@ -34,8 +35,6 @@ export class AddContactComponent implements OnInit {
   errorHandling(control: string, error: string) {
     return this.newContact.controls[control].hasError(error);
   }
-
-  color = '#';
 
   getRandomColor() {
     let letters = '0123456789ABCDEF';
