@@ -1,6 +1,8 @@
-import { Component, OnInit, Injector, Input } from '@angular/core';
+import { Component, OnInit, Injector, Input, Inject, Optional } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Contact } from 'src/models/contact.class';
 import { FirebaseService } from '../firebase.service';
 
 @Component({
@@ -12,23 +14,42 @@ export class AddContactComponent implements OnInit {
   dialogRef?: MatDialogRef<AddContactComponent>
   newContact!: FormGroup;
   @Input() openedAsDialogNewContact: boolean = false;
+  @Input() openedAsDialogEditContact: boolean = false;
   color = '#';
+  contact = new Contact();
 
   constructor(private firebaseService: FirebaseService,
-    private injector: Injector) { }
+    @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
+    private injector: Injector,
+    private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.checkOpenNewContact();
+    this.checkOpenEditContact();
     this.dialogRef = <MatDialogRef<AddContactComponent>>(
       this.injector.get(MatDialogRef));
     this.setForm();
   }
 
+  checkOpenNewContact() {
+    if (this.openedAsDialogNewContact) {
+      this.dialogRef = <MatDialogRef<AddContactComponent>>(
+        this.injector.get(MatDialogRef));
+    }
+  }
+
+  checkOpenEditContact() {
+    if (this.openedAsDialogEditContact) {
+      this.contact = this.data.contact;
+    }
+  }
+
   setForm() {
     this.newContact = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      email: new FormControl('', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-      phone: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')])
+      firstName: new FormControl(this.contact.firstName, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      lastName: new FormControl(this.contact.lastName, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
+      email: new FormControl(this.contact.email, [Validators.required, Validators.pattern('^[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')]),
+      phone: new FormControl(this.contact.phone, [Validators.required, Validators.pattern('[- +()0-9]+')])
     });
   }
 
@@ -46,16 +67,38 @@ export class AddContactComponent implements OnInit {
 
   createContact() {
     if (this.newContact.valid) {
-      this.getRandomColor();
-      this.newContact.value.color = this.color;
-      this.firebaseService.createContact(this.newContact.value);
-      this.closeDialog();
+      this.lowercase();
+      if (this.openedAsDialogNewContact) {
+        this.getRandomColor();
+        this.newContact.value.color = this.color;
+        this.firebaseService.createContact(this.newContact.value);
+        this.openSnackBar('Contact has been created.');
+      }
+      if (this.openedAsDialogEditContact) {
+        this.newContact.value.color = this.contact.color;
+        this.newContact.value.id = this.contact.id;
+        this.firebaseService.updateContact(this.newContact.value);
+        this.openSnackBar('Contact has been updated.');
+      }
+      this.closeDialog('save');
     }
   }
 
-  closeDialog() {
-    if (this.dialogRef) {
-      this.dialogRef.close();
+  lowercase() {
+    this.newContact.value.firstName = this.newContact.value.firstName.toLowerCase();
+    this.newContact.value.lastName = this.newContact.value.lastName.toLowerCase();
+  }
+
+  closeDialog(input: any) {
+    if (input == 'save') {
+      this.dialogRef?.close(this.newContact.value);
     }
+    if (input == 'cancel') {
+      this.dialogRef?.close();
+    }
+  }
+
+  openSnackBar(message: any) {
+    this._snackBar.open(message);
   }
 }

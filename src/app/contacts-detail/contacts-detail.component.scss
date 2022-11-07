@@ -7,18 +7,17 @@
 
 .name-container {
     display: flex;
+    align-items: center;
 
     .contact-icon {
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 70px;
-        width: 70px;
+        height: 100px;
+        width: 100px;
         font-size: 30px;
         color: white;
-        border: 1px solid brown;
         border-radius: 100%;
-        background-color: brown;
         margin-right: 16px;
     }
 
@@ -32,6 +31,7 @@
             font-size: 35px;
             font-weight: 500;
             line-height: 120%;
+            text-transform: capitalize;
         }
 
         button {

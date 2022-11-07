@@ -81,6 +81,10 @@
             display: flex;
             flex-direction: column;
 
+            span {
+                text-transform: capitalize;
+            }
+
             a {
                 text-decoration: none;
                 color: #29ABE2;

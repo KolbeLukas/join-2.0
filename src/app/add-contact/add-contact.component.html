@@ -6,14 +6,17 @@
 </div>
 
 <div class="middle">
-    <img src="/assets/img/contact_placeholder.png">
+    <img *ngIf="openedAsDialogNewContact" src="/assets/img/contact_placeholder.png">
+    <div *ngIf="openedAsDialogEditContact" class="contact-icon" [ngStyle]="{'background-color': contact.color}">
+        <span>{{ contact.firstName.charAt(0).toUpperCase() }}{{ contact.lastName.charAt(0).toUpperCase() }}</span>
+    </div>
 </div>
 
 <div class="right-side">
     <form [formGroup]="newContact" id="newContact" (ngSubmit)="createContact()" novalidate>
         <mat-form-field appearance="outline">
-            <mat-label>FIrstname</mat-label>
-            <input matInput placeholder="Firstname" formControlName="firstName">
+            <mat-label>Firstname</mat-label>
+            <input matInput placeholder="Firstname" formControlName="firstName" class="uppercase">
             <mat-icon matSuffix>person_outline</mat-icon>
             <mat-error *ngIf="errorHandling('firstName', 'required')">
                 You must provide a <strong>firstname</strong>
@@ -24,7 +27,7 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Lastname</mat-label>
-            <input matInput placeholder="Lastname" formControlName="lastName">
+            <input matInput placeholder="Lastname" formControlName="lastName" class="uppercase">
             <mat-icon matSuffix>person_outline</mat-icon>
             <mat-error *ngIf="errorHandling('lastName', 'required')">
                 You must provide a <strong>lastname</strong>
@@ -40,6 +43,9 @@
             <mat-error *ngIf="errorHandling('email', 'required') || errorHandling('email', 'pattern')">
                 You must provide a <strong>email-address</strong> (e.g.: john@doe.com)
             </mat-error>
+            <!-- <mat-error *ngIf="errorHandling('email', 'pattern')">
+                Not allowed are <strong>ä, ü, ö</strong> or <strong>special characters</strong>
+            </mat-error> -->
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
@@ -51,19 +57,25 @@
         </mat-form-field>
 
         <div class="btn-container">
-            <button class="light-btn" mat-flat-button (click)="closeDialog()">
+            <button class="light-btn" mat-flat-button (click)="closeDialog('cancel')">
                 Cancel
                 <mat-icon>close</mat-icon>
             </button>
-            <button type="submit" form="newContact" class="dark-btn" mat-flat-button color="primary">
+            <button *ngIf="openedAsDialogNewContact" type="submit" form="newContact" class="dark-btn" mat-flat-button
+                color="primary">
                 Create contact
+                <mat-icon>done</mat-icon>
+            </button>
+            <button *ngIf="openedAsDialogEditContact" type="submit" form="newContact" class="dark-btn" mat-flat-button
+                color="primary">
+                Update contact
                 <mat-icon>done</mat-icon>
             </button>
         </div>
     </form>
 
 
-    <button class="close-btn" (click)="closeDialog()" mat-icon-button color="primary">
+    <button class="close-btn" (click)="closeDialog('cancel')" mat-icon-button color="primary">
         <mat-icon>close</mat-icon>
     </button>
 </div>

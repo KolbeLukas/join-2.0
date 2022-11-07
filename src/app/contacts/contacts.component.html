@@ -4,14 +4,15 @@
             <div mat-subheader>{{ letter }}</div>
             <mat-divider></mat-divider>
             <div class="list-item" *ngFor="let contact of sortedContacts[i]; let j = index"
-                (click)="openContact(contact, i, j)" [class.selected-bg]="selectedBG == i.toString() + j.toString()">
+                (click)="openContact(contact)" [class.selected-bg]="selectedBG == contact.firstName + contact.lastName">
                 <div class="contact-icon" [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}"
-                    [class.selected-icon]="selectedBG == i.toString() + j.toString()">
-                    <span>{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</span>
+                    [class.selected-icon]="selectedBG == contact.firstName + contact.lastName">
+                    <span>{{ contact.firstName.toUpperCase().charAt(0) }}{{ contact.lastName.toUpperCase().charAt(0)
+                        }}</span>
                 </div>
                 <div class="contact-name">
-                    <span [class.selected-text]="selectedBG == i.toString() + j.toString()">{{ contact.firstName }} {{
-                        contact.lastName }}</span>
+                    <span [class.selected-text]="selectedBG == contact.firstName + contact.lastName">
+                        {{ contact.firstName }} {{ contact.lastName }}</span>
                     <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
                 </div>
             </div>
@@ -24,7 +25,8 @@
         <h2>Contacts</h2>
         <span>Better with a team</span>
     </header>
-    <app-contacts-detail *ngIf="selectedContact" [contact]="selectedContact"></app-contacts-detail>
+    <app-contacts-detail *ngIf="selectedContact" [contact]="selectedContact" (newData)="showNewData($event)">
+    </app-contacts-detail>
 </div>
 
 <button mat-flat-button color="primary" (click)="addContactDialog()">

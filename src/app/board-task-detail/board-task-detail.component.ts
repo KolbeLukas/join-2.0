@@ -30,7 +30,7 @@ export class BoardTaskDetailComponent implements OnInit {
     this.dueDate = day + '.' + month + '.' + year;
   }
 
-  openTask(task: any) {
+  editTask(task: any) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '100%',
       data: {

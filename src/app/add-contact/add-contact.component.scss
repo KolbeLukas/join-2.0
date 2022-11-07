@@ -52,6 +52,17 @@
     img {
         width: 110px;
     }
+
+    .contact-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 110px;
+        width: 110px;
+        font-size: 40px;
+        color: white;
+        border-radius: 100%;
+    }
 }
 
 .right-side {
@@ -103,6 +114,10 @@
     mat-icon {
         font-size: 22px;
     }
+}
+
+.uppercase {
+    text-transform: capitalize;
 }
 
 .close-btn {

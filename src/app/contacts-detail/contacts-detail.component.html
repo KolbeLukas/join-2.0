@@ -1,6 +1,6 @@
 <div class="name-container">
-    <div class="contact-icon" [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}">
-        <span>{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</span>
+    <div class="contact-icon" [ngStyle]="{'background-color': contact.color}">
+        <span>{{ contact.firstName.charAt(0).toUpperCase() }}{{ contact.lastName.charAt(0).toUpperCase() }}</span>
     </div>
     <div class="name">
         <span>{{ contact.firstName }} {{ contact.lastName }}</span>
@@ -14,7 +14,7 @@
 <div class="info-container">
     <div class="info-header">
         <h2>Contact Information</h2>
-        <button mat-button color="primary">
+        <button mat-button color="primary" (click)="editContact(contact)">
             <mat-icon>edit</mat-icon>
             Edit Contact
         </button>

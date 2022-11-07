@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddContactComponent } from '../add-contact/add-contact.component';
 
 @Component({
   selector: 'app-contacts-detail',
@@ -7,10 +9,28 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ContactsDetailComponent implements OnInit {
   @Input() contact: any;
+  @Output() newData = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
+  editContact(contact: any) {
+    const dialogRef = this.dialog.open(AddContactComponent, {
+      width: '100%',
+      height: '600px',
+      panelClass: 'custom-dialog-container',
+      data: {
+        contact
+      }
+    });
+    dialogRef.componentInstance.openedAsDialogEditContact = true;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.newData.emit(result);
+        this.contact = result;
+      }
+    });
+  }
 }

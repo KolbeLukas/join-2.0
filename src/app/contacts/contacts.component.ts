@@ -36,7 +36,7 @@ export class ContactsComponent implements OnInit {
   }
 
   filterByFirstLetter(contact: any) {
-    let letter = contact.firstName.charAt(0);
+    let letter = contact.firstName.charAt(0).toUpperCase();
     if (this.alphabet.includes(letter)) {
       let index = this.alphabet.findIndex((element: any) => element == letter);
       this.sortedContacts[index].push(contact);
@@ -47,8 +47,8 @@ export class ContactsComponent implements OnInit {
   }
 
   sortByLastName() {
-    this.sortedContacts.forEach((letter: any) => {
-      letter.sort(function (a: { lastName: string; }, b: { lastName: string; }) {
+    this.sortedContacts.forEach((contact: any) => {
+      contact.sort(function (a: { lastName: string; }, b: { lastName: string; }) {
         let nameA = a.lastName.toUpperCase();
         let nameB = b.lastName.toUpperCase();
         return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
@@ -63,10 +63,22 @@ export class ContactsComponent implements OnInit {
       panelClass: 'custom-dialog-container'
     });
     dialogRef.componentInstance.openedAsDialogNewContact = true;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.selectedContact = result;
+        this.selectedBG = result.firstName + result.lastName;
+      }
+
+    });
   }
 
-  openContact(data: any, firstLetterIndex: any, contactIndex: any) {
-    this.selectedContact = data;
-    this.selectedBG = firstLetterIndex.toString() + contactIndex.toString();
+  showNewData(result: any) {
+    console.log(result)
+    this.selectedBG = result.firstName + result.lastName;
+  }
+
+  openContact(contact: any) {
+    this.selectedContact = contact;
+    this.selectedBG = contact.firstName + contact.lastName;
   }
 }
