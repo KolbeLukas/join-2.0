@@ -40,10 +40,14 @@
 
     mat-list {
         padding: 16px 24px 16px 40px;
+
+        .mat-subheader {
+            padding-left: 26px;
+        }
     }
 
     .list-item {
-        padding: 8px 4px;
+        padding: 8px 16px;
         margin: 8px 0;
         display: flex;
         align-items: center;
@@ -84,6 +88,25 @@
             }
         }
     }
+}
+
+.selected-bg {
+    background-color: #2A3647;
+    border-radius: 5px;
+
+    &:hover {
+        background-color: #2A3647 !important;
+        border-radius: 5px !important;
+        transition: unset !important;
+    }
+}
+
+.selected-icon {
+    border-color: white !important;
+}
+
+.selected-text {
+    color: white;
 }
 
 button {

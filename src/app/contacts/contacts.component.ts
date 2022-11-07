@@ -14,6 +14,7 @@ export class ContactsComponent implements OnInit {
   alphabet: any = []
   sortedContacts: any = [];
   selectedContact: any;
+  selectedBG: any;
 
   constructor(private readonly firebaseService: FirebaseService,
     public dialog: MatDialog) { }
@@ -64,7 +65,8 @@ export class ContactsComponent implements OnInit {
     dialogRef.componentInstance.openedAsDialogNewContact = true;
   }
 
-  openContact(data: any) {
+  openContact(data: any, firstLetterIndex: any, contactIndex: any) {
     this.selectedContact = data;
+    this.selectedBG = firstLetterIndex.toString() + contactIndex.toString();
   }
 }

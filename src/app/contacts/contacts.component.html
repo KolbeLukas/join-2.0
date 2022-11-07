@@ -3,14 +3,16 @@
         <div *ngFor="let letter of alphabet; let i = index">
             <div mat-subheader>{{ letter }}</div>
             <mat-divider></mat-divider>
-            <div class="list-item" *ngFor="let contact of sortedContacts[i]" (click)="openContact(contact)">
-                <div class="contact-icon"
-                    [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}">
+            <div class="list-item" *ngFor="let contact of sortedContacts[i]; let j = index"
+                (click)="openContact(contact, i, j)" [class.selected-bg]="selectedBG == i.toString() + j.toString()">
+                <div class="contact-icon" [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}"
+                    [class.selected-icon]="selectedBG == i.toString() + j.toString()">
                     <span>{{ contact.firstName.charAt(0) }}{{ contact.lastName.charAt(0) }}</span>
                 </div>
                 <div class="contact-name">
-                    <span>{{ contact.firstName }} {{ contact.lastName }}</span>
-                    <a href="mailto:aweber@mail.de">{{ contact.email }}</a>
+                    <span [class.selected-text]="selectedBG == i.toString() + j.toString()">{{ contact.firstName }} {{
+                        contact.lastName }}</span>
+                    <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
                 </div>
             </div>
         </div>
