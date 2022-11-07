@@ -82,9 +82,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Select contacts to assign</mat-label>
                 <mat-select formControlName="assignedTo" multiple>
-                    <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-                    <mat-option value="SW">SW</mat-option>
-                    <mat-option value="AM">AM</mat-option>
+                    <mat-option *ngFor="let contact of contacts$ | async" value="{{contact.id}}">
+                        {{ contact.firstName }} {{ contact.lastName }}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="errorHandling('assignedTo', 'required')">
                     You must select at least one <strong>contact</strong>

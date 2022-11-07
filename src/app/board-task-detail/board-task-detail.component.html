@@ -18,9 +18,9 @@
         </mat-card-content>
         <mat-card-content>
             <span class="title">Assigned To:</span>
-            <div class="assigned-to" *ngFor="let contact of details.assignedTo">
-                <div>{{ contact }}</div>
-                <span>Sven Wagner</span>
+            <div class="assigned-to" *ngFor="let contact of assignedTo">
+                <div>{{ contact.firstName.charAt(0).toUpperCase() }}{{ contact.lastName.charAt(0).toUpperCase() }}</div>
+                <span>{{ contact.firstName }} {{ contact.lastName }}</span>
             </div>
         </mat-card-content>
         <button class="edit-btn" (click)="editTask(details)" mat-flat-button color="primary">

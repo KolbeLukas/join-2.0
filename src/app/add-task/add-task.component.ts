@@ -1,7 +1,7 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { Component, NgZone, OnInit, ViewChild, Inject, Input, Optional, Injector } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { take } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
 import { DateAdapter } from '@angular/material/core';
 import { Task } from 'src/models/task.class';
@@ -27,6 +27,7 @@ export class AddTaskComponent implements OnInit {
   minDate = new Date;
   state = 'todo';
   deleteOverlay = false;
+  contacts$!: Observable<any>;
 
   constructor(private dateAdapter: DateAdapter<any>,
     private firebaseService: FirebaseService,
@@ -38,6 +39,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {
     this.checkOpenNewTask();
     this.checkOpenEditTask();
+    this.getContacts();
     this.setForm();
     this.dateAdapter.setLocale('de');
   }
@@ -57,6 +59,13 @@ export class AddTaskComponent implements OnInit {
       this.dialogRef = <MatDialogRef<AddTaskComponent>>(
         this.injector.get(MatDialogRef));
     }
+  }
+
+  getContacts() {
+    this.contacts$ = this.firebaseService.getAllContacts();
+    this.contacts$.subscribe(contacts => {
+      console.log(contacts)
+    });
   }
 
   setForm() {

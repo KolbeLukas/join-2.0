@@ -6,8 +6,9 @@
     </mat-card-content>
     <div class="card-bottom">
         <div class="contact-box">
-            <div class="contact" *ngFor="let contact of card.assignedTo">
-                <span>{{ contact }}</span>
+            <div class="contact" *ngFor="let contact of assignedTo">
+                <span>{{ contact.firstName.charAt(0).toUpperCase() }}{{ contact.lastName.charAt(0).toUpperCase()
+                    }}</span>
             </div>
         </div>
         <img src="/assets/img/icon/prio_{{ card.prio }}_color.png">

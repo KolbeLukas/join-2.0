@@ -90,6 +90,10 @@ mat-card {
         justify-content: center;
         color: white;
     }
+
+    span {
+        text-transform: capitalize;
+    }
 }
 
 .close-btn {
