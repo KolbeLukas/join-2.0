@@ -68,17 +68,15 @@ export class ContactsComponent implements OnInit {
         this.selectedContact = result;
         this.selectedBG = result.firstName + result.lastName;
       }
-
     });
   }
 
-  showNewData(result: any) {
-    console.log(result)
-    this.selectedBG = result.firstName + result.lastName;
+  showNewData(contact: any) {
+    this.selectedBG = contact.id;
   }
 
   openContact(contact: any) {
     this.selectedContact = contact;
-    this.selectedBG = contact.firstName + contact.lastName;
+    this.selectedBG = contact.id;
   }
 }

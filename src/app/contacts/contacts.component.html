@@ -4,14 +4,16 @@
             <div mat-subheader>{{ letter }}</div>
             <mat-divider></mat-divider>
             <div class="list-item" *ngFor="let contact of sortedContacts[i]; let j = index"
-                (click)="openContact(contact)" [class.selected-bg]="selectedBG == contact.firstName + contact.lastName">
+                (click)="openContact(contact)"
+                [class.selected-bg]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName">
                 <div class="contact-icon" [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}"
-                    [class.selected-icon]="selectedBG == contact.firstName + contact.lastName">
+                    [class.selected-icon]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName">
                     <span>{{ contact.firstName.toUpperCase().charAt(0) }}{{ contact.lastName.toUpperCase().charAt(0)
                         }}</span>
                 </div>
                 <div class="contact-name">
-                    <span [class.selected-text]="selectedBG == contact.firstName + contact.lastName">
+                    <span
+                        [class.selected-text]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName">
                         {{ contact.firstName }} {{ contact.lastName }}</span>
                     <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
                 </div>

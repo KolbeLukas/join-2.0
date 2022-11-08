@@ -87,7 +87,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
     provideFirestore(() => getFirestore())
   ],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2000 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
   ],
   bootstrap: [AppComponent]
 })

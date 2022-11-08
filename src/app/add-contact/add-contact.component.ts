@@ -69,19 +69,27 @@ export class AddContactComponent implements OnInit {
     if (this.newContact.valid) {
       this.lowercase();
       if (this.openedAsDialogNewContact) {
-        this.getRandomColor();
-        this.newContact.value.color = this.color;
-        this.firebaseService.createContact(this.newContact.value);
-        this.openSnackBar('Contact has been created.');
+        this.addNewContact()
       }
       if (this.openedAsDialogEditContact) {
-        this.newContact.value.color = this.contact.color;
-        this.newContact.value.id = this.contact.id;
-        this.firebaseService.updateContact(this.newContact.value);
-        this.openSnackBar('Contact has been updated.');
+        this.updateContact()
       }
       this.closeDialog('save');
     }
+  }
+
+  addNewContact() {
+    this.getRandomColor();
+    this.newContact.value.color = this.color;
+    this.firebaseService.createContact(this.newContact.value);
+    this.openSnackBar('Contact has been created.');
+  }
+
+  updateContact() {
+    this.newContact.value.color = this.contact.color;
+    this.newContact.value.id = this.contact.id;
+    this.firebaseService.updateContact(this.newContact.value);
+    this.openSnackBar('Contact has been updated.');
   }
 
   lowercase() {
