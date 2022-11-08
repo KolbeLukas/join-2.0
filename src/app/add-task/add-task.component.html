@@ -1,6 +1,6 @@
 <h2 *ngIf="!openedAsDialogEditTask">Add Task</h2>
 <h2 *ngIf="openedAsDialogEditTask">Edit Task</h2>
-<form [formGroup]="newTask" id="newForm" (ngSubmit)="createTask(state)" #form="ngForm" novalidate>
+<form [formGroup]="newTask" id="taskForm" (ngSubmit)="createTask(state)" #form="ngForm" novalidate>
     <main>
         <div class="left-half">
             <mat-form-field appearance="outline">
@@ -153,11 +153,11 @@
     </div>
 
     <div class="right-btns">
-        <button *ngIf="!openedAsDialogEditTask" (click)="clearForm()" class="light-btn" mat-flat-button>
+        <button *ngIf="openedAsDialogNewTask" (click)="clearForm()" class="light-btn" mat-flat-button>
             Clear
             <mat-icon>close</mat-icon>
         </button>
-        <button *ngIf="!openedAsDialogEditTask" type="submit" form="newForm" class="dark-btn" mat-flat-button
+        <button *ngIf="openedAsDialogNewTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
             color="primary">
             Create task
             <mat-icon>done</mat-icon>
@@ -166,13 +166,14 @@
             Delete task
             <mat-icon>delete_forever</mat-icon>
         </button>
-        <button *ngIf="openedAsDialogEditTask" type="submit" form="newForm" class="dark-btn" mat-flat-button
+        <button *ngIf="openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
             color="primary">
             Update task
             <mat-icon>done</mat-icon>
         </button>
     </div>
 </div>
+
 <div class="delete-overlay" *ngIf="deleteOverlay" (click)="closeDeleteOverlay()">
     <mat-card (click)="stopProp($event)">
         <mat-card-title>Delete Task</mat-card-title>

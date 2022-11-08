@@ -5,15 +5,15 @@
             <mat-divider></mat-divider>
             <div class="list-item" *ngFor="let contact of sortedContacts[i]; let j = index"
                 (click)="openContact(contact)"
-                [class.selected-bg]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName">
+                [class.selected-bg]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName + contact.email + contact.phone">
                 <div class="contact-icon" [ngStyle]="{'background-color': contact.color, 'border-color': contact.color}"
-                    [class.selected-icon]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName">
+                    [class.selected-icon]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName + contact.email + contact.phone">
                     <span>{{ contact.firstName.toUpperCase().charAt(0) }}{{ contact.lastName.toUpperCase().charAt(0)
                         }}</span>
                 </div>
                 <div class="contact-name">
                     <span
-                        [class.selected-text]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName">
+                        [class.selected-text]="selectedBG == contact.id || selectedBG == contact.firstName + contact.lastName + contact.email + contact.phone">
                         {{ contact.firstName }} {{ contact.lastName }}</span>
                     <a href="mailto:{{ contact.email }}">{{ contact.email }}</a>
                 </div>

@@ -2,6 +2,7 @@ import { Component, OnInit, Injector, Input, Inject, Optional } from '@angular/c
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable, take } from 'rxjs';
 import { Contact } from 'src/models/contact.class';
 import { FirebaseService } from '../firebase.service';
 
@@ -17,6 +18,7 @@ export class AddContactComponent implements OnInit {
   @Input() openedAsDialogEditContact: boolean = false;
   color = '#';
   contact = new Contact();
+  deleteOverlay = false;
 
   constructor(private firebaseService: FirebaseService,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: any,
@@ -41,6 +43,11 @@ export class AddContactComponent implements OnInit {
   checkOpenEditContact() {
     if (this.openedAsDialogEditContact) {
       this.contact = this.data.contact;
+      if (this.contact.id) {
+        return;
+      } else {
+        this.getID();
+      }
     }
   }
 
@@ -81,6 +88,7 @@ export class AddContactComponent implements OnInit {
   addNewContact() {
     this.getRandomColor();
     this.newContact.value.color = this.color;
+    this.newContact.value.addDate = new Date();
     this.firebaseService.createContact(this.newContact.value);
     this.openSnackBar('Contact has been created.');
   }
@@ -90,6 +98,13 @@ export class AddContactComponent implements OnInit {
     this.newContact.value.id = this.contact.id;
     this.firebaseService.updateContact(this.newContact.value);
     this.openSnackBar('Contact has been updated.');
+  }
+
+  getID() {
+    let latestContact = this.firebaseService.findContactID();
+    latestContact.pipe(take(1)).subscribe(id => {
+      this.contact.id = id[0].id;
+    });
   }
 
   lowercase() {
@@ -104,9 +119,30 @@ export class AddContactComponent implements OnInit {
     if (input == 'cancel') {
       this.dialogRef?.close();
     }
+    if (input == 'deleted') {
+      this.dialogRef?.close(input)
+    }
   }
 
   openSnackBar(message: any) {
     this._snackBar.open(message);
+  }
+
+  openDeleteOverlay() {
+    this.deleteOverlay = true;
+  }
+
+  closeDeleteOverlay() {
+    this.deleteOverlay = false;
+  }
+
+  deleteContact() {
+    this.firebaseService.deleteContact(this.contact.id);
+    this.closeDialog('deleted');
+    this.openSnackBar('Contact permanently deleted.');
+  }
+
+  stopProp(event: any) {
+    event.stopPropagation();
   }
 }

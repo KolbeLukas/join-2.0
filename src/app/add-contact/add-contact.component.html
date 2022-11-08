@@ -13,7 +13,7 @@
 </div>
 
 <div class="right-side">
-    <form [formGroup]="newContact" id="newContact" (ngSubmit)="createContact()" novalidate>
+    <form [formGroup]="newContact" id="contactForm" (ngSubmit)="createContact()" novalidate>
         <mat-form-field appearance="outline">
             <mat-label>Firstname</mat-label>
             <input matInput placeholder="Firstname" formControlName="firstName" class="uppercase">
@@ -56,10 +56,14 @@
             </mat-error>
         </mat-form-field>
 
-        <div class="btn-container">
+        <!-- <div class="btn-container">
             <button class="light-btn" mat-flat-button (click)="closeDialog('cancel')">
                 Cancel
                 <mat-icon>close</mat-icon>
+            </button>
+            <button *ngIf="openedAsDialogEditContact" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
+                Delete task
+                <mat-icon>delete_forever</mat-icon>
             </button>
             <button *ngIf="openedAsDialogNewContact" type="submit" form="newContact" class="dark-btn" mat-flat-button
                 color="primary">
@@ -71,11 +75,56 @@
                 Update contact
                 <mat-icon>done</mat-icon>
             </button>
-        </div>
+        </div> -->
     </form>
+
+    <div class="btn-container">
+        <button class="light-btn" mat-flat-button (click)="closeDialog('cancel')">
+            Cancel
+            <mat-icon>close</mat-icon>
+        </button>
+        <button *ngIf="openedAsDialogEditContact" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
+            Delete
+            <mat-icon>delete_forever</mat-icon>
+        </button>
+        <button *ngIf="openedAsDialogNewContact" type="submit" form="contactForm" class="dark-btn" mat-flat-button
+            color="primary">
+            Create contact
+            <mat-icon>done</mat-icon>
+        </button>
+        <button *ngIf="openedAsDialogEditContact" type="submit" form="contactForm" class="dark-btn" mat-flat-button
+            color="primary">
+            Update
+            <mat-icon>done</mat-icon>
+        </button>
+    </div>
 
 
     <button class="close-btn" (click)="closeDialog('cancel')" mat-icon-button color="primary">
         <mat-icon>close</mat-icon>
     </button>
+</div>
+
+<div class="delete-overlay" *ngIf="deleteOverlay" (click)="closeDeleteOverlay()">
+    <mat-card (click)="stopProp($event)">
+        <mat-card-title>Delete Contact</mat-card-title>
+        <mat-card-content>
+            <p>
+                You are about to delete this contact permanently. There is no way to get it back.
+            </p>
+            <p>
+                Do you want to proceed?
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button (click)="closeDeleteOverlay()" class="light-btn" mat-flat-button>
+                Cancel
+                <mat-icon>close</mat-icon>
+            </button>
+            <button mat-flat-button (click)="deleteContact()" color="warn" class="delete-btn-overlay">
+                Delete
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
 </div>

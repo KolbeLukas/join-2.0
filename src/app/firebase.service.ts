@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   collectionData, deleteDoc, docData, Firestore,
-  orderBy, updateDoc, Query, query
+  orderBy, updateDoc, Query, query, where, getDocs, limit
 } from '@angular/fire/firestore';
 import { addDoc, collection, CollectionReference, doc, DocumentData } from '@firebase/firestore';
 import { Observable } from 'rxjs';
@@ -49,22 +49,27 @@ export class FirebaseService {
   }
 
   updateTask(task: any) {
-    const taskRef = doc(this.firestore, `tasks/${task.id}`);
-    return updateDoc(taskRef, { ...task });
+    const docRef = doc(this.firestore, `tasks/${task.id}`);
+    return updateDoc(docRef, { ...task });
   }
 
   updateContact(contact: any) {
-    const taskRef = doc(this.firestore, `contacts/${contact.id}`);
-    return updateDoc(taskRef, { ...contact });
+    const docRef = doc(this.firestore, `contacts/${contact.id}`);
+    return updateDoc(docRef, { ...contact });
   }
 
   deleteTask(id: string) {
-    const taskRef = doc(this.firestore, `tasks/${id}`);
-    return deleteDoc(taskRef);
+    const docRef = doc(this.firestore, `tasks/${id}`);
+    return deleteDoc(docRef);
   }
 
   deleteContact(id: string) {
-    const taskRef = doc(this.firestore, `contacts/${id}`);
-    return deleteDoc(taskRef);
+    const docRef = doc(this.firestore, `contacts/${id}`);
+    return deleteDoc(docRef);
+  }
+
+  findContactID() {
+    const q = query(this.contactsCollection, orderBy('addDate', 'desc'), limit(1));
+    return collectionData(q, { idField: 'id' }) as Observable<any>;
   }
 }

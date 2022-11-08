@@ -66,13 +66,18 @@ export class ContactsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.selectedContact = result;
-        this.selectedBG = result.firstName + result.lastName;
+        this.selectedBG = result.firstName + result.lastName + result.email + result.phone;
       }
     });
   }
 
-  showNewData(contact: any) {
-    this.selectedBG = contact.id;
+  showNewData(result: any) {
+    if (result == 'deleted') {
+      this.selectedContact = undefined;
+      this.selectedBG = undefined;
+    } else {
+      this.selectedBG = result.id;
+    }
   }
 
   openContact(contact: any) {

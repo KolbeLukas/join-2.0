@@ -147,9 +147,7 @@ export class AddTaskComponent implements OnInit {
   }
 
   closeDialog() {
-    if (this.dialogRef) {
-      this.dialogRef.close();
-    }
+    this.dialogRef?.close();
   }
 
   openDeleteOverlay() {
