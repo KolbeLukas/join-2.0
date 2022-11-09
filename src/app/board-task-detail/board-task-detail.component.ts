@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { FirebaseService } from '../firebase.service';
 
@@ -25,16 +25,17 @@ export class BoardTaskDetailComponent implements OnInit {
     setTimeout(() => {
       this.open = true;
     }, 60);
-    this.getContacts();
+    // this.getContacts();
   }
 
-  getContacts() {
-    this.contact$ = this.firebaseService.getOneContact(this.details.assignedTo);
-    this.contact$.subscribe((contact: any) => {
-      this.assignedTo.push(contact);
-      console.log(this.assignedTo);
-    });
-  }
+  // getContacts() {
+  //   this.details.assignedTo.forEach((contact: string) => {
+  //     this.contact$ = this.firebaseService.getOneContact(contact);
+  //     this.contact$.pipe(take(1)).subscribe((contact: any) => {
+  //       this.assignedTo.push(contact);
+  //     });
+  //   });
+  // }
 
   changeDateAppearance() {
     let date = new Date(this.details.dueDate.date);

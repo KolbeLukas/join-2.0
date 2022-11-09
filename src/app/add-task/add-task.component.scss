@@ -129,6 +129,10 @@ mat-radio-group {
     }
 }
 
+.assigned-to {
+    text-transform: capitalize;
+}
+
 .position-error {
     position: relative;
     top: 35px;

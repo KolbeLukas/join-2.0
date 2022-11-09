@@ -79,10 +79,10 @@
                 </mat-radio-group>
             </div>
 
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" class="assigned-to">
                 <mat-label>Select contacts to assign</mat-label>
-                <mat-select formControlName="assignedTo" multiple>
-                    <mat-option *ngFor="let contact of contacts$ | async" value="{{contact.id}}">
+                <mat-select class="assigned-to" formControlName="assignedTo" multiple>
+                    <mat-option class="assigned-to" *ngFor="let contact of contacts$ | async" value="{{contact.id}}">
                         {{ contact.firstName }} {{ contact.lastName }}</mat-option>
                 </mat-select>
                 <mat-error *ngIf="errorHandling('assignedTo', 'required')">
@@ -153,11 +153,11 @@
     </div>
 
     <div class="right-btns">
-        <button *ngIf="openedAsDialogNewTask" (click)="clearForm()" class="light-btn" mat-flat-button>
+        <button *ngIf="!openedAsDialogEditTask" (click)="clearForm()" class="light-btn" mat-flat-button>
             Clear
             <mat-icon>close</mat-icon>
         </button>
-        <button *ngIf="openedAsDialogNewTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
+        <button *ngIf="!openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
             color="primary">
             Create task
             <mat-icon>done</mat-icon>

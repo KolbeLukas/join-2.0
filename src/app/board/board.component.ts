@@ -1,7 +1,7 @@
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { FirebaseService } from '../firebase.service';
 
@@ -12,7 +12,6 @@ import { FirebaseService } from '../firebase.service';
 })
 export class BoardComponent implements OnInit {
   allTasks$!: Observable<any>;
-  card: any;
   overlayOpen = false;
   details: any;
   todos: string[] = [];
@@ -29,6 +28,25 @@ export class BoardComponent implements OnInit {
       this.clear();
       allTasks.forEach((task: any) => {
         this.sortByState(task);
+        if (task.contacts === undefined || task.contacts.length == 0) {
+          task.assignedTo.forEach((contact: string) => {
+            let one = this.firebaseService.getOneContact(contact);
+            task.contacts = [];
+            one.pipe(take(1)).subscribe((contact: any) => {
+              task.contacts.push(contact);
+            });
+          });
+        }
+        // if (task.assignedTo[0].firstName == undefined) {
+        //   let assignedTo = task.assignedTo;
+        //   task.assignedTo = [];
+        //   assignedTo.forEach((contact: any) => {
+        //     let one = this.firebaseService.getOneContact(contact);
+        //     one.pipe(take(1)).subscribe((contact: any) => {
+        //       task.assignedTo.push(contact);
+        //     });
+        //   })
+        // }
       });
     });
   }
@@ -83,17 +101,6 @@ export class BoardComponent implements OnInit {
       },
     });
     dialogRef.componentInstance.openedAsDialogNewTask = true;
-  }
-
-  openTask(task: any) {
-    const dialogRef = this.dialog.open(AddTaskComponent, {
-      width: '100%',
-      panelClass: 'custom-addTask-container',
-      data: {
-        task
-      },
-    });
-    dialogRef.componentInstance.openedAsDialogEditTask = true;
   }
 
   openOverlay(taskData: any) {

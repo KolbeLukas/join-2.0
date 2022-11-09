@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { FirebaseService } from '../firebase.service';
 
 @Component({
@@ -15,14 +15,17 @@ export class BoardCardComponent implements OnInit {
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
-    this.getContacts()
+    // this.getContacts();
   }
 
-  getContacts() {
-    this.contact$ = this.firebaseService.getOneContact(this.card.assignedTo);
-    this.contact$.subscribe((contact: any) => {
-      this.assignedTo.push(contact);
-      console.log(this.assignedTo);
-    });
-  }
+  // getContacts() {
+  //   this.card.assignedTo.forEach((contact: string) => {
+  //     this.contact$ = this.firebaseService.getOneContact(contact);
+  //     this.contact$
+  //       // .pipe(take(1))
+  //       .subscribe((contact: any) => {
+  //         this.assignedTo.push(contact);
+  //       });
+  //   });
+  // }
 }

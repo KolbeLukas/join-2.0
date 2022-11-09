@@ -3,11 +3,12 @@ export class Task {
     description: string;
     category: string;
     categoryColor: string;
-    assignedTo: string;
+    assignedTo: any;
     dueDate: any;
     prio: string;
     state = 'todo';
     id!: string;
+    contacts: any;
 
     constructor(obj?: any) {
         this.title = obj ? obj.title : '';
@@ -19,14 +20,14 @@ export class Task {
         this.prio = obj ? obj.prio : '';
     }
 
-    // public toJSON() {
-    //     return {
-    //         title: this.title,
-    //         description: this.description,
-    //         category: this.category,
-    //         assignedTo: this.assignedTo,
-    //         dueDate: this.dueDate,
-    //         prio: this.prio
-    //     }
-    // }
+    public toJSON() {
+        return {
+            title: this.title,
+            description: this.description,
+            category: this.category,
+            assignedTo: this.assignedTo,
+            dueDate: this.dueDate,
+            prio: this.prio
+        }
+    }
 }

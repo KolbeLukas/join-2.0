@@ -18,8 +18,10 @@
         </mat-card-content>
         <mat-card-content>
             <span class="title">Assigned To:</span>
-            <div class="assigned-to" *ngFor="let contact of assignedTo">
-                <div>{{ contact.firstName.charAt(0).toUpperCase() }}{{ contact.lastName.charAt(0).toUpperCase() }}</div>
+            <div class="assigned-to" *ngFor="let contact of details.contacts">
+                <!-- assignedTo / details.assignedTo -->
+                <div [ngStyle]="{'background-color': contact.color}">{{ contact.firstName.charAt(0).toUpperCase() }}{{
+                    contact.lastName.charAt(0).toUpperCase() }}</div>
                 <span>{{ contact.firstName }} {{ contact.lastName }}</span>
             </div>
         </mat-card-content>

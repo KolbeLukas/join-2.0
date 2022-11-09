@@ -6,7 +6,8 @@
     </mat-card-content>
     <div class="card-bottom">
         <div class="contact-box">
-            <div class="contact" *ngFor="let contact of assignedTo">
+            <div class="contact" *ngFor="let contact of card.contacts" [ngStyle]="{'background-color': contact.color}">
+                <!-- card.assignedTo -->
                 <span>{{ contact.firstName.charAt(0).toUpperCase() }}{{ contact.lastName.charAt(0).toUpperCase()
                     }}</span>
             </div>

@@ -52,10 +52,23 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
+  contacts: any[] = [];
+
   checkOpenEditTask() {
     if (this.openedAsDialogEditTask) {
       this.task = this.data.task;
       this.state = this.data.task.state;
+      // let assignedTo = this.task.assignedTo;
+      // this.task.assignedTo = [];
+      // assignedTo.forEach((contact: { id: any; }) => {
+      //   console.log(contact.id)
+      //   this.task.assignedTo.push(contact.id)
+      // })
+      // let contacts: any[] = [];
+      this.task.contacts.forEach((element: { id: any; }) => {
+        this.contacts.push(element.id)
+      });
+      this.task.assignedTo = this.contacts;
       this.dialogRef = <MatDialogRef<AddTaskComponent>>(
         this.injector.get(MatDialogRef));
     }
@@ -63,9 +76,6 @@ export class AddTaskComponent implements OnInit {
 
   getContacts() {
     this.contacts$ = this.firebaseService.getAllContacts();
-    this.contacts$.subscribe(contacts => {
-      console.log(contacts)
-    });
   }
 
   setForm() {
@@ -104,6 +114,7 @@ export class AddTaskComponent implements OnInit {
   checkOpenAs() {
     if (this.openedAsDialogEditTask) {
       this.newTask.value.id = this.task.id;
+      this.newTask.value.contacts = [];
       this.firebaseService.updateTask(this.newTask.value);
       this.openSnackBar('Task has been updated.');
     } else {
