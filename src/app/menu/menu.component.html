@@ -29,10 +29,15 @@
 </div>
 
 <div class="bottom-half">
-    <a href="">
+    <div>
+        <a routerLink="legalnotice" [class.active]="currentRoute == '/main/legalnotice'">
+            <mat-icon class="fotter-icon">info_outlined</mat-icon>
+            <span>Legal notice</span>
+        </a>
 
-        <img src="/assets/img/icon/legal_notice.png">
-
-        <span>Legal notice</span>
-    </a>
+        <a routerLink="dataprotection" [class.active]="currentRoute == '/main/dataprotection'">
+            <mat-icon class="fotter-icon">admin_panel_settings</mat-icon>
+            <span>Data protection</span>
+        </a>
+    </div>
 </div>

@@ -1,0 +1,43 @@
+:host {
+    display: block;
+    height: calc(100vh - 64px);
+    padding: 16px;
+    box-sizing: border-box;
+    background: #F5F5F5;
+    position: relative;
+    overflow: auto;
+}
+
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+    margin: 30px 5% 46px 5%;
+    line-height: 65.5px;
+}
+
+button {
+    position: absolute;
+    right: calc(5% + 16px);
+    top: 46px;
+
+    mat-icon {
+        font-size: 30px;
+        height: 30px;
+        width: 30px;
+        line-height: 30px;
+    }
+}
+
+main {
+    padding-inline: 5%;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+h4 {
+    font-size: 17px;
+    font-weight: 500;
+}

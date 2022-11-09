@@ -40,6 +40,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { BoardTaskDetailComponent } from './board-task-detail/board-task-detail.component';
 import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { AddContactComponent } from './add-contact/add-contact.component';
     ContactsComponent,
     ContactsDetailComponent,
     BoardTaskDetailComponent,
-    AddContactComponent
+    AddContactComponent,
+    LegalNoticeComponent,
+    DataProtectionComponent
   ],
   imports: [
     CommonModule,
