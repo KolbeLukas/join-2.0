@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddContactComponent } from '../add-contact/add-contact.component';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 @Component({
   selector: 'app-contacts-detail',
@@ -32,5 +33,16 @@ export class ContactsDetailComponent implements OnInit {
         this.contact = result;
       }
     });
+  }
+
+  addTaskDialog(contact: any) {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      width: '100%',
+      panelClass: 'custom-addTask-container',
+      data: {
+        data: [contact.id]
+      },
+    });
+    dialogRef.componentInstance.openedAsDialogNewTaskContact = true;
   }
 }

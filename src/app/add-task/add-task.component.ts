@@ -20,6 +20,7 @@ export class AddTaskComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective!: FormGroupDirective;
   @Input() openedAsDialogNewTask: boolean = false;
   @Input() openedAsDialogEditTask: boolean = false;
+  @Input() openedAsDialogNewTaskContact: boolean = false;
   dialogRef?: MatDialogRef<AddTaskComponent>
   newTask!: FormGroup;
   task = new Task();
@@ -39,6 +40,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {
     this.checkOpenNewTask();
     this.checkOpenEditTask();
+    this.checkOpenNewTaskContact()
     this.getContacts();
     this.setForm();
     this.dateAdapter.setLocale('de');
@@ -52,7 +54,7 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  contacts: any[] = [];
+  // contacts: any[] = [];
 
   checkOpenEditTask() {
     if (this.openedAsDialogEditTask) {
@@ -65,10 +67,18 @@ export class AddTaskComponent implements OnInit {
       //   this.task.assignedTo.push(contact.id)
       // })
       // let contacts: any[] = [];
-      this.task.contacts.forEach((element: { id: any; }) => {
-        this.contacts.push(element.id)
-      });
-      this.task.assignedTo = this.contacts;
+      // this.task.contacts.forEach((element: { id: any; }) => {
+      //   this.contacts.push(element.id)
+      // });
+      // this.task.assignedTo = this.contacts;
+      this.dialogRef = <MatDialogRef<AddTaskComponent>>(
+        this.injector.get(MatDialogRef));
+    }
+  }
+
+  checkOpenNewTaskContact() {
+    if (this.openedAsDialogNewTaskContact) {
+      this.task.assignedTo = this.data.data;
       this.dialogRef = <MatDialogRef<AddTaskComponent>>(
         this.injector.get(MatDialogRef));
     }
