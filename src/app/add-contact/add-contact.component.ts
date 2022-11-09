@@ -97,7 +97,18 @@ export class AddContactComponent implements OnInit {
     this.newContact.value.color = this.contact.color;
     this.newContact.value.id = this.contact.id;
     this.firebaseService.updateContact(this.newContact.value);
+    this.resetTasks();
     this.openSnackBar('Contact has been updated.');
+  }
+
+  resetTasks() {
+    let allTasks$ = this.firebaseService.getAllTasks();
+    allTasks$.pipe(take(1)).subscribe(tasks => {
+      tasks.forEach((task: any) => {
+        task.contacts = [];
+        this.firebaseService.updateTask(task)
+      })
+    })
   }
 
   getID() {
