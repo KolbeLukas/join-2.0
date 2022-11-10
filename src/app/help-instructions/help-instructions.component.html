@@ -1,0 +1,171 @@
+<h2>Help</h2>
+
+<button mat-icon-button routerLink="/main/summary" class="back-btn">
+    <mat-icon>arrow_back</mat-icon>
+</button>
+
+<main>
+    <h3>What is Join?</h3>
+    <p>
+        Join is a dynamic Kanban board. In japanese "Kanban"means "Visual Signal" or
+        "Visual Card". The main purpose of Kanban is to help and improve manufacturing
+        efficiency and create a transparent work process for everyone involved.
+    </p>
+    <br>
+    <h3>How to use it</h3>
+    <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <span>Board</span>
+                </mat-panel-title>
+                <mat-panel-description>
+                    Board panel usage
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="list-item">
+                <span>1.</span>
+                <span>
+                    To <b>see</b> all the tasks in process go to
+                    <button mat-raised-button color="primary" routerLink="/main/contacts">
+                        <img src="/assets/img/icon/board_white.png">
+                        Board
+                    </button>
+                    . Here you find all created task and their current status.
+                </span>
+            </div>
+            <div class="list-item">
+                <span>2.</span>
+                <span>
+                    You can <b>change</b> the status of a task by drag and drop. Grab the task
+                    to change and drop it in the collum of the new status.
+                </span>
+            </div>
+            <div class="list-item">
+                <span>3.</span>
+                <span>
+                    For more <b>details</b> of a task or to edit it, click on the task. In the
+                    opened Overlay you can see the whole information of the task.
+                    To <b>edit</b> the task press the
+                    <button mat-raised-button color="primary" class="disabled edit-btn">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    button. Change the fields to edit and press the
+                    <button class="disabled" mat-flat-button color="primary">
+                        Update
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    button. Here you can also delete the task by pressing the
+                    <button class="disabled" mat-flat-button class="delete-btn disabled">
+                        Delete
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>
+                    button and follow the instructions.
+                </span>
+            </div>
+            <div class="list-item">
+                <span>4.</span>
+                <span class="line-height">
+                    If you want to <b>create</b> a new task with a preselected status, press the
+                    <button mat-button color="primary" class="disabled plus-btn">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    at the status you want to add the task. Then just follow the instructions of the
+                    "Add task" panel.
+                </span>
+            </div>
+            <div class="list-item">
+                <span>5.</span>
+                <span class="line-height">
+                    To search or filter the tasks, you can use the search bar.
+                    <b>not implemented now</b>
+                </span>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <span>Add Task</span>
+                </mat-panel-title>
+                <mat-panel-description>
+                    Add task panel usage
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="list-item">
+                <span>1.</span>
+                <span>
+                    To <b>create</b> a new task go to
+                    <button mat-raised-button color="primary" routerLink="/main/addtask">
+                        <img src="/assets/img/icon/add_task_white.png">
+                        Add Task
+                    </button>
+                    , fill in the required fields and press the
+                    <button class="disabled" mat-flat-button color="primary">
+                        Create task
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    button. The new task is pushed into the "To do" status on board by default.
+                </span>
+            </div>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <span>Contacts</span>
+                </mat-panel-title>
+                <mat-panel-description>
+                    Contacts panel usage
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="list-item">
+                <span>1.</span>
+                <span>
+                    To <b>create</b> a new contact go to
+                    <button mat-raised-button color="primary" routerLink="/main/contacts">
+                        <img src="/assets/img/icon/contacts_white.png">
+                        Contacts
+                    </button>
+                    and press the
+                    <button class="disabled" mat-flat-button color="primary">
+                        New contact
+                        <mat-icon>person_add</mat-icon>
+                    </button>
+                    button. Fill in the required fields and press the
+                    <button class="disabled" mat-flat-button color="primary">
+                        Create contact
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    button.
+                </span>
+            </div>
+            <div class="list-item">
+                <span>2.</span>
+                <span>
+                    To <b>edit</b> a contact go to
+                    <button mat-raised-button color="primary" routerLink="/main/contacts">
+                        <img src="/assets/img/icon/contacts_white.png">
+                        Contacts
+                    </button>
+                    and select the contact to edit. Press the
+                    <button mat-button color="primary" class="disabled">
+                        <mat-icon>edit</mat-icon>
+                        Edit Contact
+                    </button>
+                    button. Change the fields to edit and press the
+                    <button class="disabled" mat-flat-button color="primary">
+                        Update
+                        <mat-icon>done</mat-icon>
+                    </button>
+                    button. Here you can also delete the selected contact by pressing the
+                    <button class="disabled" mat-flat-button class="delete-btn disabled">
+                        Delete
+                        <mat-icon>delete_forever</mat-icon>
+                    </button>
+                    button and follow the instructions.
+                </span>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+</main>

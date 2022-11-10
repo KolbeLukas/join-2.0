@@ -1,7 +1,8 @@
 <div class="left-side">
     <img src="/assets/img/logo_white.png">
-    <h2>Add contact</h2>
-    <span>Tasks are better with a team!</span>
+    <h2 *ngIf="!openedAsDialogEditContact">Add contact</h2>
+    <h2 *ngIf="openedAsDialogEditContact">Edit contact</h2>
+    <span *ngIf="!openedAsDialogEditContact">Tasks are better with a team!</span>
     <div class="line"></div>
 </div>
 
@@ -55,27 +56,6 @@
                 You must provide a <strong>phone-number</strong>
             </mat-error>
         </mat-form-field>
-
-        <!-- <div class="btn-container">
-            <button class="light-btn" mat-flat-button (click)="closeDialog('cancel')">
-                Cancel
-                <mat-icon>close</mat-icon>
-            </button>
-            <button *ngIf="openedAsDialogEditContact" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
-                Delete task
-                <mat-icon>delete_forever</mat-icon>
-            </button>
-            <button *ngIf="openedAsDialogNewContact" type="submit" form="newContact" class="dark-btn" mat-flat-button
-                color="primary">
-                Create contact
-                <mat-icon>done</mat-icon>
-            </button>
-            <button *ngIf="openedAsDialogEditContact" type="submit" form="newContact" class="dark-btn" mat-flat-button
-                color="primary">
-                Update contact
-                <mat-icon>done</mat-icon>
-            </button>
-        </div> -->
     </form>
 
     <div class="btn-container">
@@ -83,20 +63,22 @@
             Cancel
             <mat-icon>close</mat-icon>
         </button>
-        <button *ngIf="openedAsDialogEditContact" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
-            Delete
-            <mat-icon>delete_forever</mat-icon>
-        </button>
-        <button *ngIf="openedAsDialogNewContact" type="submit" form="contactForm" class="dark-btn" mat-flat-button
-            color="primary">
-            Create contact
-            <mat-icon>done</mat-icon>
-        </button>
-        <button *ngIf="openedAsDialogEditContact" type="submit" form="contactForm" class="dark-btn" mat-flat-button
-            color="primary">
-            Update
-            <mat-icon>done</mat-icon>
-        </button>
+        <div>
+            <button *ngIf="openedAsDialogEditContact" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
+                Delete
+                <mat-icon>delete_forever</mat-icon>
+            </button>
+            <button *ngIf="openedAsDialogNewContact" type="submit" form="contactForm" class="dark-btn" mat-flat-button
+                color="primary">
+                Create contact
+                <mat-icon>done</mat-icon>
+            </button>
+            <button *ngIf="openedAsDialogEditContact" type="submit" form="contactForm" class="dark-btn" mat-flat-button
+                color="primary">
+                Save
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
     </div>
 
 

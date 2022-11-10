@@ -69,23 +69,19 @@ main {
         }
 
         button {
-            border: 1px solid #2A3647;
-            border-radius: 6px;
-            padding: unset;
-            background-color: unset;
-            display: flex;
-            color: #2A3647;
-            cursor: pointer;
-            padding: 1px 0 1px 1px;
-
             &:hover {
                 border: 1px solid #29ABE2;
                 color: #29ABE2;
             }
 
             mat-icon {
-                padding-right: 1px;
+                padding-right: .64px;
             }
+
+            border: 1px solid;
+            padding-inline: 0;
+            min-width: unset;
+            line-height: unset;
         }
     }
 }

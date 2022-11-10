@@ -76,10 +76,15 @@
                         <span class="checkmark blue"></span>
                         <mat-radio-button value="blue"></mat-radio-button>
                     </label>
+                    <div *ngIf="form.submitted && newTask.controls['categoryColor'].invalid"
+                        class="error-category-color" [class.position-right]="errorHandling('category', 'required')">
+                        <span> You must select a <strong>color</strong></span>
+                    </div>
                 </mat-radio-group>
+
             </div>
 
-            <mat-form-field appearance="outline" class="assigned-to">
+            <mat-form-field appearance="outline">
                 <mat-label>Select contacts to assign</mat-label>
                 <mat-select class="assigned-to" formControlName="assignedTo" multiple>
                     <mat-option class="assigned-to" *ngFor="let contact of contacts$ | async" value="{{contact.id}}">
@@ -163,12 +168,12 @@
             <mat-icon>done</mat-icon>
         </button>
         <button *ngIf="openedAsDialogEditTask" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
-            Delete task
+            Delete
             <mat-icon>delete_forever</mat-icon>
         </button>
         <button *ngIf="openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
             color="primary">
-            Update task
+            Save
             <mat-icon>done</mat-icon>
         </button>
     </div>

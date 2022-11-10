@@ -42,6 +42,8 @@ import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/mater
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
+import { HelpInstructionsComponent } from './help-instructions/help-instructions.component';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,8 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
     BoardTaskDetailComponent,
     AddContactComponent,
     LegalNoticeComponent,
-    DataProtectionComponent
+    DataProtectionComponent,
+    HelpInstructionsComponent
   ],
   imports: [
     CommonModule,
@@ -86,6 +89,7 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
     MatRadioModule,
     MatDialogModule,
     MatSnackBarModule,
+    MatExpansionModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())

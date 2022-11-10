@@ -66,9 +66,11 @@ mat-radio-group {
     height: 20px;
     width: calc(100% - 25px);
     margin-top: -13px;
-    margin-bottom: 23.5px;
+    margin-bottom: 21.5px;
     padding-left: 25px;
+    padding-bottom: 2px;
     border: 2px solid transparent;
+    position: relative;
 
     mat-radio-button {
         position: absolute;
@@ -127,6 +129,22 @@ mat-radio-group {
         border-radius: 50%;
         background: white;
     }
+}
+
+.error-category-color {
+    position: absolute;
+    animation: fadeIn .5s;
+    top: 22px;
+    margin-left: -15px;
+
+    span {
+        color: #ff3d00;
+        font-size: 75%;
+    }
+}
+
+.position-right {
+    left: 200px;
 }
 
 .assigned-to {

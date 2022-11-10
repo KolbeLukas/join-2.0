@@ -15,9 +15,8 @@ mat-toolbar {
         justify-content: space-between;
         align-items: center;
 
-        .help-icon {
-            height: 20px;
-            width: 20px;
+        mat-icon {
+            color: #CDCDCD;
             cursor: pointer;
         }
 
