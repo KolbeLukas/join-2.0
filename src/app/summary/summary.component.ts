@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthenticationService } from '../authentication.service';
 import { FirebaseService } from '../firebase.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { FirebaseService } from '../firebase.service';
 })
 export class SummaryComponent implements OnInit {
   allTasks$!: Observable<any>;
+  user$ = this.authServive.currentUser$
   todos!: number;
   inProgress!: number;
   feedback!: number;
@@ -17,7 +19,8 @@ export class SummaryComponent implements OnInit {
   deadline!: string;
   dayTime!: string;
 
-  constructor(private readonly firebaseService: FirebaseService) { }
+  constructor(private readonly firebaseService: FirebaseService,
+    private authServive: AuthenticationService) { }
 
   ngOnInit(): void {
     this.allTasks$ = this.firebaseService.getAllTasks();

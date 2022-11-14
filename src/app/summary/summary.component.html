@@ -57,6 +57,6 @@
 
     <div class="greeting">
         <span>{{ dayTime }},</span>
-        <span>Sofia Müller</span>
+        <span *ngIf="user$ | async as user">{{ user.email }}</span>
     </div>
 </main>

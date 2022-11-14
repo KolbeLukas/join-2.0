@@ -45,6 +45,9 @@ import { DataProtectionComponent } from './data-protection/data-protection.compo
 import { HelpInstructionsComponent } from './help-instructions/help-instructions.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatMenuModule } from '@angular/material/menu';
+import { HotToastModule } from '@ngneat/hot-toast';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     AddContactComponent,
     LegalNoticeComponent,
     DataProtectionComponent,
-    HelpInstructionsComponent
+    HelpInstructionsComponent,
+    SignUpComponent
   ],
   imports: [
     CommonModule,
@@ -92,9 +96,20 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSnackBarModule,
     MatExpansionModule,
     MatTooltipModule,
+    MatMenuModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    HotToastModule.forRoot(
+      {
+        duration: 2500,
+        position: 'bottom-center',
+        style: {
+          color: '#ffffff',
+          background: '#323232'
+        }
+      }
+    )
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }

@@ -2,7 +2,7 @@ import { Component, OnInit, Injector, Input, Inject, Optional } from '@angular/c
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, take } from 'rxjs';
+import { take } from 'rxjs';
 import { Contact } from 'src/models/contact.class';
 import { FirebaseService } from '../firebase.service';
 
