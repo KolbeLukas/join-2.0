@@ -5,7 +5,7 @@
             <mat-form-field appearance="legacy" color="accent">
                 <mat-label>Find Task</mat-label>
                 <input matInput placeholder="Find Task">
-                <mat-icon matSuffix>search</mat-icon>
+                <mat-icon matSuffix matTooltip="Search">search</mat-icon>
             </mat-form-field>
             <button (click)="addTaskDialog('todo')" mat-flat-button color="primary">
                 Add task
@@ -19,7 +19,7 @@
     <div class="content">
         <div class="headers">
             <h3>To do</h3>
-            <button mat-button color="primary" (click)="addTaskDialog('todo')">
+            <button mat-button color="primary" (click)="addTaskDialog('todo')" matTooltip="Add task">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -34,7 +34,7 @@
     <div class="content">
         <div class="headers">
             <h3>In progress</h3>
-            <button mat-button color="primary" (click)="addTaskDialog('inProgress')">
+            <button mat-button color="primary" (click)="addTaskDialog('inProgress')" matTooltip="Add task">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -50,7 +50,7 @@
     <div class="content">
         <div class="headers">
             <h3>Feedback</h3>
-            <button mat-button color="primary" (click)="addTaskDialog('feedback')">
+            <button mat-button color="primary" (click)="addTaskDialog('feedback')" matTooltip="Add task">
                 <mat-icon>add</mat-icon>
             </button>
         </div>
@@ -66,7 +66,7 @@
     <div class="content">
         <div class="headers">
             <h3>Done</h3>
-            <button mat-button color="primary" (click)="addTaskDialog('done')">
+            <button mat-button color="primary" (click)="addTaskDialog('done')" matTooltip="Add task">
                 <mat-icon>add</mat-icon>
             </button>
         </div>

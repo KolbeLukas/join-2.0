@@ -44,6 +44,7 @@ import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { HelpInstructionsComponent } from './help-instructions/help-instructions.component';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDialogModule,
     MatSnackBarModule,
     MatExpansionModule,
+    MatTooltipModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore())
