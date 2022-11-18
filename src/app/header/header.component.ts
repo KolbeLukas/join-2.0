@@ -9,15 +9,12 @@ import { AuthenticationService } from '../authentication.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService,
-    private router: Router,) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
   logout() {
-    this.authService.logout().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
+    this.authService.SignOut();
   }
 }

@@ -48,6 +48,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthenticationService } from './authentication.service';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     LegalNoticeComponent,
     DataProtectionComponent,
     HelpInstructionsComponent,
-    SignUpComponent
+    SignUpComponent,
+    VerifyEmailComponent
   ],
   imports: [
     CommonModule,
@@ -112,7 +116,9 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     )
   ],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
+    AuthenticationService,
+    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
   ],
   bootstrap: [AppComponent]
 })

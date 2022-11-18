@@ -10,7 +10,6 @@ import { FirebaseService } from '../firebase.service';
 })
 export class SummaryComponent implements OnInit {
   allTasks$!: Observable<any>;
-  user$ = this.authServive.currentUser$
   todos!: number;
   inProgress!: number;
   feedback!: number;
@@ -19,8 +18,7 @@ export class SummaryComponent implements OnInit {
   deadline!: string;
   dayTime!: string;
 
-  constructor(private readonly firebaseService: FirebaseService,
-    private authServive: AuthenticationService) { }
+  constructor(private readonly firebaseService: FirebaseService) { }
 
   ngOnInit(): void {
     this.allTasks$ = this.firebaseService.getAllTasks();

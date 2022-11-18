@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { AuthenticationService } from '../authentication.service';
 import { HotToastService } from '@ngneat/hot-toast';
 import { catchError, of } from 'rxjs';
@@ -13,8 +12,7 @@ import { catchError, of } from 'rxjs';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private authService: AuthenticationService,
-    private router: Router,
+  constructor(public authService: AuthenticationService,
     private toast: HotToastService) { }
 
   ngOnInit(): void {
@@ -23,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   setForm() {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
       password: new FormControl('', [Validators.required])
     });
   }
@@ -34,8 +32,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
-      this.authService.login(email, password)
+      this.authService.SignIn(this.loginForm.value.email, this.loginForm.value.password)
         .pipe(this.toast.observe({
           success: 'Logged in successfully',
           loading: 'Logging in...',
@@ -44,21 +41,20 @@ export class LoginComponent implements OnInit {
           , catchError(
             (error) => of(error)
           ))
-        .subscribe(() => {
-          this.router.navigate(['/main']);
-        });
+        .subscribe();
     }
   }
 
   guestLogin() {
-    this.authService.login('guest@mail.de', 'guest1234').pipe(
-      this.toast.observe({
+    this.authService.SignIn('guest@join.lukas-kolbe-dev.de', 'guest1234')
+      .pipe(this.toast.observe({
         success: 'Logged in successfully',
         loading: 'Logging in...',
         error: (message) => `${message}`
       })
-    ).subscribe(() => {
-      this.router.navigate(['/main']);
-    });
+        , catchError(
+          (error) => of(error)
+        ))
+      .subscribe();
   }
 }

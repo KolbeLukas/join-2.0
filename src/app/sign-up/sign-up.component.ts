@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
     this.signUpForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       lastName: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      email: new FormControl('', [Validators.required, Validators.pattern('^[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')]),
+      email: new FormControl('', [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
       phone: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', [Validators.required])
@@ -48,21 +48,18 @@ export class SignUpComponent implements OnInit {
       });
   }
 
-  signup() {
-    if (this.signUpForm.valid) {
-      const { name, email, password } = this.signUpForm.value;
-      this.authService.signUp(name, email, password)
-        .pipe(this.toast.observe({
-          success: 'Your are now signed up',
-          loading: 'Signing in...',
-          error: (message) => `${message}`
-        }))
-        .subscribe(() => {
-          this.router.navigate(['/main']);
-        })
-    }
-
-  }
+  signUp() {
+    const { firstName, lastName, phone, email, password } = this.signUpForm.value;
+    this.authService.SignUp(email, password)
+      .pipe(this.toast.observe({
+        success: 'Your are now signed up. Please verify your email.',
+        loading: 'Signing in...',
+        error: (message) => `${message}`
+      }))
+      .subscribe(() => {
+        this.router.navigate(['/main']);
+      })
+  };
 
   errorHandling(control: string, error: string) {
     return this.signUpForm.controls[control].hasError(error);

@@ -55,7 +55,7 @@ export class AddContactComponent implements OnInit {
     this.newContact = new FormGroup({
       firstName: new FormControl(this.contact.firstName, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
       lastName: new FormControl(this.contact.lastName, [Validators.required, Validators.pattern('[a-zA-Z ]*')]),
-      email: new FormControl(this.contact.email, [Validators.required, Validators.pattern('^[a-z0-9]+@[a-z0-9]+\\.[a-z]{2,4}$')]),
+      email: new FormControl(this.contact.email, [Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')]),
       phone: new FormControl(this.contact.phone, [Validators.required, Validators.pattern('[- +()0-9]+')])
     });
   }

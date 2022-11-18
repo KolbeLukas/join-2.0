@@ -5,7 +5,5 @@ export class Contact {
     phone!: string;
     id!: string;
     color!: string;
-
-    constructor() {
-    }
+    emailVerified!: boolean;
 }

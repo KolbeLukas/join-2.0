@@ -3,7 +3,7 @@
         <button class="back-btn" mat-icon-button color="accent" routerLink="/login">
             <mat-icon>arrow_back</mat-icon>
         </button>
-        <form [formGroup]="signUpForm" (ngSubmit)="signup()" novalidate>
+        <form [formGroup]="signUpForm" (ngSubmit)="signUp()" novalidate>
             <mat-card-title>Sign up</mat-card-title>
             <mat-form-field appearance="outline">
                 <mat-label>Firstname</mat-label>
@@ -37,7 +37,7 @@
                     You must provide a <strong>email-address</strong>
                 </mat-error>
                 <mat-error *ngIf="errorHandling('email', 'pattern')">
-                    Wrong format <strong>(e.g.: john@doe.com)</strong>
+                    Wrong format <strong>(e.g.: john-doe@eg-mail.com)</strong>
                 </mat-error>
             </mat-form-field>
 

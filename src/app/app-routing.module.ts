@@ -10,17 +10,56 @@ import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { SummaryComponent } from './summary/summary.component';
-import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { canActivate, emailVerified, AuthPipeGenerator } from '@angular/fire/auth-guard';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { map, pipe } from 'rxjs';
 
-const redirectToLogin = () => redirectUnauthorizedTo(['login']);
-const redirectToMain = () => redirectLoggedInTo(['main']);
+const redirectLoggedInUser: AuthPipeGenerator = () =>
+  map(user => {
+    if (user) {
+      if (!user.emailVerified) {
+        return true;
+      } else {
+        return ['main'];
+      }
+    } else {
+      return true;
+    }
+  });
+
+const redirectUnauthorizedUser: AuthPipeGenerator = () =>
+  map(user => {
+    if (user !== null) {
+      if (!user.emailVerified) {
+        return true;
+      } else {
+        return ['main'];
+      }
+    }
+    else {
+      return ['login'];
+    }
+  });
+
+const redirectUnverifiedUser = () =>
+  pipe(
+    emailVerified,
+    map(emailVerified => {
+      if (emailVerified) {
+        return true;
+      } else {
+        return ['verify-email-address'];
+      }
+    })
+  );
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, ...canActivate(redirectToMain) },
-  { path: 'signup', component: SignUpComponent, ...canActivate(redirectToMain) },
+  { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInUser) },
+  { path: 'signup', component: SignUpComponent, ...canActivate(redirectLoggedInUser) },
+  { path: 'verify-email-address', component: VerifyEmailComponent, ...canActivate(redirectUnauthorizedUser) },
   {
-    path: 'main', component: MainComponent, ...canActivate(redirectToLogin),
+    path: 'main', component: MainComponent, ...canActivate(redirectUnverifiedUser),
     children: [
       { path: 'summary', component: SummaryComponent },
       { path: 'board', component: BoardComponent },
@@ -33,7 +72,7 @@ const routes: Routes = [
     ]
   },
   { path: '**', redirectTo: 'login' }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
