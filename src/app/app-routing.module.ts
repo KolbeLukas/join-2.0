@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddTaskComponent } from './add-task/add-task.component';
-import { BoardComponent } from './board/board.component';
-import { ContactsComponent } from './contacts/contacts.component';
+import { AddTaskComponent } from './components/main-content/add-task/add-task.component';
+import { BoardComponent } from './components/main-content/board/board.component';
+import { ContactsComponent } from './components/main-content/contacts/contacts.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import { HelpInstructionsComponent } from './help-instructions/help-instructions.component';
 import { LegalNoticeComponent } from './legal-notice/legal-notice.component';
-import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
-import { SummaryComponent } from './summary/summary.component';
+import { LoginComponent } from './components/registration/login/login.component';
+import { MainComponent } from './components/main-content/main-layout/main.component';
+import { SignUpComponent } from './components/registration/sign-up/sign-up.component';
+import { SummaryComponent } from './components/main-content/summary/summary.component';
 import { canActivate, emailVerified, AuthPipeGenerator } from '@angular/fire/auth-guard';
-import { VerifyEmailComponent } from './verify-email/verify-email.component';
+import { VerifyEmailComponent } from './components/registration/verify-email/verify-email.component';
 import { map, pipe } from 'rxjs';
+import { ForgotPasswordComponent } from './components/registration/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/registration/reset-password/reset-password.component';
 
 const redirectLoggedInUser: AuthPipeGenerator = () =>
   map(user => {
@@ -58,6 +60,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInUser) },
   { path: 'signup', component: SignUpComponent, ...canActivate(redirectLoggedInUser) },
   { path: 'verify-email-address', component: VerifyEmailComponent, ...canActivate(redirectUnauthorizedUser) },
+  { path: 'forgotpassword', component: ForgotPasswordComponent },
+  { path: 'reset-password', component: ResetPasswordComponent },
   {
     path: 'main', component: MainComponent, ...canActivate(redirectUnverifiedUser),
     children: [

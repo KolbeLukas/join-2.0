@@ -1,0 +1,24 @@
+<main>
+    <mat-card>
+        <button class="back-btn" mat-icon-button color="accent" routerLink="/login">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+        <div class="content">
+            <mat-card-title>Verify your email</mat-card-title>
+            <div *ngIf="authService.userData as user">
+                <p>We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
+                <p>Please check your email and click on the link to verfiy your email address.</p>
+            </div>
+
+            <div>
+                <button [disabled]="disabled" [class.disabled]="disabled" type="button" class=" dark-btn"
+                    mat-flat-button color="primary" (click)="resend()">
+                    <span>Resend Verification Email </span>
+                    <span class="timer" *ngIf="timer !== 0">{{timer}}</span>
+                </button>
+            </div>
+        </div>
+    </mat-card>
+</main>
+
+<img class="logo" src="assets/img/logo_dark.png">
