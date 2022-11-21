@@ -39,7 +39,7 @@ const redirectUnauthorizedUser: AuthPipeGenerator = () =>
       }
     }
     else {
-      return ['login'];
+      return ['registration'];
     }
   });
 
@@ -50,18 +50,24 @@ const redirectUnverifiedUser = () =>
       if (emailVerified) {
         return true;
       } else {
-        return ['verify-email-address'];
+        return ['/registration/verify-email-address'];
       }
     })
   );
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent, ...canActivate(redirectLoggedInUser) },
-  { path: 'signup', component: SignUpComponent, ...canActivate(redirectLoggedInUser) },
-  { path: 'verify-email-address', component: VerifyEmailComponent, ...canActivate(redirectUnauthorizedUser) },
-  { path: 'forgotpassword', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
+  { path: '', redirectTo: 'registration', pathMatch: 'full' },
+  {
+    path: 'registration', ...canActivate(redirectLoggedInUser),
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignUpComponent },
+      { path: 'verify-email-address', component: VerifyEmailComponent, ...canActivate(redirectUnauthorizedUser) },
+      { path: 'forgotpassword', component: ForgotPasswordComponent },
+      { path: 'reset-password', component: ResetPasswordComponent },
+      { path: '**', redirectTo: 'login' }
+    ]
+  },
   {
     path: 'main', component: MainComponent, ...canActivate(redirectUnverifiedUser),
     children: [
@@ -75,7 +81,7 @@ const routes: Routes = [
       { path: '**', redirectTo: 'summary' }
     ]
   },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'registration' }
 ]
 
 @NgModule({

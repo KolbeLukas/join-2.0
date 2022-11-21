@@ -38,12 +38,36 @@ export class LoginComponent implements OnInit {
           loading: 'Logging in...',
           error: (message) => `${message}`
         })
-          , catchError(
-            (error) => of(error)
-          ))
+          , catchError((error) => of(error)))
         .subscribe();
+      // if (this.authService.isLoggedIn) {
+      //   this.loginMessage(login);
+      // }
+      // else {
+      //   this.verifyMessage(login);
+      // }
     }
   }
+
+  loginMessage(login: any) {
+    login.pipe(this.toast.observe({
+      success: 'Logged in successfully!',
+      loading: 'Logging in...',
+      error: (message) => `${message}`
+    })
+      , catchError((error) => of(error)))
+      .subscribe();
+  }
+
+  // verifyMessage(login: any) {
+  //   login.pipe(this.toast.observe({
+  //     success: 'You are signed up but not verified! Please verify your email!',
+  //     loading: 'Logging in...',
+  //     error: (message) => `${message}`
+  //   })
+  //     , catchError((error) => of(error)))
+  //     .subscribe();
+  // }
 
   guestLogin() {
     this.authService.SignIn('guest@join.lukas-kolbe-dev.de', 'guest1234')
@@ -52,13 +76,7 @@ export class LoginComponent implements OnInit {
         loading: 'Logging in...',
         error: (message) => `${message}`
       })
-        , catchError(
-          (error) => of(error)
-        ))
+        , catchError((error) => of(error)))
       .subscribe();
-  }
-
-  forgotPassword() {
-    console.error('under construction')
   }
 }

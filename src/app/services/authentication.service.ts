@@ -24,6 +24,7 @@ export class AuthenticationService {
   ) {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
+        console.log(user)
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user')!);
@@ -60,7 +61,7 @@ export class AuthenticationService {
     return from(this.afAuth.currentUser
       .then((u: any) => u.sendEmailVerification())
       .then(() => {
-        this.router.navigate(['verify-email-address']);
+        this.router.navigate(['registration/verify-email-address']);
       }));
   }
 
@@ -68,9 +69,14 @@ export class AuthenticationService {
     return from(this.afAuth
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
-        this.router.navigate(['reset-password']);
+        this.router.navigate(['registration/reset-password']);
       }));
   }
+
+  // get isLoggedIn(): boolean {
+  //   const user = this.userData;
+  //   return user !== null && user.emailVerified !== false ? true : false;
+  // }
 
   SetUserData(user: any) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(
@@ -91,7 +97,7 @@ export class AuthenticationService {
   SignOut() {
     return this.afAuth.signOut().then(() => {
       localStorage.removeItem('user');
-      this.router.navigate(['login']);
+      this.router.navigate(['/registration/login']);
     });
   }
 }

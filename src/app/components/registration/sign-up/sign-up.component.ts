@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { catchError, of } from 'rxjs';
 import { AuthenticationService } from '../../../services/authentication.service';
 
 export function passwordsMatchValidator(): ValidatorFn {
@@ -52,14 +53,13 @@ export class SignUpComponent implements OnInit {
     const { firstName, lastName, phone, email, password } = this.signUpForm.value;
     this.authService.SignUp(email, password)
       .pipe(this.toast.observe({
-        success: 'Your are now signed up. Please verify your email.',
+        success: 'You are now signed up. Please verify your email.',
         loading: 'Signing in...',
         error: (message) => `${message}`
-      }))
-      .subscribe(() => {
-        this.router.navigate(['/main']);
       })
-  };
+        , catchError((error) => of(error)))
+      .subscribe();
+  }
 
   errorHandling(control: string, error: string) {
     return this.signUpForm.controls[control].hasError(error);
