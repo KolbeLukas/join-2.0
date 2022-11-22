@@ -71,7 +71,7 @@
                         You must confirm your <strong>password</strong>
                     </mat-error>
                 </mat-form-field>
-                <mat-error *ngIf="signUpForm.errors?.['passwordDontMatch']">
+                <mat-error class="no-match" *ngIf="signUpForm.errors?.['passwordDontMatch']">
                     Your <strong>passwords</strong> don't match
                 </mat-error>
             </div>

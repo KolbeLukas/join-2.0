@@ -2,58 +2,62 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     background: #F5F5F5;
+    min-height: 100vh;
 }
 
 .back-btn {
     position: absolute;
 }
 
-form {
+mat-card {
     width: 400px;
+}
+
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 9.5px;
+}
 
-    mat-card-title {
-        font-size: 40px;
-        line-height: 40px;
-        padding-bottom: 20px;
-        margin-bottom: 25.5px;
-        position: relative;
+mat-card-title {
+    font-size: 40px;
+    line-height: 40px;
+    padding-bottom: 20px;
+    margin-bottom: 25.5px;
+    position: relative;
 
-        &:before {
-            content: "";
-            position: absolute;
-            left: 10%;
-            bottom: 0;
-            width: 80%;
-            border-bottom: 2px solid #29ABE2;
-        }
-    }
-
-    mat-form-field:not(:last-child) {
+    &:before {
+        content: "";
+        position: absolute;
+        left: 10%;
+        bottom: 0;
         width: 80%;
-    }
-
-    .confirm-container {
-        width: 80%;
-        position: relative;
-
-        mat-form-field {
-            width: 100%;
-        }
-
-        mat-error {
-            position: absolute;
-            bottom: 0;
-            font-size: 75%;
-            padding-left: 1em;
-        }
+        border-bottom: 2px solid #29ABE2;
     }
 }
+
+mat-form-field:not(:last-child) {
+    width: 80%;
+}
+
+.confirm-container {
+    width: 80%;
+    position: relative;
+
+    mat-form-field {
+        width: 100%;
+    }
+
+    .no-match {
+        position: absolute;
+        bottom: 0;
+        font-size: 75%;
+        padding-left: 1em;
+    }
+}
+
 
 .dark-btn {
     margin-top: 25.5px;
@@ -71,4 +75,65 @@ form {
     width: calc(274px / 2.5);
     top: 50px;
     left: 50px;
+}
+
+@media (max-width: 800px) {
+    .logo {
+        height: calc(234.5px / 2.5);
+        width: calc(191.5px / 2.5);
+        top: 30px;
+        left: 30px;
+    }
+}
+
+@media (max-width: 680px) and (max-height: 700px) {
+    .logo {
+        height: calc(167.5px / 2.5);
+        width: calc(137px / 2.5);
+        top: 20px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 610px) and (max-height: 620px) {
+    .logo {
+        height: calc(100.5px / 2.5);
+        width: calc(82.2px / 2.5);
+        top: 20px;
+        left: 20px;
+    }
+}
+
+@media (max-width: 630px) {
+    mat-card {
+        margin-top: 140px;
+    }
+}
+
+@media (max-width: 630px) and (max-height: 700px) {
+    mat-card {
+        margin-top: 100px;
+    }
+}
+
+@media (max-width: 630px) and (max-height: 620px) {
+    mat-card {
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 435px) {
+    mat-card {
+        width: 90%;
+    }
+}
+
+@media (max-width: 380px) {
+    mat-form-field {
+        width: 100% !important;
+    }
+
+    .confirm-container {
+        width: 100%;
+    }
 }
