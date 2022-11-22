@@ -2,31 +2,45 @@ mat-toolbar {
     background-color: white;
     box-shadow: inset 0px -1px 3px 0px rgb(0 0 0 / 20%);
     justify-content: space-between;
+}
 
-    h1 {
-        padding-left: 5%;
-        font-weight: 400;
-        font-size: 18px;
-    }
+img {
+    height: 35px;
+}
 
-    div {
-        width: 80px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+h1 {
+    padding-left: 5%;
+    font-weight: 400;
+    font-size: 18px;
+}
 
-        mat-icon {
-            color: #CDCDCD;
-            cursor: pointer;
-        }
+div {
+    width: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-        .user-img {
-            height: 40px;
-            width: 40px;
-            border-radius: 100%;
-            border: 2px solid #2A3647;
-            padding: 1px;
-            cursor: pointer;
-        }
+mat-icon {
+    color: #CDCDCD;
+    cursor: pointer;
+}
+
+.user-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    border: 2px solid #2A3647;
+    padding: 1px;
+    cursor: pointer;
+}
+
+.resp-btn {
+    display: none;
+}
+
+@media (max-width: 950px) {
+    .resp-btn {
+        display: block;
     }
 }

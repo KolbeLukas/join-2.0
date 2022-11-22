@@ -332,3 +332,13 @@ mat-list-item {
 .custom-addTask-container .mat-dialog-container {
     border-radius: 20px;
 }
+
+@media (max-width: 950px) {
+    .mat-snack-bar-container {
+        margin-bottom: 124px !important;
+    }
+
+    .hot-toast-bar-base {
+        margin-bottom: 124px !important;
+    }
+}

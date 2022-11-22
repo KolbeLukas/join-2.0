@@ -5,3 +5,14 @@
 div {
     width: 100%;
 }
+
+@media (max-width: 950px) {
+    :host {
+        flex-direction: column-reverse;
+        // height: 100vh;
+    }
+
+    div {
+        height: calc(100vh - 100px);
+    }
+}

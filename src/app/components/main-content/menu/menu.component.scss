@@ -11,12 +11,11 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 50%;
     width: 100%;
+}
 
-    .logo {
-        object-fit: none;
-    }
+.logo {
+    object-fit: none;
 }
 
 nav {
@@ -54,7 +53,6 @@ nav {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: calc(50% - 70px);
     width: 100%;
     padding-bottom: 70px;
 
@@ -67,12 +65,50 @@ nav {
             display: flex;
             align-items: center;
             padding: 10px 0 10px 25px;
+        }
+    }
+}
 
-            .fotter-icon {
-                margin-right: 20px;
-                color:
-                    #CDCDCD;
+.fotter-icon {
+    margin-right: 20px;
+    color: #CDCDCD;
+}
+
+@media (max-width: 950px) {
+    :host {
+        height: 100px;
+        flex-direction: unset;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .top-half {
+        height: 100%;
+    }
+
+    nav {
+        flex-direction: unset;
+        height: 100%;
+
+        a {
+            width: 25%;
+            height: 100%;
+            margin-inline: 10px;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            padding: unset;
+
+            div {
+                margin-right: unset;
+                justify-content: center;
             }
         }
+    }
+
+    .bottom-half {
+        display: none;
     }
 }

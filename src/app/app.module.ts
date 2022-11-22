@@ -110,7 +110,7 @@ import { ResetPasswordComponent } from './components/registration/reset-password
     provideFirestore(() => getFirestore()),
     HotToastModule.forRoot(
       {
-        duration: 2500,
+        duration: 3000,
         position: 'bottom-center',
         style: {
           color: '#ffffff',
@@ -120,7 +120,7 @@ import { ResetPasswordComponent } from './components/registration/reset-password
     )
   ],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 4000 } },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 3000 } },
     AuthenticationService,
     { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
   ],

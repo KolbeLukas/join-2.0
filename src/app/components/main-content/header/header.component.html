@@ -1,4 +1,5 @@
 <mat-toolbar>
+    <img src="/assets/img/logo_dark.png">
     <h1>Kanban Project Management Tool</h1>
     <div>
         <mat-icon routerLink="help" matTooltip="Need help?">help_outlined</mat-icon>
@@ -6,5 +7,7 @@
     </div>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">Logout</button>
+        <button class="resp-btn" mat-menu-item routerLink="legalnotice">Legal notice</button>
+        <button class="resp-btn" mat-menu-item routerLink="dataprotection">Data protection</button>
     </mat-menu>
 </mat-toolbar>
