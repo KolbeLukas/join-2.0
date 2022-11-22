@@ -34,7 +34,7 @@
                 <input matInput placeholder="Email" formControlName="email">
                 <mat-icon matSuffix>mail_outline</mat-icon>
                 <mat-error *ngIf="errorHandling('email', 'required')">
-                    You must provide a <strong>email-address</strong>
+                    You must provide a <strong>email</strong>
                 </mat-error>
                 <mat-error *ngIf="errorHandling('email', 'pattern')">
                     Wrong format <strong>(e.g.: john-doe@eg-mail.com)</strong>
@@ -46,7 +46,7 @@
                 <input matInput placeholder="Phone" formControlName="phone">
                 <mat-icon matSuffix>call</mat-icon>
                 <mat-error *ngIf="errorHandling('phone', 'required') || errorHandling('phone', 'pattern')">
-                    You must provide a <strong>phone-number</strong>
+                    You must provide a <strong>phone-nr</strong>
                 </mat-error>
             </mat-form-field>
 

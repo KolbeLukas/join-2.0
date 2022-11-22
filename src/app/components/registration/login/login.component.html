@@ -7,7 +7,7 @@
                 <input matInput placeholder="Email" formControlName="email">
                 <mat-icon matSuffix>mail_outline</mat-icon>
                 <mat-error *ngIf="errorHandling('email', 'required')">
-                    Please enter your <strong>email-address</strong>
+                    Please enter your <strong>email</strong>
                 </mat-error>
                 <mat-error *ngIf="errorHandling('email', 'pattern')">
                     Wrong format <strong>(e.g.: john-doe@eg-mail.com)</strong>

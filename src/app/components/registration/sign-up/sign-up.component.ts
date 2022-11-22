@@ -51,15 +51,18 @@ export class SignUpComponent implements OnInit {
 
   signUp() {
     const { firstName, lastName, phone, email, password } = this.signUpForm.value;
-    this.authService.SignUp(email, password)
-      .pipe(this.toast.observe({
-        success: 'You are now signed up. Please verify your email.',
-        loading: 'Signing in...',
-        error: (message) => `${message}`
-      })
-        , catchError((error) => of(error)))
-      .subscribe();
+    if (this.signUpForm.valid) {
+      this.authService.SignUp(email, password)
+        .pipe(this.toast.observe({
+          success: 'You are now signed up. Please verify your email.',
+          loading: 'Signing in...',
+          error: (message) => `${message}`
+        })
+          , catchError((error) => of(error)))
+        .subscribe();
+    }
   }
+
 
   errorHandling(control: string, error: string) {
     return this.signUpForm.controls[control].hasError(error);
