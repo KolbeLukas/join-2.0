@@ -4,8 +4,9 @@ mat-toolbar {
     justify-content: space-between;
 }
 
-img {
+.logo {
     height: 35px;
+    display: none;
 }
 
 h1 {
@@ -40,6 +41,10 @@ mat-icon {
 }
 
 @media (max-width: 950px) {
+    .logo {
+        display: block;
+    }
+
     .resp-btn {
         display: block;
     }

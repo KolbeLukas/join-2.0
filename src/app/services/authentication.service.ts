@@ -5,7 +5,7 @@ import {
   AngularFirestore,
   AngularFirestoreDocument,
 } from '@angular/fire/compat/firestore';
-import { from } from 'rxjs';
+import { catchError, from, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
 
@@ -25,26 +25,44 @@ export class AuthenticationService {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
-      } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
+        // localStorage.setItem('user', JSON.stringify(this.userData));
+        // JSON.parse(localStorage.getItem('user')!);
+      }
+      // else {
+      //   localStorage.setItem('user', 'null');
+      //   JSON.parse(localStorage.getItem('user')!);
+      // }
+    });
+  }
+
+  SignIn(email: string, password: string, remember: boolean) {
+    if (!remember) {
+      this.afAuth.setPersistence('session')
+    }
+    return from(
+      this.afAuth.signInWithEmailAndPassword(email, password)
+        .then((result: any) => this.redirect(result)))
+      .pipe(this.showMessage()
+        , catchError((error) => of(error))
+      )
+      .subscribe();
+  }
+
+  redirect(result: any) {
+    this.SetUserData(result.user);
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.router.navigate(['/main']);
       }
     });
   }
 
-  SignIn(email: string, password: string) {
-    return from(this.afAuth
-      .signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        this.SetUserData(result.user);
-        this.afAuth.authState.subscribe((user) => {
-          if (user) {
-            this.router.navigate(['/main']);
-          }
-        });
-      }))
+  showMessage() {
+    return this.toast.observe({
+      success: 'Logged in successfully!',
+      loading: 'Logging in...',
+      error: (message) => `${message}`
+    })
   }
 
   SignUp(email: string, password: string) {
@@ -95,7 +113,7 @@ export class AuthenticationService {
 
   SignOut() {
     return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
+      // localStorage.removeItem('user');
       this.router.navigate(['/registration/login']);
     });
   }
