@@ -8,6 +8,7 @@ import {
 import { catchError, from, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { ElementSchemaRegistry } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -25,27 +26,23 @@ export class AuthenticationService {
     this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.userData = user;
-        // localStorage.setItem('user', JSON.stringify(this.userData));
-        // JSON.parse(localStorage.getItem('user')!);
+        localStorage.setItem('user', JSON.stringify(this.userData));
+        JSON.parse(localStorage.getItem('user')!);
       }
-      // else {
-      //   localStorage.setItem('user', 'null');
-      //   JSON.parse(localStorage.getItem('user')!);
-      // }
+      else {
+        localStorage.setItem('user', 'null');
+        JSON.parse(localStorage.getItem('user')!);
+      }
     });
   }
 
   SignIn(email: string, password: string, remember: boolean) {
     if (!remember) {
-      this.afAuth.setPersistence('session')
+      this.afAuth.setPersistence('session');
     }
     return from(
       this.afAuth.signInWithEmailAndPassword(email, password)
-        .then((result: any) => this.redirect(result)))
-      .pipe(this.showMessage()
-        , catchError((error) => of(error))
-      )
-      .subscribe();
+        .then((result: any) => this.redirect(result)));
   }
 
   redirect(result: any) {
@@ -57,15 +54,8 @@ export class AuthenticationService {
     });
   }
 
-  showMessage() {
-    return this.toast.observe({
-      success: 'Logged in successfully!',
-      loading: 'Logging in...',
-      error: (message) => `${message}`
-    })
-  }
-
   SignUp(email: string, password: string) {
+    this.afAuth.setPersistence('session');
     return from(this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
@@ -87,7 +77,15 @@ export class AuthenticationService {
       .sendPasswordResetEmail(passwordResetEmail)
       .then(() => {
         this.router.navigate(['registration/reset-password']);
-      }));
+      }))
+  }
+
+  showMessage(successMsg: any, loadingMsg: any) {
+    return this.toast.observe({
+      success: successMsg,
+      loading: loadingMsg,
+      error: (message) => `${message}`
+    })
   }
 
   // get isLoggedIn(): boolean {
@@ -113,7 +111,7 @@ export class AuthenticationService {
 
   SignOut() {
     return this.afAuth.signOut().then(() => {
-      // localStorage.removeItem('user');
+      localStorage.removeItem('user');
       this.router.navigate(['/registration/login']);
     });
   }

@@ -49,3 +49,9 @@ mat-icon {
         display: block;
     }
 }
+
+@media (max-width: 450px) {
+    h1 {
+        display: none;
+    }
+}

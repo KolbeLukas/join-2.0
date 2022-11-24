@@ -28,14 +28,9 @@ export class ForgotPasswordComponent implements OnInit {
   send() {
     if (this.forgotForm.valid) {
       this.authService.ForgotPassword(this.forgotForm.value.email)
-        .pipe(this.toast.observe({
-          success: 'Email sended!',
-          loading: 'Sending...',
-          error: (message) => `${message}`
-        })
-          , catchError(
-            (error) => of(error)
-          ))
+        .pipe(this.authService.showMessage('Email sended!', 'Sending...')
+          , catchError((error) => of(error))
+        )
         .subscribe();
     }
   }

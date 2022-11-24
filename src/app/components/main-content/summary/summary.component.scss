@@ -1,13 +1,15 @@
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
     height: calc(100% - 64px);
-    padding: 16px;
+    padding: 16px 32px 16px 16px;
     box-sizing: border-box;
     background: #F5F5F5;
 }
 
 .top-container {
-    padding: 30px 5% 46px 5%;
+    padding: 30px 30px 46px 30px;
 }
 
 header {
@@ -40,15 +42,15 @@ main {
     display: flex;
 }
 
-.content {
-    width: 520px;
-    padding-left: 5%;
+.container {
+    padding-left: 30px;
+    width: 493px;
 }
 
 .first-row {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 35px;
+    margin-bottom: 21.5px;
 
     mat-card {
         width: 150px;
@@ -75,7 +77,7 @@ main {
 .second-row {
     width: 100%;
     height: 150px;
-    margin-bottom: 35px;
+    margin-bottom: 21.5px;
     display: flex;
     justify-content: space-between;
 }
@@ -126,7 +128,7 @@ main {
     justify-content: space-between;
 
     mat-card {
-        width: 242.5px;
+        width: 235.75px;
         height: 150px;
         display: flex;
         align-items: center;
@@ -164,23 +166,43 @@ main {
         line-height: 120%;
     }
 
-    span:nth-child(3) {
+    span:nth-child(2) {
         font-size: 55px;
         font-weight: 700;
         line-height: 120%;
         color: #29ABE2;
+        max-width: 400px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (max-width: 1218px) {
+    main {
+        flex-direction: column;
+    }
+
+    .greeting {
+        margin-top: 25px;
+
+        span:nth-child(2) {
+            max-width: unset;
+        }
     }
 }
 
 @media (max-width: 950px) {
     :host {
-        display: flex;
-        flex-direction: column;
         align-items: center;
         position: relative;
     }
 
-    .content {
+    .top-container {
+        width: 493px;
+        box-sizing: border-box;
+    }
+
+    .container {
         padding: unset;
     }
 
@@ -197,6 +219,10 @@ main {
         animation: fade-out .4s ease-in-out;
         animation-delay: 1.5s;
         animation-fill-mode: forwards;
+
+        span:nth-child(2) {
+            text-align: center;
+        }
     }
 
     @keyframes fade-out {
@@ -207,5 +233,23 @@ main {
         to {
             opacity: 0;
         }
+    }
+}
+
+@media (max-width: 850px) {
+    .top-container {
+        padding: 0 30px 8.75px 30px;
+    }
+}
+
+@media (max-height: 762px) {
+    :host {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 550px) {
+    .top-container {
+        width: 97%;
     }
 }

@@ -1,22 +1,25 @@
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: calc(100% - 64px);
     padding: 16px;
     box-sizing: border-box;
     background: #F5F5F5;
     position: relative;
+    overflow: auto;
 }
 
 h2 {
     font-size: 40px;
     font-weight: 700;
-    margin: 30px 5% 46px 5%;
+    margin: unset;
+    padding: 30px 30px 46px 30px;
     line-height: 65.5px;
 }
 
-main {
+form {
     display: flex;
-    padding-inline: 5%;
+    padding-inline: 30px;
 }
 
 .left-half {
@@ -239,8 +242,8 @@ mat-radio-group {
     right: 16px;
     left: 16px;
     bottom: 0;
-    padding-inline: 5%;
-    padding-bottom: 5%;
+    padding-inline: 30px;
+    padding-bottom: 46px;
     display: flex;
     justify-content: space-between;
 }
@@ -332,4 +335,55 @@ mat-radio-group {
 
 :host ::ng-deep .mat-form-field-outline-end {
     background: white;
+}
+
+@media (max-width: 850px) {
+    :host {
+        align-items: center;
+    }
+
+    h2 {
+        width: 493px;
+        box-sizing: border-box;
+        padding: 0 30px 8.75px 30px;
+    }
+
+    form {
+        flex-direction: column;
+        padding-inline: unset;
+        width: 493px;
+    }
+
+    .left-half {
+        width: unset;
+        padding-right: unset;
+        border-right: unset;
+    }
+
+    .right-half {
+        width: unset;
+        padding-left: unset;
+    }
+
+    .btns {
+        position: unset;
+        padding-bottom: 5.5px;
+    }
+}
+
+@media (max-width: 550px) {
+    h2 {
+        width: 97%;
+    }
+
+    form {
+        width: 97%;
+    }
+}
+
+@media (max-width: 320px) {
+    h2 {
+        font-size: 30px;
+        line-height: 45.5px;
+    }
 }

@@ -1,5 +1,6 @@
 :host {
-    display: block;
+    display: flex;
+    flex-direction: column;
     height: calc(100% - 64px);
     padding: 16px;
     box-sizing: border-box;
@@ -11,13 +12,14 @@
 h2 {
     font-size: 40px;
     font-weight: 700;
-    margin: 30px 5% 46px 5%;
+    margin: unset;
+    padding: 30px 30px 46px 30px;
     line-height: 65.5px;
 }
 
 button {
     position: absolute;
-    right: calc(5% + 16px);
+    right: 46px;
     top: 46px;
 
     mat-icon {
@@ -29,15 +31,65 @@ button {
 }
 
 main {
-    padding-inline: 5%;
+    padding-inline: 30px;
+}
+
+p {
+    word-break: break-word;
+}
+
+a {
+    text-decoration: none;
+    color: #29ABE2;
+    line-break: anywhere;
+}
+
+li {
+    word-break: break-word;
 }
 
 h3 {
     font-size: 20px;
     font-weight: 600;
+    word-break: break-word;
 }
 
 h4 {
     font-size: 18px;
     font-weight: 500;
+}
+
+@media (max-width: 850px) {
+    :host {
+        align-items: center;
+    }
+
+    h2 {
+        width: 493px;
+        box-sizing: border-box;
+        padding: 0 30px 8.75px 30px;
+    }
+
+    button {
+        right: 16px;
+        top: 16px;
+    }
+}
+
+@media (max-width: 550px) {
+    h2 {
+        width: 97%;
+    }
+
+    main {
+        width: 97%;
+        padding-inline: unset;
+    }
+}
+
+@media (max-width: 320px) {
+    h2 {
+        font-size: 30px;
+        line-height: 45.5px;
+    }
 }

@@ -24,15 +24,11 @@ export class VerifyEmailComponent implements OnInit {
     this.disabled = true;
     this.timer = 60;
     this.authService.SendVerificationMail()
-      .pipe(this.toast.observe({
-        success: 'Email sended!',
-        loading: 'Sending...',
-        error: (message) => `${message}`
-      })
+      .pipe(this.authService.showMessage('Email sended!', 'Sending...')
         , catchError(
           (error) => of(error)
         ))
-      .subscribe();;
+      .subscribe();
   }
 
   enableTimer() {

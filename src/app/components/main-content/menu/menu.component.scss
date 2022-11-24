@@ -41,6 +41,10 @@ nav {
                 height: 22px;
             }
         }
+
+        span {
+            text-align: center;
+        }
     }
 }
 
@@ -78,6 +82,7 @@ nav {
     :host {
         height: 100px;
         flex-direction: unset;
+
     }
 
     .logo {

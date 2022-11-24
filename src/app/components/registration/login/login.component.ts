@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { catchError, of } from 'rxjs';
 import { AuthenticationService } from '../../../services/authentication.service';
 
 @Component({
@@ -32,15 +33,17 @@ export class LoginComponent implements OnInit {
   login() {
     const { email, password, remember } = this.loginForm.value;
     if (this.loginForm.valid) {
-      if (remember) {
-        this.authService.SignIn(email, password, remember)
-      } else {
-        this.authService.SignIn(email, password, remember)
-      }
+      this.authService.SignIn(email, password, remember)
+        .pipe(this.authService.showMessage('Logged in successfully!', 'Logging in...')
+          , catchError((error) => of(error)))
+        .subscribe();
     }
   }
 
   guestLogin() {
     this.authService.SignIn('guest@join.lukas-kolbe-dev.de', 'guest1234', this.loginForm.value.remember)
+      .pipe(this.authService.showMessage('Logged in successfully!', 'Logging in...')
+        , catchError((error) => of(error)))
+      .subscribe();
   }
 }
