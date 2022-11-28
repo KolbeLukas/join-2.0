@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: calc(100% - 64px);
-    padding: 16px;
+    padding: 16px 0 16px 16px;
     box-sizing: border-box;
     background: #F5F5F5;
     position: relative;
@@ -67,7 +67,7 @@ h4 {
     h2 {
         width: 493px;
         box-sizing: border-box;
-        padding: 0 30px 8.75px 30px;
+        padding: 0 30px 46px 30px;
     }
 
     button {

@@ -337,6 +337,12 @@ mat-radio-group {
     background: white;
 }
 
+@media (max-height: 904px) {
+    :host {
+        padding-right: 0px;
+    }
+}
+
 @media (max-width: 850px) {
     :host {
         align-items: center;
@@ -368,6 +374,14 @@ mat-radio-group {
     .btns {
         position: unset;
         padding-bottom: 5.5px;
+        padding-inline: unset;
+    }
+}
+
+@media (max-height: 731px) {
+    h2 {
+        padding-top: 0;
+        padding-bottom: 8.75px;
     }
 }
 
@@ -378,6 +392,24 @@ mat-radio-group {
 
     form {
         width: 97%;
+    }
+}
+
+@media (max-width: 360px) {
+    .prio {
+        mat-button-toggle-group {
+            flex-direction: column;
+            align-items: center;
+
+            mat-button-toggle {
+                width: 150px;
+
+                &:not(:last-child) {
+                    margin-right: 0px;
+                    margin-bottom: 10px;
+                }
+            }
+        }
     }
 }
 

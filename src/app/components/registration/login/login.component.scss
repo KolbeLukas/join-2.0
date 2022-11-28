@@ -1,6 +1,7 @@
 main {
     display: flex;
     justify-content: center;
+    position: relative;
     align-items: center;
     height: 100vh;
     background: #F5F5F5;
@@ -59,7 +60,6 @@ mat-form-field {
     }
 }
 
-
 .btns {
     margin-top: 25.5px;
     padding-bottom: 9.5px;
@@ -106,6 +106,8 @@ mat-form-field {
 
 .logo {
     position: absolute;
+    top: calc(50% - 335px/2);
+    left: calc(50% - 274px/2);
     animation: move .6s ease-in-out;
     animation-delay: 1s;
     animation-fill-mode: forwards;
@@ -144,6 +146,13 @@ mat-form-field {
 }
 
 @media (max-width: 800px) {
+    .logo {
+        height: 234.5px;
+        width: 191.5px;
+        top: calc(50% - 234.5px/2);
+        left: calc(50% - 191.5px/2);
+    }
+
     @keyframes move {
         from {
             height: 234.5px;
@@ -179,6 +188,13 @@ mat-form-field {
 }
 
 @media (max-width: 680px) and (max-height: 700px) {
+    .logo {
+        height: 167.5px;
+        width: 137px;
+        top: calc(50% - 167.5px/2);
+        left: calc(50% - 137px/2);
+    }
+
     @keyframes move {
         from {
             height: 167.5px;
@@ -197,6 +213,13 @@ mat-form-field {
 }
 
 @media (max-width: 610px) and (max-height: 620px) {
+    .logo {
+        height: 100.5px;
+        width: 82.2px;
+        top: calc(50% - 100.5px/2);
+        left: calc(50% - 82.2px/2);
+    }
+
     @keyframes move {
         from {
             height: 100.5px;

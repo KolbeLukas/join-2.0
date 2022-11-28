@@ -11,8 +11,9 @@ import { AuthenticationService } from '../../../services/authentication.service'
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   checked = false;
+  hidePw = true;
 
-  constructor(public authService: AuthenticationService,) { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.setForm();
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit {
   login() {
     const { email, password, remember } = this.loginForm.value;
     if (this.loginForm.valid) {
-      this.authService.SignIn(email, password, remember)
+      this.authService.logIn(email, password, remember)
         .pipe(this.authService.showMessage('Logged in successfully!', 'Logging in...')
           , catchError((error) => of(error)))
         .subscribe();
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   guestLogin() {
-    this.authService.SignIn('guest@join.lukas-kolbe-dev.de', 'guest1234', this.loginForm.value.remember)
+    this.authService.logIn('guest@join.lukas-kolbe-dev.de', 'guest1234', this.loginForm.value.remember)
       .pipe(this.authService.showMessage('Logged in successfully!', 'Logging in...')
         , catchError((error) => of(error)))
       .subscribe();

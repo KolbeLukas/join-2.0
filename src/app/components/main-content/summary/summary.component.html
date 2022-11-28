@@ -6,7 +6,6 @@
 </div>
 
 <main>
-    <!-- <div class="container"> -->
     <div class="container">
         <div class="first-row d-flex">
             <mat-card>
@@ -31,10 +30,11 @@
                     <span>Urgent</span>
                 </div>
             </div>
-            <div class="deadline">
-                <!-- October 16, 2022 -->
-                <span>{{ deadline }}</span>
-                <span>Upcoming Deadline</span>
+            <div class="deadline-container">
+                <div class="deadline">
+                    <span>{{ deadline }}</span>
+                    <span>Upcoming Deadline</span>
+                </div>
             </div>
         </mat-card>
 
@@ -55,10 +55,10 @@
             </mat-card>
         </div>
     </div>
-    <!-- </div> -->
 
     <div class="greeting">
-        <span>{{ dayTime }}<span>,</span></span>
-        <span>Sofia Müngersdorf</span>
+        <span>{{ dayTime }}<span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">,</span></span>
+        <span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">{{ currentUser?.firstName }} {{
+            currentUser?.lastName }}</span>
     </div>
 </main>

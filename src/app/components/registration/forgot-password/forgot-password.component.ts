@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { HotToastService } from '@ngneat/hot-toast';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { catchError, of } from 'rxjs';
 
@@ -12,8 +11,7 @@ import { catchError, of } from 'rxjs';
 export class ForgotPasswordComponent implements OnInit {
   forgotForm!: FormGroup;
 
-  constructor(public authService: AuthenticationService,
-    private toast: HotToastService) { }
+  constructor(public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.setForm();
@@ -27,7 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   send() {
     if (this.forgotForm.valid) {
-      this.authService.ForgotPassword(this.forgotForm.value.email)
+      this.authService.forgotPassword(this.forgotForm.value.email)
         .pipe(this.authService.showMessage('Email sended!', 'Sending...')
           , catchError((error) => of(error))
         )

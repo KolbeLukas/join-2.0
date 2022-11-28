@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HotToastService } from '@ngneat/hot-toast';
 import { catchError, of } from 'rxjs';
 import { AuthenticationService } from '../../../services/authentication.service';
 
@@ -26,10 +24,10 @@ export function passwordsMatchValidator(): ValidatorFn {
 })
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
+  hidePw = true;
+  hideConPw = true;
 
-  constructor(private authService: AuthenticationService,
-    private toast: HotToastService,
-    private router: Router) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.setForm();
@@ -50,9 +48,9 @@ export class SignUpComponent implements OnInit {
   }
 
   signUp() {
-    const { firstName, lastName, phone, email, password } = this.signUpForm.value;
+    const { email, password, firstName, lastName, phone } = this.signUpForm.value;
     if (this.signUpForm.valid) {
-      this.authService.SignUp(email, password)
+      this.authService.signUp(email, password, firstName, lastName, phone)
         .pipe(this.authService.showMessage('You are now signed up. Please verify your email.', 'Signing in...')
           , catchError(
             (error) => of(error)

@@ -23,7 +23,7 @@ export class VerifyEmailComponent implements OnInit {
   resend() {
     this.disabled = true;
     this.timer = 60;
-    this.authService.SendVerificationMail()
+    this.authService.sendVerificationMail()
       .pipe(this.authService.showMessage('Email sended!', 'Sending...')
         , catchError(
           (error) => of(error)

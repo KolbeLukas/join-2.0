@@ -8,7 +8,7 @@
             <div *ngIf="authService.userData as user">
                 <p>We have sent a confirmation email to <strong>{{user.email}}</strong>.</p>
                 <p>Please check your email and click on the link to verfiy your email address.</p>
-                <p>After you verfied your email go back and you can log in yourself.</p>
+                <p>After verifiing your email go back and you can log in yourself.</p>
             </div>
             <button [disabled]="disabled" [class.disabled]="disabled" type="button" class=" dark-btn" mat-flat-button
                 color="primary" (click)="resend()">

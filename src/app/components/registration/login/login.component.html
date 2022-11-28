@@ -15,8 +15,9 @@
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" formControlName="password" type="password">
-                <mat-icon matSuffix>lock_outline</mat-icon>
+                <input matInput placeholder="Password" formControlName="password" [type]="hidePw ? 'password' : 'text'">
+                <!-- <mat-icon matSuffix>lock_outline</mat-icon> -->
+                <mat-icon matSuffix (click)="hidePw = !hidePw">{{hidePw ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error *ngIf="errorHandling('password', 'required')">
                     Please enter your <strong>password</strong>
                 </mat-error>

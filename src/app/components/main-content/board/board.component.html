@@ -7,8 +7,11 @@
                 <input matInput placeholder="Find Task">
                 <mat-icon matSuffix matTooltip="Search">search</mat-icon>
             </mat-form-field>
-            <button (click)="addTaskDialog('todo')" mat-flat-button color="primary">
+            <button class="d-none" (click)="addTaskDialog('todo')" mat-flat-button color="primary">
                 Add task
+                <mat-icon matSuffix>add</mat-icon>
+            </button>
+            <button class="resp-btn" (click)="addTaskDialog('todo')" mat-mini-fab color="primary">
                 <mat-icon matSuffix>add</mat-icon>
             </button>
         </div>
@@ -28,6 +31,9 @@
                 <!-- <app-board-card [card]="todo" (click)="openTask(todo)"></app-board-card> -->
                 <app-board-card [card]="todo" (click)="openOverlay(todo)"></app-board-card>
             </div>
+            <div class="placeholder" *ngIf="todos.length == 0">
+                <span>No tasks to do</span>
+            </div>
         </div>
     </div>
 
@@ -43,6 +49,9 @@
             <div *ngFor="let inProgress of inProgress">
                 <!-- <app-board-card [card]="inProgress" (click)="openTask(inProgress)"></app-board-card> -->
                 <app-board-card [card]="inProgress" (click)="openOverlay(inProgress)"></app-board-card>
+            </div>
+            <div class="placeholder" *ngIf="inProgress.length == 0">
+                <span>No tasks in progress</span>
             </div>
         </div>
     </div>
@@ -60,6 +69,9 @@
                 <!-- <app-board-card [card]="feedback" (click)="openTask(feedback)"></app-board-card> -->
                 <app-board-card [card]="feedback" (click)="openOverlay(feedback)"></app-board-card>
             </div>
+            <div class="placeholder" *ngIf="feedback.length == 0">
+                <span>No tasks in feedback</span>
+            </div>
         </div>
     </div>
 
@@ -74,6 +86,9 @@
             <div *ngFor="let done of done">
                 <!-- <app-board-card [card]="done" (click)="openTask(done)"></app-board-card> -->
                 <app-board-card [card]="done" (click)="openOverlay(done)"></app-board-card>
+            </div>
+            <div class="placeholder" *ngIf="done.length == 0">
+                <span>No tasks done</span>
             </div>
         </div>
     </div>

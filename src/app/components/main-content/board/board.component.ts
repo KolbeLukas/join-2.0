@@ -34,7 +34,7 @@ export class BoardComponent implements OnInit {
             task.contacts = [];
             one.pipe(take(1)).subscribe((contact: any) => {
               task.contacts.push(contact);
-              this.firebaseService.updateTask(task)
+              this.firebaseService.updateTask(task);
             });
           });
         }

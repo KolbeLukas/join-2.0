@@ -17,6 +17,10 @@ h2 {
     line-height: 65.5px;
 }
 
+.p-r {
+    padding-right: 0px;
+}
+
 .back-btn {
     position: absolute;
     right: 46px;
@@ -119,14 +123,10 @@ mat-panel-title {
         align-items: center;
     }
 
-    .p-r {
-        padding-right: 32px;
-    }
-
     h2 {
         width: 493px;
         box-sizing: border-box;
-        padding: 0 30px 8.75px 30px;
+        padding: 0 30px 46px 30px;
     }
 
     .back-btn {

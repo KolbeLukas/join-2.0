@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   collectionData, deleteDoc, docData, Firestore,
-  orderBy, updateDoc, Query, query, where, getDocs, limit
+  orderBy, updateDoc, Query, query, where, getDocs, limit, setDoc
 } from '@angular/fire/firestore';
 import { addDoc, collection, CollectionReference, doc, DocumentData } from '@firebase/firestore';
 import { Observable } from 'rxjs';
@@ -14,12 +14,14 @@ export class FirebaseService {
   private sortedTasks: Query<DocumentData>;
   private contactsCollection: CollectionReference<DocumentData>;
   private sortedContacts: Query<DocumentData>;
+  private usersCollection: CollectionReference<DocumentData>;
 
   constructor(public readonly firestore: Firestore) {
     this.tasksCollection = collection(firestore, 'tasks');
     this.sortedTasks = query(this.tasksCollection, orderBy('dueDate.timestamp', 'asc'));
     this.contactsCollection = collection(firestore, 'contacts');
     this.sortedContacts = query(this.contactsCollection, orderBy('firstName', 'asc'));
+    this.usersCollection = collection(firestore, 'users');
   }
 
   getAllTasks() {
@@ -30,13 +32,18 @@ export class FirebaseService {
     return collectionData(this.sortedContacts, { idField: 'id' }) as Observable<any>;
   }
 
-  getOneTask(id: string) {
-    const taskRef = doc(this.firestore, `tasks/${id}`);
-    return docData(taskRef, { idField: 'id' });
-  }
+  // getOneTask(id: string) {
+  //   const taskRef = doc(this.firestore, `tasks/${id}`);
+  //   return docData(taskRef, { idField: 'id' });
+  // }
 
   getOneContact(id: string) {
     const taskRef = doc(this.firestore, `contacts/${id}`);
+    return docData(taskRef, { idField: 'id' });
+  }
+
+  getOneUser(id: string) {
+    const taskRef = doc(this.firestore, `users/${id}`);
     return docData(taskRef, { idField: 'id' });
   }
 
@@ -48,6 +55,10 @@ export class FirebaseService {
     return addDoc(this.contactsCollection, contact);
   }
 
+  createUser(user: any, id: any) {
+    return setDoc(doc(this.usersCollection, id), user);
+  }
+
   updateTask(task: any) {
     const docRef = doc(this.firestore, `tasks/${task.id}`);
     return updateDoc(docRef, { ...task });
@@ -56,6 +67,11 @@ export class FirebaseService {
   updateContact(contact: any) {
     const docRef = doc(this.firestore, `contacts/${contact.id}`);
     return updateDoc(docRef, { ...contact });
+  }
+
+  updateUser(user: any) {
+    const docRef = doc(this.firestore, `users/${user.uid}`);
+    return updateDoc(docRef, { emailVerified: user.emailVerified });
   }
 
   deleteTask(id: string) {

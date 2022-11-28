@@ -17,13 +17,23 @@ export class SummaryComponent implements OnInit {
   urgent!: number;
   deadline!: string;
   dayTime!: string;
+  currentUser: any;
 
-  constructor(private readonly firebaseService: FirebaseService) { }
+  constructor(private readonly firebaseService: FirebaseService,
+    public authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.allTasks$ = this.firebaseService.getAllTasks();
     this.getData();
     this.getDayTime();
+    this.getUser()
+  }
+
+  getUser() {
+    let userID = JSON.parse(localStorage.getItem('user')!);
+    this.firebaseService.getOneUser(userID).subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   getData() {

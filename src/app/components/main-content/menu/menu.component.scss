@@ -117,3 +117,10 @@ nav {
         display: none;
     }
 }
+
+@media (max-width: 362px) {
+    :host {
+        font-size: 14px;
+    }
+
+}
