@@ -64,17 +64,17 @@ mat-list-item {
     min-width: fit-content !important;
 }
 
-.custom-dialog-container .mat-dialog-container {
-    padding: 0;
-    border-radius: 20px;
-}
-
-.custom-addTask-container .mat-dialog-container {
-    border-radius: 20px;
-}
-
 .mat-toolbar-single-row {
     height: 64px !important;
+}
+
+.mat-dialog-container {
+    padding: 0px !important;
+    border-radius: 20px !important;
+}
+
+.cdk-overlay-pane {
+    max-width: 90vw !important;
 }
 
 @media (max-width: 950px) {
@@ -84,5 +84,11 @@ mat-list-item {
 
     .hot-toast-bar-base {
         margin-bottom: 124px !important;
+    }
+}
+
+@media (max-width: 750px) {
+    .cdk-overlay-pane {
+        max-width: 99vw !important;
     }
 }

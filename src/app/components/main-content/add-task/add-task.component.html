@@ -1,141 +1,143 @@
-<h2 *ngIf="!openedAsDialogEditTask">Add Task</h2>
-<h2 *ngIf="openedAsDialogEditTask">Edit Task</h2>
+<div class="host" [class.stop-scroll]="deleteOverlay">
+    <h2 *ngIf="!openedAsDialogEditTask">Add Task</h2>
+    <h2 *ngIf="openedAsDialogEditTask">Edit Task</h2>
 
-<form [formGroup]="newTask" id="taskForm" (ngSubmit)="createTask(state)" #form="ngForm" novalidate>
-    <div class="left-half">
-        <mat-form-field appearance="outline">
-            <mat-label>Title</mat-label>
-            <input formControlName="title" matInput placeholder="Enter a title">
-            <mat-error *ngIf="errorHandling('title', 'required')">
-                You must provide a <strong>title</strong>
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <textarea formControlName="description" matInput placeholder="Enter a description" cdkTextareaAutosize
-                #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
-            <mat-error *ngIf="errorHandling('description', 'required')">
-                You must provide a <strong>description</strong>
-            </mat-error>
-        </mat-form-field>
-
-        <div class="category-container">
+    <form [formGroup]="newTask" id="taskForm" (ngSubmit)="createTask(state)" #form="ngForm" novalidate>
+        <div class="left-half">
             <mat-form-field appearance="outline">
-                <mat-label *ngIf="!newCategory">Select task category</mat-label>
-                <mat-label *ngIf="newCategory">New category name</mat-label>
-                <input *ngIf="newCategory" formControlName="category" matInput placeholder="New category name">
-                <mat-icon *ngIf="newCategory" (click)="closeNewCategory()" matSuffix>close</mat-icon>
-                <mat-select *ngIf="!newCategory" formControlName="category">
-                    <mat-option (click)="createNewCategory()">New category</mat-option>
-                    <mat-option value="Sales">
-                        <div class="cat-option-content">
-                            <span>Sales</span>
-                            <div class="pink"></div>
-                        </div>
-                        <input class="pseudo-check" type="radio" name="categoryColor" formControlName="categoryColor"
-                            value="pink">
-                    </mat-option>
-                    <mat-option value="Backoffice">
-                        <div class="cat-option-content">
-                            <span>Backoffice</span>
-                            <div class="turquoise"></div>
-                        </div>
-                        <input class="pseudo-check" type="radio" name="categoryColor" formControlName="categoryColor"
-                            value="turquoise">
-                    </mat-option>
-                </mat-select>
-                <mat-error [class.position-error]="newCategory" *ngIf="errorHandling('category', 'required')">
-                    You must select a <strong>category</strong>
+                <mat-label>Title</mat-label>
+                <input formControlName="title" matInput placeholder="Enter a title">
+                <mat-error *ngIf="errorHandling('title', 'required')">
+                    You must provide a <strong>title</strong>
                 </mat-error>
             </mat-form-field>
 
-            <mat-radio-group *ngIf="newCategory" formControlName="categoryColor"
-                [class.field-invalid]="form.submitted && newTask.controls['categoryColor'].invalid">
-                <label class="container">
-                    <span class="checkmark light-blue"></span>
-                    <mat-radio-button value="light-blue"></mat-radio-button>
-                </label>
-                <label class="container">
-                    <span class="checkmark red"></span>
-                    <mat-radio-button value="red"></mat-radio-button>
-                </label>
-                <label class="container">
-                    <span class="checkmark green"></span>
-                    <mat-radio-button value="green"></mat-radio-button>
-                </label>
-                <label class="container">
-                    <span class="checkmark orange"></span>
-                    <mat-radio-button value="orange"></mat-radio-button>
-                </label>
-                <label class="container">
-                    <span class="checkmark purple"></span>
-                    <mat-radio-button value="purple"></mat-radio-button>
-                </label>
-                <label class="container">
-                    <span class="checkmark blue"></span>
-                    <mat-radio-button value="blue"></mat-radio-button>
-                </label>
-                <div *ngIf="form.submitted && newTask.controls['categoryColor'].invalid" class="error-category-color"
-                    [class.position-right]="errorHandling('category', 'required')">
-                    <span> You must select a <strong>color</strong></span>
-                </div>
-            </mat-radio-group>
+            <mat-form-field appearance="outline">
+                <mat-label>Description</mat-label>
+                <textarea formControlName="description" matInput placeholder="Enter a description" cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                <mat-error *ngIf="errorHandling('description', 'required')">
+                    You must provide a <strong>description</strong>
+                </mat-error>
+            </mat-form-field>
 
+            <div class="category-container">
+                <mat-form-field appearance="outline">
+                    <mat-label *ngIf="!newCategory">Select task category</mat-label>
+                    <mat-label *ngIf="newCategory">New category name</mat-label>
+                    <input *ngIf="newCategory" formControlName="category" matInput placeholder="New category name">
+                    <mat-icon *ngIf="newCategory" (click)="closeNewCategory()" matSuffix>close</mat-icon>
+                    <mat-select *ngIf="!newCategory" formControlName="category">
+                        <mat-option (click)="createNewCategory()">New category</mat-option>
+                        <mat-option value="Sales">
+                            <div class="cat-option-content">
+                                <span>Sales</span>
+                                <div class="pink"></div>
+                            </div>
+                            <input class="pseudo-check" type="radio" name="categoryColor"
+                                formControlName="categoryColor" value="pink">
+                        </mat-option>
+                        <mat-option value="Backoffice">
+                            <div class="cat-option-content">
+                                <span>Backoffice</span>
+                                <div class="turquoise"></div>
+                            </div>
+                            <input class="pseudo-check" type="radio" name="categoryColor"
+                                formControlName="categoryColor" value="turquoise">
+                        </mat-option>
+                    </mat-select>
+                    <mat-error [class.position-error]="newCategory" *ngIf="errorHandling('category', 'required')">
+                        You must select a <strong>category</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-radio-group *ngIf="newCategory" formControlName="categoryColor"
+                    [class.field-invalid]="form.submitted && newTask.controls['categoryColor'].invalid">
+                    <label class="container">
+                        <span class="checkmark light-blue"></span>
+                        <mat-radio-button value="light-blue"></mat-radio-button>
+                    </label>
+                    <label class="container">
+                        <span class="checkmark red"></span>
+                        <mat-radio-button value="red"></mat-radio-button>
+                    </label>
+                    <label class="container">
+                        <span class="checkmark green"></span>
+                        <mat-radio-button value="green"></mat-radio-button>
+                    </label>
+                    <label class="container">
+                        <span class="checkmark orange"></span>
+                        <mat-radio-button value="orange"></mat-radio-button>
+                    </label>
+                    <label class="container">
+                        <span class="checkmark purple"></span>
+                        <mat-radio-button value="purple"></mat-radio-button>
+                    </label>
+                    <label class="container">
+                        <span class="checkmark blue"></span>
+                        <mat-radio-button value="blue"></mat-radio-button>
+                    </label>
+                    <div *ngIf="form.submitted && newTask.controls['categoryColor'].invalid"
+                        class="error-category-color" [class.position-right]="errorHandling('category', 'required')">
+                        <span> You must select a <strong>color</strong></span>
+                    </div>
+                </mat-radio-group>
+
+            </div>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Select contacts to assign</mat-label>
+                <mat-select class="assigned-to" formControlName="assignedTo" multiple>
+                    <mat-option class="assigned-to" *ngFor="let contact of contacts$ | async" value="{{contact.id}}">
+                        {{ contact.firstName }} {{ contact.lastName }}</mat-option>
+                </mat-select>
+                <mat-error *ngIf="errorHandling('assignedTo', 'required')">
+                    You must select at least one <strong>contact</strong>
+                </mat-error>
+            </mat-form-field>
         </div>
 
-        <mat-form-field appearance="outline">
-            <mat-label>Select contacts to assign</mat-label>
-            <mat-select class="assigned-to" formControlName="assignedTo" multiple>
-                <mat-option class="assigned-to" *ngFor="let contact of contacts$ | async" value="{{contact.id}}">
-                    {{ contact.firstName }} {{ contact.lastName }}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="errorHandling('assignedTo', 'required')">
-                You must select at least one <strong>contact</strong>
-            </mat-error>
-        </mat-form-field>
-    </div>
+        <div class="right-half">
+            <mat-form-field appearance="outline">
+                <mat-label>Due date</mat-label>
+                <input formControlName="dueDate" matInput [min]="minDate" [matDatepicker]="picker"
+                    placeholder="DD.MM.YYYY">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker color="primary"></mat-datepicker>
+                <mat-error *ngIf="errorHandling('dueDate', 'required')">
+                    You must select a <strong>date</strong>
+                </mat-error>
+                <mat-error *ngIf="minDate >= newTask.value.dueDate && !errorHandling('dueDate', 'required')">
+                    You must select a <strong>later date</strong>
+                </mat-error>
+            </mat-form-field>
 
-    <div class="right-half">
-        <mat-form-field appearance="outline">
-            <mat-label>Due date</mat-label>
-            <input formControlName="dueDate" matInput [min]="minDate" [matDatepicker]="picker" placeholder="DD.MM.YYYY">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker color="primary"></mat-datepicker>
-            <mat-error *ngIf="errorHandling('dueDate', 'required')">
-                You must select a <strong>date</strong>
-            </mat-error>
-            <mat-error *ngIf="minDate >= newTask.value.dueDate && !errorHandling('dueDate', 'required')">
-                You must select a <strong>later date</strong>
-            </mat-error>
-        </mat-form-field>
-
-        <div class="prio-container">
-            <div class="prio" [class.field-invalid]="form.submitted && newTask.controls['prio'].invalid">
-                <h3>Prio *</h3>
-                <div>
-                    <mat-button-toggle-group formControlName="prio">
-                        <mat-button-toggle value="urgent">
-                            <span>Urgent</span>
-                            <img src="/assets/img/icon/prio_urgent_color.png">
-                        </mat-button-toggle>
-                        <mat-button-toggle value="medium">
-                            <span>Medium</span>
-                            <img src="/assets/img/icon/prio_medium_color.png">
-                        </mat-button-toggle>
-                        <mat-button-toggle value="low">
-                            <span>Low</span>
-                            <img src="/assets/img/icon/prio_low_color.png">
-                        </mat-button-toggle>
-                    </mat-button-toggle-group>
+            <div class="prio-container">
+                <div class="prio" [class.field-invalid]="form.submitted && newTask.controls['prio'].invalid">
+                    <h3>Prio *</h3>
+                    <div>
+                        <mat-button-toggle-group formControlName="prio">
+                            <mat-button-toggle value="urgent">
+                                <span>Urgent</span>
+                                <img src="/assets/img/icon/prio_urgent_color.png">
+                            </mat-button-toggle>
+                            <mat-button-toggle value="medium">
+                                <span>Medium</span>
+                                <img src="/assets/img/icon/prio_medium_color.png">
+                            </mat-button-toggle>
+                            <mat-button-toggle value="low">
+                                <span>Low</span>
+                                <img src="/assets/img/icon/prio_low_color.png">
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </div>
+                <div *ngIf="form.submitted && newTask.controls['prio'].invalid" class="error-prio">
+                    <span> You must select a <strong>prio</strong></span>
                 </div>
             </div>
-            <div *ngIf="form.submitted && newTask.controls['prio'].invalid" class="error-prio">
-                <span> You must select a <strong>prio</strong></span>
-            </div>
-        </div>
 
-        <!-- <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
             <mat-label>Subtask (under construction)</mat-label>
             <input matInput placeholder="Add new subtask (under construction)">
             <mat-icon matSuffix>add</mat-icon>
@@ -143,60 +145,61 @@
                     You must select at least one <strong>contact</strong>
                 </mat-error> 
         </mat-form-field> -->
-    </div>
-</form>
+        </div>
+    </form>
 
-<div class="btns">
-    <div>
-        <button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask" (click)="closeDialog()" class="light-btn"
-            mat-flat-button>
-            Cancel
-            <mat-icon>close</mat-icon>
-        </button>
-    </div>
-
-    <div class="right-btns">
-        <button *ngIf="!openedAsDialogEditTask" (click)="clearForm()" class="light-btn" mat-flat-button>
-            Clear
-            <mat-icon>close</mat-icon>
-        </button>
-        <button *ngIf="!openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
-            color="primary">
-            Create task
-            <mat-icon>done</mat-icon>
-        </button>
-        <button *ngIf="openedAsDialogEditTask" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
-            Delete
-            <mat-icon>delete_forever</mat-icon>
-        </button>
-        <button *ngIf="openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
-            color="primary">
-            Save
-            <mat-icon>done</mat-icon>
-        </button>
-    </div>
-</div>
-
-<div class="delete-overlay" *ngIf="deleteOverlay" (click)="closeDeleteOverlay()">
-    <mat-card (click)="stopProp($event)">
-        <mat-card-title>Delete Task</mat-card-title>
-        <mat-card-content>
-            <p>
-                You are about to delete this task permanently. There is no way to get it back.
-            </p>
-            <p>
-                Do you want to proceed?
-            </p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button (click)="closeDeleteOverlay()" class="light-btn" mat-flat-button>
+    <div class="btns">
+        <div class="left-btns">
+            <button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask" (click)="closeDialog()" class="light-btn"
+                mat-flat-button>
                 Cancel
                 <mat-icon>close</mat-icon>
             </button>
-            <button mat-flat-button (click)="deleteTask()" color="warn" class="delete-btn-overlay">
+        </div>
+
+        <div class="right-btns">
+            <button *ngIf="!openedAsDialogEditTask" (click)="clearForm()" class="light-btn" mat-flat-button>
+                Clear
+                <mat-icon>close</mat-icon>
+            </button>
+            <button *ngIf="!openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
+                color="primary">
+                Create task
+                <mat-icon>done</mat-icon>
+            </button>
+            <button *ngIf="openedAsDialogEditTask" (click)="openDeleteOverlay()" class="delete-btn" mat-flat-button>
                 Delete
                 <mat-icon>delete_forever</mat-icon>
             </button>
-        </mat-card-actions>
-    </mat-card>
+            <button *ngIf="openedAsDialogEditTask" type="submit" form="taskForm" class="dark-btn" mat-flat-button
+                color="primary">
+                Save
+                <mat-icon>done</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div class="delete-overlay" *ngIf="deleteOverlay" (click)="closeDeleteOverlay()">
+        <mat-card (click)="stopProp($event)">
+            <mat-card-title>Delete Task</mat-card-title>
+            <mat-card-content>
+                <p>
+                    You are about to delete this task permanently. There is no way to get it back.
+                </p>
+                <p>
+                    Do you want to proceed?
+                </p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="closeDeleteOverlay()" class="light-btn" mat-flat-button>
+                    Cancel
+                    <mat-icon>close</mat-icon>
+                </button>
+                <button mat-flat-button (click)="deleteTask()" color="warn" class="delete-btn-overlay">
+                    Delete
+                    <mat-icon>delete_forever</mat-icon>
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </div>

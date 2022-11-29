@@ -96,7 +96,6 @@ export class BoardComponent implements OnInit {
   addTaskDialog(state: string) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '100%',
-      panelClass: 'custom-addTask-container',
       data: {
         state: state
       },

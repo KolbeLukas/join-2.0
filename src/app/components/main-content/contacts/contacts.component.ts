@@ -60,7 +60,6 @@ export class ContactsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddContactComponent, {
       width: '100%',
       height: '600px',
-      panelClass: 'custom-dialog-container'
     });
     dialogRef.componentInstance.openedAsDialogNewContact = true;
     dialogRef.afterClosed().subscribe(result => {

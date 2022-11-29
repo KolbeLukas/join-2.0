@@ -17,9 +17,10 @@
 }
 
 mat-card {
-    height: 80%;
+    height: 90%;
     width: 50%;
     padding: 40px;
+    overflow: auto;
 
     mat-card-subtitle {
         width: fit-content;
@@ -102,9 +103,9 @@ mat-card {
 }
 
 .edit-btn {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
+    position: sticky;
+    top: 100%;
+    left: 100%;
     padding-inline: 0;
     height: 40px;
     width: 40px;
@@ -150,4 +151,28 @@ mat-card {
 
 .blue {
     background-color: #0038FF;
+}
+
+@media (max-width: 1200px) {
+    mat-card {
+        width: 60%;
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        top: 0;
+    }
+}
+
+@media (max-width: 800px) {
+    mat-card {
+        width: 70%;
+    }
+}
+
+@media (max-width: 550px) {
+    mat-card {
+        width: 90%;
+    }
 }

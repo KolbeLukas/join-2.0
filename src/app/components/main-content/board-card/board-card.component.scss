@@ -14,16 +14,24 @@ mat-card {
 
     mat-card-title {
         font-size: 16px;
+        -webkit-line-clamp: 1;
     }
 
     mat-card-content {
         color: #A8A8A8;
+        -webkit-line-clamp: 2;
+    }
+
+    .max-lines {
         display: -webkit-box;
         text-overflow: ellipsis;
         overflow: hidden;
-        -webkit-line-clamp: 4;
         -webkit-box-orient: vertical;
     }
+}
+
+p {
+    min-height: 44px;
 }
 
 .card-bottom {
@@ -50,6 +58,10 @@ mat-card {
     &:not(:first-child) {
         margin-left: -8px;
     }
+}
+
+.ellipsis {
+    background-color: #2A3647;
 }
 
 .cdk-drag-preview {

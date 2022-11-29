@@ -1,7 +1,7 @@
-:host {
+.host {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 64px);
+    height: calc(100vh - 64px);
     padding: 16px;
     box-sizing: border-box;
     background: #F5F5F5;
@@ -246,6 +246,7 @@ mat-radio-group {
     padding-bottom: 46px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .dark-btn {
@@ -299,7 +300,7 @@ mat-radio-group {
 }
 
 .delete-overlay {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -325,6 +326,10 @@ mat-radio-group {
     }
 }
 
+.stop-scroll {
+    overflow: hidden;
+}
+
 :host ::ng-deep .mat-form-field-outline-start {
     background: white;
 }
@@ -337,14 +342,20 @@ mat-radio-group {
     background: white;
 }
 
+@media (max-width: 950px) {
+    .host {
+        height: calc(100vh - 164px);
+    }
+}
+
 @media (max-height: 904px) {
-    :host {
+    .host {
         padding-right: 0px;
     }
 }
 
 @media (max-width: 850px) {
-    :host {
+    .host {
         align-items: center;
     }
 
@@ -372,26 +383,52 @@ mat-radio-group {
     }
 
     .btns {
+        width: 493px;
         position: unset;
         padding-bottom: 5.5px;
         padding-inline: unset;
     }
 }
 
-@media (max-height: 731px) {
+@media (max-height: 800px) {
+    .btns {
+        padding-bottom: 16px;
+    }
+}
+
+@media (max-height: 760px) {
     h2 {
         padding-top: 0;
         padding-bottom: 8.75px;
     }
 }
 
-@media (max-width: 550px) {
-    h2 {
-        width: 97%;
+@media (max-width: 750px) {
+    .delete-overlay {
+        mat-card {
+            width: 90%;
+        }
+    }
+}
+
+@media (max-width: 578px) {
+
+    h2,
+    form,
+    .btns {
+        width: 98%;
+    }
+}
+
+@media (max-width: 442px) {
+    .btns {
+        flex-direction: column-reverse;
     }
 
-    form {
-        width: 97%;
+    .left-btns {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
     }
 }
 

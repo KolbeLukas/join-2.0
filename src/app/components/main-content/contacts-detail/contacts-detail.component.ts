@@ -21,7 +21,6 @@ export class ContactsDetailComponent implements OnInit {
     const dialogRef = this.dialog.open(AddContactComponent, {
       width: '100%',
       height: '600px',
-      panelClass: 'custom-dialog-container',
       data: {
         contact
       }
@@ -38,7 +37,6 @@ export class ContactsDetailComponent implements OnInit {
   addTaskDialog(contact: any) {
     const dialogRef = this.dialog.open(AddTaskComponent, {
       width: '100%',
-      panelClass: 'custom-addTask-container',
       data: {
         data: [contact.id]
       },

@@ -73,7 +73,7 @@ h4 {
     h2 {
         width: 493px;
         box-sizing: border-box;
-        padding: 0 30px 46px 30px;
+        padding: 0 30px 8.75px 30px;
     }
 
     button {
@@ -82,13 +82,20 @@ h4 {
     }
 }
 
-@media (max-width: 550px) {
+@media (max-height: 760px) {
     h2 {
-        width: 97%;
+        padding-top: 0;
+        padding-bottom: 8.75px;
+    }
+}
+
+@media (max-width: 578px) {
+    h2 {
+        width: 98%;
     }
 
     main {
-        width: 97%;
+        width: 98%;
         padding-inline: unset;
     }
 }

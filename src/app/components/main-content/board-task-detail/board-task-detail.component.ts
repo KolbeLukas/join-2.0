@@ -24,7 +24,7 @@ export class BoardTaskDetailComponent implements OnInit {
     this.changeDateAppearance();
     setTimeout(() => {
       this.open = true;
-    }, 60);
+    }, 125);
     // this.getContacts();
   }
 
