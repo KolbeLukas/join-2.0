@@ -57,7 +57,10 @@
     </div>
 
     <div class="greeting">
-        <span>{{ dayTime }}<span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">,</span></span>
+        <span>
+            {{ dayTime }}<span [class.d-none]="currentUser == undefined"
+                *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">,</span>
+        </span>
         <span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">{{ currentUser?.firstName }} {{
             currentUser?.lastName }}</span>
     </div>

@@ -1,7 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100% - 64px);
+    height: calc(100vh - 64px);
     padding: 16px;
     box-sizing: border-box;
     background: #F5F5F5;
@@ -85,10 +85,6 @@ mat-panel-title {
     .disabled {
         pointer-events: none;
     }
-
-    .line-height {
-        line-height: 36px;
-    }
 }
 
 .plus-btn {
@@ -115,6 +111,12 @@ mat-panel-title {
 
     mat-icon {
         font-size: 22px;
+    }
+}
+
+@media (max-width: 950px) {
+    .container {
+        height: calc(100% - 64px);
     }
 }
 

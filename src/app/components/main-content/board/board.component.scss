@@ -217,3 +217,12 @@ main {
         padding-left: 0;
     }
 }
+
+@media (max-width: 320px) {
+    header {
+        h2 {
+            font-size: 30px;
+            line-height: 45.5px;
+        }
+    }
+}

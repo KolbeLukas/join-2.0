@@ -118,6 +118,12 @@ nav {
     }
 }
 
+@media (max-height: 650px) {
+    .bottom-half {
+        padding-bottom: 16px;
+    }
+}
+
 @media (max-width: 362px) {
     :host {
         font-size: 14px;
