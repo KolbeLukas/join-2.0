@@ -10,13 +10,13 @@ import { filter } from 'rxjs/operators';
 export class MenuComponent implements OnInit {
   currentRoute!: string;
 
-  constructor(private router: Router) {
+  constructor(private router: Router) { }
+
+  ngOnInit(): void {
+    this.currentRoute = this.router.url;
     this.router.events.pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.currentRoute = event.url;
       });
-  }
-
-  ngOnInit(): void {
   }
 }
