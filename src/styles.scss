@@ -62,6 +62,7 @@ mat-list-item {
 
 .mat-snack-bar-container {
     min-width: fit-content !important;
+    max-width: fit-content !important;
 }
 
 .mat-toolbar-single-row {
@@ -75,6 +76,10 @@ mat-list-item {
 
 .cdk-overlay-pane {
     max-width: 90vw !important;
+}
+
+.mat-snack-bar-handset {
+    width: unset !important;
 }
 
 @media (max-width: 950px) {
