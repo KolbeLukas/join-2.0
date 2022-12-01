@@ -20,7 +20,6 @@ export class ContactsDetailComponent implements OnInit {
   editContact(contact: any) {
     const dialogRef = this.dialog.open(AddContactComponent, {
       width: '100%',
-      height: '600px',
       data: {
         contact
       }

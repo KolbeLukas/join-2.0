@@ -22,7 +22,11 @@
     </mat-list>
 </div>
 
-<div class="right-container">
+<div class="right-container" [class.resp-d-none]="!showDetails">
+    <button class="back-btn" mat-icon-button (click)="showDetails = false">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+
     <header>
         <h2>Contacts</h2>
         <span>Better with a team</span>
@@ -31,7 +35,8 @@
     </app-contacts-detail>
 </div>
 
-<button mat-flat-button color="primary" (click)="addContactDialog()">
+<button class="add-contact-btn" [class.resp-d-none]="showDetails" mat-flat-button color="primary"
+    (click)="addContactDialog()">
     New contact
     <mat-icon>person_add</mat-icon>
 </button>

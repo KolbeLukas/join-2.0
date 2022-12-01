@@ -1,9 +1,12 @@
 <div class="left-side">
-    <img src="/assets/img/logo_white.png">
-    <h2 *ngIf="!openedAsDialogEditContact">Add contact</h2>
-    <h2 *ngIf="openedAsDialogEditContact">Edit contact</h2>
-    <span *ngIf="!openedAsDialogEditContact">Tasks are better with a team!</span>
-    <div class="line"></div>
+    <div class="content">
+        <img src="/assets/img/logo_white.png">
+        <h2 *ngIf="!openedAsDialogEditContact">Add contact</h2>
+        <h2 *ngIf="openedAsDialogEditContact">Edit contact</h2>
+        <span *ngIf="!openedAsDialogEditContact">Tasks are better with a team!</span>
+        <div class="line"></div>
+
+    </div>
 </div>
 
 <div class="middle">
@@ -59,7 +62,7 @@
     </form>
 
     <div class="btn-container">
-        <button class="light-btn" mat-flat-button (click)="closeDialog('cancel')">
+        <button class="light-btn cancel" mat-flat-button (click)="closeDialog('cancel')">
             Cancel
             <mat-icon>close</mat-icon>
         </button>
@@ -80,12 +83,11 @@
             </button>
         </div>
     </div>
-
-
-    <button class="close-btn" (click)="closeDialog('cancel')" mat-icon-button color="primary">
-        <mat-icon>close</mat-icon>
-    </button>
 </div>
+
+<button class="close-btn" (click)="closeDialog('cancel')" mat-icon-button color="primary">
+    <mat-icon>close</mat-icon>
+</button>
 
 <div class="delete-overlay" *ngIf="deleteOverlay" (click)="closeDeleteOverlay()">
     <mat-card (click)="stopProp($event)">

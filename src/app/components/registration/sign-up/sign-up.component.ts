@@ -26,6 +26,7 @@ export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
   hidePw = true;
   hideConPw = true;
+  color = '#'
 
   constructor(private authService: AuthenticationService) { }
 
@@ -47,10 +48,19 @@ export class SignUpComponent implements OnInit {
       });
   }
 
+  getRandomColor() {
+    let letters = '0123456789ABCDEF';
+    this.color = '#';
+    for (var i = 0; i < 6; i++) {
+      this.color += letters[Math.floor(Math.random() * 16)];
+    }
+  }
+
   signUp() {
-    const { email, password, firstName, lastName, phone } = this.signUpForm.value;
     if (this.signUpForm.valid) {
-      this.authService.signUp(email, password, firstName, lastName, phone)
+      this.getRandomColor();
+      this.signUpForm.value.color = this.color;
+      this.authService.signUp(this.signUpForm.value)
         .pipe(this.authService.showMessage('You are now signed up. Please verify your email.', 'Signing in...')
           , catchError(
             (error) => of(error)
@@ -58,6 +68,7 @@ export class SignUpComponent implements OnInit {
         .subscribe();
     }
   }
+
 
 
   errorHandling(control: string, error: string) {

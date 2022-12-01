@@ -1,19 +1,21 @@
 :host {
     display: flex;
-    height: 100%;
+    position: relative;
+    height: 600px;
     background-color: #F5F5F5;
 }
 
 .left-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: #2A3647;
     width: 35%;
     box-sizing: border-box;
     padding-inline: 30px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
+}
+
+.content {
     color: white;
 
     img {
@@ -41,28 +43,27 @@
 }
 
 .middle {
-    height: 100%;
     width: 22%;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    padding-inline: 30px;
 
     img {
         width: 110px;
     }
+}
 
-    .contact-icon {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 110px;
-        width: 110px;
-        font-size: 40px;
-        color: white;
-        border-radius: 100%;
-    }
+.contact-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    width: 110px;
+    font-size: 40px;
+    color: white;
+    border-radius: 100%;
+    border: 2px solid white;
 }
 
 .right-side {
@@ -72,7 +73,6 @@
     width: 43%;
     box-sizing: border-box;
     padding-right: 30px;
-    position: relative;
 
     form {
         display: flex;
@@ -183,4 +183,133 @@
 
 :host ::ng-deep .mat-form-field-outline-end {
     background: white;
+}
+
+@media (max-width: 900px) {
+    .btn-container {
+        flex-direction: column-reverse;
+        align-items: center;
+        padding-bottom: 16px;
+    }
+
+    .cancel {
+        margin-top: 20px;
+        margin-right: unset;
+    }
+}
+
+@media (max-width: 700px) and (max-height: 802px) {
+    :host {
+        height: 99vh !important;
+    }
+}
+
+@media (max-width: 700px) {
+    :host {
+        flex-direction: column;
+        height: 90vh;
+        overflow: auto;
+    }
+
+    .left-side {
+        width: 100%;
+        height: 35%;
+        align-items: center;
+        background-color: #2A3647;
+    }
+
+    .content {
+        img {
+            display: none;
+        }
+    }
+
+    .middle {
+        width: 100%;
+        position: relative;
+
+        img {
+            position: absolute;
+            bottom: -45px;
+        }
+    }
+
+    .contact-icon {
+        position: absolute;
+        bottom: -45px;
+    }
+
+    .right-side {
+        width: 100%;
+        height: 65%;
+        padding-top: 50px;
+        padding-right: unset;
+        justify-content: unset;
+        align-items: center;
+
+        form {
+            width: 90%;
+        }
+    }
+
+    .close-btn {
+        color: white;
+        top: 10px;
+        right: 10px;
+    }
+
+    .btn-container {
+        width: 90%;
+        flex-direction: unset;
+        align-items: unset;
+    }
+
+    .cancel {
+        margin-top: unset;
+        margin-right: 20px;
+    }
+}
+
+@media (max-width: 700px) and (max-height: 730px) {
+    .middle {
+        img {
+            width: 80px;
+            bottom: -30px;
+        }
+    }
+
+    .contact-icon {
+        width: 80px;
+        height: 80px;
+        bottom: -30px;
+        font-size: 30px;
+    }
+
+    .right-side {
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 380px) {
+    .content {
+        h2 {
+            font-size: 38px;
+        }
+
+        span {
+            font-size: 18px;
+        }
+    }
+}
+
+@media (max-width: 355px) {
+    .btn-container {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .cancel {
+        margin-top: 20px;
+        margin-right: unset;
+    }
 }

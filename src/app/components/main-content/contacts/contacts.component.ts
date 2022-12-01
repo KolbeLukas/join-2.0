@@ -15,6 +15,7 @@ export class ContactsComponent implements OnInit {
   sortedContacts: any = [];
   selectedContact: any;
   selectedBG: any;
+  showDetails = false;
 
   constructor(private readonly firebaseService: FirebaseService,
     public dialog: MatDialog) { }
@@ -59,7 +60,6 @@ export class ContactsComponent implements OnInit {
   addContactDialog(): void {
     const dialogRef = this.dialog.open(AddContactComponent, {
       width: '100%',
-      height: '600px',
     });
     dialogRef.componentInstance.openedAsDialogNewContact = true;
     dialogRef.afterClosed().subscribe(result => {
@@ -74,12 +74,14 @@ export class ContactsComponent implements OnInit {
     if (result == 'deleted') {
       this.selectedContact = undefined;
       this.selectedBG = undefined;
+      this.showDetails = false;
     } else {
       this.selectedBG = result.id;
     }
   }
 
   openContact(contact: any) {
+    this.showDetails = true;
     this.selectedContact = contact;
     this.selectedBG = contact.id;
   }

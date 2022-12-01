@@ -150,8 +150,8 @@
 
     <div class="btns">
         <div class="left-btns">
-            <button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask" (click)="closeDialog()" class="light-btn"
-                mat-flat-button>
+            <button *ngIf="openedAsDialogNewTask || openedAsDialogEditTask || openedAsDialogNewTaskContact"
+                (click)="closeDialog()" class="light-btn" mat-flat-button>
                 Cancel
                 <mat-icon>close</mat-icon>
             </button>

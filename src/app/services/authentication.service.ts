@@ -49,21 +49,22 @@ export class AuthenticationService {
     });
   }
 
-  signUp(email: string, password: string, firstName: string, lastName: string, phone: string) {
+  signUp(data: any) {
     this.afAuth.setPersistence('session');
     return from(this.afAuth
-      .createUserWithEmailAndPassword(email, password)
+      .createUserWithEmailAndPassword(data.email, data.password)
       .then((result) => {
-        this.getData(result.user, firstName, lastName, phone);
+        this.getData(result.user, data.firstName, data.lastName, data.phone, data.color);
         this.sendVerificationMail();
         this.setUserData(result.user);
       }))
   }
 
-  getData(user: any, firstName: string, lastName: string, phone: string) {
+  getData(user: any, firstName: string, lastName: string, phone: string, color: string) {
     user.firstName = firstName;
     user.lastName = lastName;
     user.phone = phone;
+    user.color = color;
     return user;
   }
 
@@ -106,7 +107,8 @@ export class AuthenticationService {
       lastName: user.lastName,
       phone: user.phone,
       email: user.email,
-      emailVerified: user.emailVerified
+      emailVerified: user.emailVerified,
+      color: user.color
     };
     this.firestoreService.createUser(userData, user.uid);
   }
