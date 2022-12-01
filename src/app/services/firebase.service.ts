@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   collectionData, deleteDoc, docData, Firestore,
-  orderBy, updateDoc, Query, query, where, getDocs, limit, setDoc
+  orderBy, updateDoc, Query, query, limit, setDoc
 } from '@angular/fire/firestore';
 import { addDoc, collection, CollectionReference, doc, DocumentData } from '@firebase/firestore';
 import { Observable } from 'rxjs';
@@ -31,11 +31,6 @@ export class FirebaseService {
   getAllContacts() {
     return collectionData(this.sortedContacts, { idField: 'id' }) as Observable<any>;
   }
-
-  // getOneTask(id: string) {
-  //   const taskRef = doc(this.firestore, `tasks/${id}`);
-  //   return docData(taskRef, { idField: 'id' });
-  // }
 
   getOneContact(id: string) {
     const taskRef = doc(this.firestore, `contacts/${id}`);

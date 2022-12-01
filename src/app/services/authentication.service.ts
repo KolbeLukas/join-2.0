@@ -22,11 +22,9 @@ export class AuthenticationService {
       if (user) {
         this.userData = user.uid;
         localStorage.setItem('user', JSON.stringify(this.userData));
-        // JSON.parse(localStorage.getItem('user')!);
       }
       else {
         localStorage.setItem('user', 'null');
-        // JSON.parse(localStorage.getItem('user')!);
       }
     });
   }
@@ -91,11 +89,6 @@ export class AuthenticationService {
       error: (message) => `${message}`
     })
   }
-
-  // get isLoggedIn(): boolean {
-  //   const user = this.userData;
-  //   return user !== null && user.emailVerified !== false ? true : false;
-  // }
 
   updateUserData(result: any) {
     this.firestoreService.updateUser(result);

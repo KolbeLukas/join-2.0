@@ -1,6 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable, take } from 'rxjs';
-import { FirebaseService } from '../../../services/firebase.service';
 
 @Component({
   selector: 'app-board-card',
@@ -9,23 +7,9 @@ import { FirebaseService } from '../../../services/firebase.service';
 })
 export class BoardCardComponent implements OnInit {
   @Input() card: any;
-  contact$!: Observable<any>;
-  assignedTo: any = [];
 
-  constructor(private firebaseService: FirebaseService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    // this.getContacts();
   }
-
-  // getContacts() {
-  //   this.card.assignedTo.forEach((contact: string) => {
-  //     this.contact$ = this.firebaseService.getOneContact(contact);
-  //     this.contact$
-  //       // .pipe(take(1))
-  //       .subscribe((contact: any) => {
-  //         this.assignedTo.push(contact);
-  //       });
-  //   });
-  // }
 }

@@ -38,16 +38,6 @@ export class BoardComponent implements OnInit {
             });
           });
         }
-        // if (task.assignedTo[0].firstName == undefined) {
-        //   let assignedTo = task.assignedTo;
-        //   task.assignedTo = [];
-        //   assignedTo.forEach((contact: any) => {
-        //     let one = this.firebaseService.getOneContact(contact);
-        //     one.pipe(take(1)).subscribe((contact: any) => {
-        //       task.assignedTo.push(contact);
-        //     });
-        //   })
-        // }
       });
     });
   }

@@ -69,8 +69,6 @@ export class SignUpComponent implements OnInit {
     }
   }
 
-
-
   errorHandling(control: string, error: string) {
     return this.signUpForm.controls[control].hasError(error);
   }

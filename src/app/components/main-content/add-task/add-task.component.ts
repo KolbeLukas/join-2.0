@@ -7,7 +7,6 @@ import { DateAdapter } from '@angular/material/core';
 import { Task } from 'src/models/task.class';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { BoardComponent } from '../board/board.component';
 
 @Component({
   selector: 'app-add-task',
@@ -54,23 +53,10 @@ export class AddTaskComponent implements OnInit {
     }
   }
 
-  // contacts: any[] = [];
-
   checkOpenEditTask() {
     if (this.openedAsDialogEditTask) {
       this.task = this.data.task;
       this.state = this.data.task.state;
-      // let assignedTo = this.task.assignedTo;
-      // this.task.assignedTo = [];
-      // assignedTo.forEach((contact: { id: any; }) => {
-      //   console.log(contact.id)
-      //   this.task.assignedTo.push(contact.id)
-      // })
-      // let contacts: any[] = [];
-      // this.task.contacts.forEach((element: { id: any; }) => {
-      //   this.contacts.push(element.id)
-      // });
-      // this.task.assignedTo = this.contacts;
       this.dialogRef = <MatDialogRef<AddTaskComponent>>(
         this.injector.get(MatDialogRef));
     }
