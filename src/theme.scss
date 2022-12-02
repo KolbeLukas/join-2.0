@@ -1,9 +1,5 @@
 @use '@angular/material' as mat;
 
-// Fonts
-@import 'material-icons/iconfont/material-icons.css';
-// @import './assets/fonts/inter.scss';
-
 $fontConfig: (
     display-4: mat.define-typography-level(112px, 112px, 300, 'Inter'),
     display-3: mat.define-typography-level(56px, 56px, 400, 'Inter'),

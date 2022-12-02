@@ -11,5 +11,4 @@ export class DataProtectionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
