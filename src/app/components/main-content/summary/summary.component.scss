@@ -36,6 +36,18 @@ mat-card {
     box-shadow: 0px 0px 1px -1px rgb(0 0 0 / 20%),
         0px 0px 1px 0px rgb(0 0 0 / 14%),
         0px 1px 3px 0px rgb(0 0 0 / 12%) !important;
+    cursor: pointer;
+    transition: all 125ms ease-in-out;
+
+    &:hover {
+        background-color: #2A3647;
+        scale: 1.02;
+        border-top-left-radius: 0 !important;
+
+        span {
+            color: white !important;
+        }
+    }
 }
 
 main {
@@ -98,6 +110,11 @@ main {
     padding-right: 16px;
     box-sizing: border-box;
 
+    img {
+        border: 3px solid white;
+        border-radius: 100%;
+    }
+
     div {
         display: flex;
         flex-direction: column;
@@ -120,7 +137,7 @@ main {
     width: 55%;
     display: flex;
     justify-content: flex-end;
-    padding-inline: 16px;
+    padding-inline: 16px 70px;
     box-sizing: border-box;
 }
 
@@ -151,6 +168,13 @@ main {
 
         &:first-child {
             margin-bottom: 25px;
+        }
+
+        img {
+            border: 3px solid white;
+            border-radius: 100%;
+            height: 60px;
+            width: 60px;
         }
 
         div {
@@ -241,6 +265,10 @@ main {
         margin-bottom: 20px;
     }
 
+    .deadline-container {
+        padding-right: 16px;
+    }
+
     .third-row {
         flex-direction: row;
         justify-content: space-between;
@@ -285,10 +313,12 @@ main {
     @keyframes fade-out {
         from {
             opacity: 1;
+            z-index: 1;
         }
 
         to {
             opacity: 0;
+            z-index: 0;
         }
     }
 
@@ -390,7 +420,8 @@ main {
 
 @media (max-width: 400px) {
     img {
-        height: 55px;
+        height: 55px !important;
+        width: 55px !important;
     }
 
     main {
