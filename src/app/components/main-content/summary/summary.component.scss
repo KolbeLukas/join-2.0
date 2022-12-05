@@ -40,11 +40,16 @@ mat-card {
 
 main {
     display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
-    padding-left: 30px;
-    width: 493px;
+    display: flex;
+}
+
+.category {
+    margin-right: 25px;
 }
 
 .first-row {
@@ -52,15 +57,15 @@ main {
     justify-content: space-between;
 
     mat-card {
-        width: 33.3%;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
         &:nth-child(2) {
-            margin-inline: 21.5px;
+            margin-inline: 25px;
         }
 
         span:first-child {
@@ -79,9 +84,8 @@ main {
 
 .second-row {
     width: 100%;
-    height: 150px;
-    margin-top: 21.5px;
-    margin-bottom: 21.5px;
+    height: 200px;
+    margin-top: 25px;
     display: flex;
 }
 
@@ -136,14 +140,18 @@ main {
 
 .third-row {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 
     mat-card {
-        width: 235.75px;
-        height: 150px;
+        width: 250px;
+        height: 200px;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        &:first-child {
+            margin-bottom: 25px;
+        }
 
         div {
             display: flex;
@@ -164,27 +172,30 @@ main {
     }
 }
 
-
 .greeting {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    margin-left: 50px;
-    width: calc(100vw - 817.48px);
+    align-items: baseline;
+    margin-bottom: 40px;
+    max-width: 925px;
 
-    span:first-child {
+
+    .daytime {
         font-size: 40px;
         font-weight: 500;
         line-height: 120%;
+        margin-right: 10px;
     }
 
-    span:nth-child(2) {
+    .user-name {
         font-size: 55px;
         font-weight: 700;
         line-height: 120%;
         color: #29ABE2;
         overflow: hidden;
         text-overflow: ellipsis;
+        max-width: calc(100% - 282.5px);
+        white-space: nowrap;
     }
 }
 
@@ -206,9 +217,48 @@ main {
 
     .container {
         padding: unset;
+        flex-direction: column;
+    }
+
+    .category {
+        margin-right: unset;
+    }
+
+    .first-row {
+        mat-card {
+            width: 150px;
+            height: 150px;
+
+            &:nth-child(2) {
+                margin-inline: 20px;
+            }
+        }
+    }
+
+    .second-row {
+        height: 150px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .third-row {
+        flex-direction: row;
+        justify-content: space-between;
+
+        mat-card {
+            width: 50%;
+            height: 150px;
+
+            &:first-child {
+                margin-bottom: unset;
+                margin-right: 20px;
+            }
+        }
     }
 
     .greeting {
+        z-index: 1;
+        flex-direction: column;
         position: absolute;
         margin: unset;
         height: 100%;
@@ -221,6 +271,7 @@ main {
         animation: fade-out .4s ease-in-out;
         animation-delay: 1.5s;
         animation-fill-mode: forwards;
+        max-width: unset;
 
         span {
             text-align: center;
@@ -267,13 +318,6 @@ main {
     }
 }
 
-@media (max-width: 950px) and (max-height: 766px) {
-    .second-row {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-}
-
 @media (max-width: 850px) {
     .top-container {
         padding-top: 0;
@@ -285,13 +329,6 @@ main {
     .top-container {
         padding-top: 0;
         padding-bottom: 12.75px;
-    }
-}
-
-@media (max-height: 666px) {
-    .second-row {
-        margin-top: 5px;
-        margin-bottom: 5px;
     }
 }
 
@@ -314,7 +351,7 @@ main {
             width: 33.3%;
 
             &:nth-child(2) {
-                margin-inline: 21.5px;
+                margin-inline: 25px;
             }
         }
     }
@@ -324,7 +361,7 @@ main {
             width: 50%;
 
             &:first-child {
-                margin-right: 21.5px;
+                margin-right: 25px;
             }
         }
     }

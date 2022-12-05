@@ -6,37 +6,47 @@
 </div>
 
 <main>
+    <div class="greeting">
+        <span class="daytime">{{ dayTime }},</span>
+        <span class="user-name">
+            {{ currentUser?.firstName }}
+            <span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">{{ currentUser?.lastName }}</span>
+        </span>
+    </div>
+
     <div class="container">
-        <div class="first-row d-flex">
-            <mat-card>
-                <span>{{ todos }}</span>
-                <span>Tasks in Board</span>
-            </mat-card>
-            <mat-card>
-                <span>{{ inProgress }}</span>
-                <span>Tasks in Progress</span>
-            </mat-card>
-            <mat-card>
-                <span>{{ feedback }}</span>
-                <span>Awaiting Feedback</span>
+        <div class="category">
+            <div class="first-row d-flex">
+                <mat-card>
+                    <span>{{ todos }}</span>
+                    <span>Tasks in Board</span>
+                </mat-card>
+                <mat-card>
+                    <span>{{ inProgress }}</span>
+                    <span>Tasks in Progress</span>
+                </mat-card>
+                <mat-card>
+                    <span>{{ feedback }}</span>
+                    <span>Awaiting Feedback</span>
+                </mat-card>
+            </div>
+
+            <mat-card class="second-row">
+                <div class="urgent">
+                    <img src="/assets/img/icon/urgent.png">
+                    <div>
+                        <span>{{ urgent }}</span>
+                        <span>Urgent</span>
+                    </div>
+                </div>
+                <div class="deadline-container">
+                    <div class="deadline">
+                        <span>{{ deadline }}</span>
+                        <span>Upcoming Deadline</span>
+                    </div>
+                </div>
             </mat-card>
         </div>
-
-        <mat-card class="second-row">
-            <div class="urgent">
-                <img src="/assets/img/icon/urgent.png">
-                <div>
-                    <span>{{ urgent }}</span>
-                    <span>Urgent</span>
-                </div>
-            </div>
-            <div class="deadline-container">
-                <div class="deadline">
-                    <span>{{ deadline }}</span>
-                    <span>Upcoming Deadline</span>
-                </div>
-            </div>
-        </mat-card>
 
         <div class="third-row">
             <mat-card>
@@ -56,12 +66,11 @@
         </div>
     </div>
 
-    <div class="greeting">
-        <span>
-            {{ dayTime }}<span [class.d-none]="currentUser == undefined"
-                *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">,</span>
+    <!-- <div class="greeting">
+        <span class="daytime">{{ dayTime }},</span>
+        <span class="user-name">
+            {{ currentUser?.firstName }}
+            <span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">{{ currentUser?.lastName }}</span>
         </span>
-        <span *ngIf="currentUser?.id !== 'AuiKcFHvlMT6O4jALPPL3zmDySL2'">{{ currentUser?.firstName }} {{
-            currentUser?.lastName }}</span>
-    </div>
+    </div> -->
 </main>

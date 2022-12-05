@@ -15,7 +15,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Description</mat-label>
                 <textarea formControlName="description" matInput placeholder="Enter a description" cdkTextareaAutosize
-                    #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                    #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" cdkAutosizeMaxRows="5"></textarea>
                 <mat-error *ngIf="errorHandling('description', 'required')">
                     You must provide a <strong>description</strong>
                 </mat-error>
