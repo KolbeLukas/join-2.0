@@ -1,9 +1,12 @@
 <mat-toolbar>
     <img class="logo" src="/assets/img/logo_dark.png">
     <h1>Kanban Project Management Tool</h1>
-    <div>
+    <div class="menu">
         <mat-icon routerLink="help" matTooltip="Need help?">help_outlined</mat-icon>
-        <img class="user-img" src="/assets/img/contact_placeholder.png" [matMenuTriggerFor]="menu">
+        <!-- <img class="user-img" src="/assets/img/contact_placeholder.png" [matMenuTriggerFor]="menu"> -->
+        <div class="user-img" [matMenuTriggerFor]="menu" [ngStyle]="{'background-color': currentUser?.color}">
+            {{ currentUser?.firstName.charAt(0) }}{{currentUser?.lastName.charAt(0) }}
+        </div>
     </div>
     <mat-menu #menu="matMenu">
         <button mat-menu-item (click)="logout()">Logout</button>

@@ -15,7 +15,7 @@ h1 {
     font-size: 18px;
 }
 
-div {
+.menu {
     width: 80px;
     display: flex;
     justify-content: space-between;
@@ -28,11 +28,15 @@ mat-icon {
 }
 
 .user-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 40px;
     width: 40px;
     border-radius: 100%;
-    border: 2px solid #2A3647;
+    border: 2px solid rgba(42, 54, 71, 0.5);
     padding: 1px;
+    color: white;
     cursor: pointer;
 }
 
