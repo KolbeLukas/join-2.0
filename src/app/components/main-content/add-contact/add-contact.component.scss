@@ -198,6 +198,14 @@
     }
 }
 
+@media (max-width: 750px) {
+    .delete-overlay {
+        mat-card {
+            width: 90%;
+        }
+    }
+}
+
 @media (max-width: 700px) and (max-height: 802px) {
     :host {
         height: 99vh !important;
@@ -311,5 +319,21 @@
     .cancel {
         margin-top: 20px;
         margin-right: unset;
+    }
+}
+
+@media (max-width: 330px) {
+    .delete-overlay {
+        mat-card {
+            mat-card-actions {
+                display: flex;
+                flex-direction: column;
+
+                button:first-child {
+                    margin-right: 0;
+                    margin-bottom: 20px;
+                }
+            }
+        }
     }
 }

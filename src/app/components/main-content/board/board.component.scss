@@ -190,6 +190,10 @@ main {
             top: 40px;
         }
     }
+
+    main {
+        height: calc(100% - 139.75px);
+    }
 }
 
 @media (max-width: 450px) {

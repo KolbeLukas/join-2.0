@@ -53,7 +53,8 @@
             <mat-form-field appearance="outline">
                 <mat-label>Password</mat-label>
                 <input matInput placeholder="Password" formControlName="password" [type]="hidePw ? 'password' : 'text'">
-                <mat-icon matSuffix (click)="hidePw = !hidePw">{{hidePw ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-icon class="pw-icon" matSuffix (click)="hidePw = !hidePw">{{hidePw ? 'visibility_off' :
+                    'visibility'}}</mat-icon>
                 <mat-error *ngIf="errorHandling('password', 'required')">
                     You must provide a <strong>password</strong>
                 </mat-error>
@@ -67,7 +68,8 @@
                     <mat-label>Confirm password</mat-label>
                     <input matInput placeholder="Confirm password" formControlName="confirmPassword"
                         [type]="hideConPw ? 'password' : 'text'">
-                    <mat-icon matSuffix (click)="hideConPw = !hideConPw">{{hideConPw ? 'visibility_off' : 'visibility'}}
+                    <mat-icon class="pw-icon" matSuffix (click)="hideConPw = !hideConPw">{{hideConPw ? 'visibility_off'
+                        : 'visibility'}}
                     </mat-icon>
                     <mat-error *ngIf="errorHandling('confirmPassword', 'required')">
                         You must confirm your <strong>password</strong>

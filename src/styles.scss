@@ -75,11 +75,18 @@ mat-list-item {
 }
 
 .cdk-overlay-pane {
-    max-width: 90vw !important;
+    max-width: 1200px !important;
+    max-height: 900px !important;
 }
 
 .mat-snack-bar-handset {
     width: unset !important;
+}
+
+@media (max-width: 1400px) {
+    .cdk-overlay-pane {
+        max-width: 90vw !important;
+    }
 }
 
 @media (max-width: 950px) {
@@ -94,6 +101,6 @@ mat-list-item {
 
 @media (max-width: 750px) {
     .cdk-overlay-pane {
-        max-width: 99vw !important;
+        width: 97vw !important;
     }
 }

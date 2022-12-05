@@ -49,15 +49,18 @@ mat-form-field:not(:last-child) {
     mat-form-field {
         width: 100%;
     }
-
-    .no-match {
-        position: absolute;
-        bottom: 0;
-        font-size: 75%;
-        padding-left: 1em;
-    }
 }
 
+.pw-icon {
+    cursor: pointer;
+}
+
+.no-match {
+    position: absolute;
+    bottom: 0;
+    font-size: 75%;
+    padding-left: 1em;
+}
 
 .dark-btn {
     margin-top: 25.5px;
