@@ -229,9 +229,8 @@ main {
 
 @media (max-width: 1220px) {
     :host {
-        align-items: center;
         position: relative;
-        animation: no-scroll 1.7s ease-in-out;
+        // animation: no-scroll 1.7s ease-in-out;
     }
 
     .top-container {
@@ -293,13 +292,14 @@ main {
         width: 100%;
         top: 0;
         left: 0;
+        max-width: unset;
         align-items: center;
         background-color: #F5F5F5;
         opacity: 1;
         animation: fade-out .4s ease-in-out;
-        animation-delay: 1.5s;
+        // animation-delay: 1.5s;
         animation-fill-mode: forwards;
-        max-width: unset;
+
 
         span {
             text-align: center;
@@ -341,16 +341,17 @@ main {
     :host {
         height: calc(100% - 64px);
     }
-
-    .top-container {
-        padding-top: 0;
-        padding-bottom: 12.75px;
-    }
 }
 
 @media (max-width: 850px) {
+    :host {
+        align-items: center;
+    }
+
     .top-container {
-        padding-top: 0;
+        width: 493px;
+        box-sizing: border-box;
+        padding: 0 30px 12.75px 30px;
     }
 }
 

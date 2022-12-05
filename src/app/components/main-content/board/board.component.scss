@@ -21,7 +21,7 @@ header {
         font-size: 40px;
         font-weight: 700;
         margin: 0;
-        line-height: 40px;
+        line-height: 65.5px;
     }
 
     mat-form-field {
@@ -149,12 +149,12 @@ main {
     .top-container {
         width: 493px;
         box-sizing: border-box;
-        padding: 0 30px 8.75px 30px;
+        padding: 0 30px 12.75px 30px;
     }
 
     main {
         width: 100%;
-        height: calc(100% - 74.25px);
+        height: calc(100% - 78.25px);
         padding-inline: 56px;
     }
 }
@@ -162,11 +162,11 @@ main {
 @media (max-height: 760px) {
     .top-container {
         padding-top: 0;
-        padding-bottom: 8.75px;
+        padding-bottom: 12.75px;
     }
 
     main {
-        height: calc(100% - 74.25px);
+        height: calc(100% - 78.25px);
     }
 }
 
@@ -180,10 +180,6 @@ main {
         align-items: flex-start;
         position: relative;
 
-        h2 {
-            line-height: 65.5px;
-        }
-
         button {
             position: absolute;
             right: 16px;
@@ -192,7 +188,7 @@ main {
     }
 
     main {
-        height: calc(100% - 139.75px);
+        height: calc(100% - 143.75px);
     }
 }
 
