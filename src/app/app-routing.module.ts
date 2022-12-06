@@ -81,6 +81,7 @@ const routes: Routes = [
       { path: '**', redirectTo: 'summary' }
     ]
   },
+  { path: '**', redirectTo: 'main' },
   { path: '**', redirectTo: 'registration' }
 ]
 
