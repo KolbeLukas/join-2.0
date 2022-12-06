@@ -2,6 +2,7 @@
     display: block;
     box-sizing: border-box;
     padding: 16px;
+    animation: slide-in .4s ease-in-out;
 }
 
 .name-container {
@@ -108,6 +109,16 @@
     }
 }
 
+@keyframes slide-in {
+    0% {
+        translate: 100vw;
+    }
+
+    100% {
+        translate: 0;
+    }
+}
+
 @media (max-width: 985px) {
     .info-header {
         h2 {
@@ -136,6 +147,7 @@
     :host {
         width: 493px;
         padding: 24px 30px;
+        animation: unset;
     }
 
     .info-header {

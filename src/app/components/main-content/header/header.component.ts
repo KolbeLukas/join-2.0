@@ -21,7 +21,6 @@ export class HeaderComponent implements OnInit {
     let userID = JSON.parse(localStorage.getItem('user')!);
     this.firebaseService.getOneUser(userID).subscribe(user => {
       this.currentUser = user;
-      console.log(this.currentUser);
     });
   }
 
