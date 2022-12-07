@@ -42,7 +42,7 @@ export class AuthenticationService {
     this.updateUserData(result.user);
     this.afAuth.authState.subscribe((user) => {
       if (user) {
-        this.router.navigate(['/main']);
+        this.router.navigate(['/page']);
       }
     });
   }

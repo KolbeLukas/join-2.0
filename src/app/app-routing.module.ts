@@ -22,7 +22,7 @@ const redirectLoggedInUser: AuthPipeGenerator = () =>
       if (!user.emailVerified) {
         return true;
       } else {
-        return ['main'];
+        return ['page'];
       }
     } else {
       return true;
@@ -35,7 +35,7 @@ const redirectUnauthorizedUser: AuthPipeGenerator = () =>
       if (!user.emailVerified) {
         return true;
       } else {
-        return ['main'];
+        return ['page'];
       }
     }
     else {
@@ -69,7 +69,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'main', component: MainComponent, ...canActivate(redirectUnverifiedUser),
+    path: 'page', component: MainComponent, ...canActivate(redirectUnverifiedUser),
     children: [
       { path: 'summary', component: SummaryComponent },
       { path: 'board', component: BoardComponent },
@@ -81,7 +81,7 @@ const routes: Routes = [
       { path: '**', redirectTo: 'summary' }
     ]
   },
-  { path: '**', redirectTo: 'main' },
+  { path: '**', redirectTo: 'page' },
   { path: '**', redirectTo: 'registration' }
 ]
 

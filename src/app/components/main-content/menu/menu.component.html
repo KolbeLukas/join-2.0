@@ -1,31 +1,31 @@
 <div class="top-half">
     <img class="logo" src="/assets/img/logo_white.png">
     <nav>
-        <a [class.active]="currentRoute == '/main/summary'" routerLink="summary">
+        <a [class.active]="currentRoute == '/page/summary'" routerLink="summary">
             <div>
-                <img *ngIf="currentRoute == '/main/summary'" src="/assets/img/icon/summary_white.png">
-                <img *ngIf="currentRoute != '/main/summary'" src="/assets/img/icon/summary_gray.png">
+                <img *ngIf="currentRoute == '/page/summary'" src="/assets/img/icon/summary_white.png">
+                <img *ngIf="currentRoute != '/page/summary'" src="/assets/img/icon/summary_gray.png">
             </div>
             <span>Summary</span>
         </a>
-        <a [class.active]="currentRoute == '/main/board'" routerLink="board">
+        <a [class.active]="currentRoute == '/page/board'" routerLink="board">
             <div>
-                <img *ngIf="currentRoute == '/main/board'" src="/assets/img/icon/board_white.png">
-                <img *ngIf="currentRoute != '/main/board'" src="/assets/img/icon/board_gray.png">
+                <img *ngIf="currentRoute == '/page/board'" src="/assets/img/icon/board_white.png">
+                <img *ngIf="currentRoute != '/page/board'" src="/assets/img/icon/board_gray.png">
             </div>
             <span>Board</span>
         </a>
-        <a [class.active]="currentRoute == '/main/addtask'" routerLink="addtask">
+        <a [class.active]="currentRoute == '/page/addtask'" routerLink="addtask">
             <div>
-                <img *ngIf="currentRoute == '/main/addtask'" src="/assets/img/icon/add_task_white.png">
-                <img *ngIf="currentRoute != '/main/addtask'" src="/assets/img/icon/add_task_gray.png">
+                <img *ngIf="currentRoute == '/page/addtask'" src="/assets/img/icon/add_task_white.png">
+                <img *ngIf="currentRoute != '/page/addtask'" src="/assets/img/icon/add_task_gray.png">
             </div>
             <span>Add Task</span>
         </a>
-        <a [class.active]="currentRoute == '/main/contacts'" routerLink="contacts">
+        <a [class.active]="currentRoute == '/page/contacts'" routerLink="contacts">
             <div>
-                <img *ngIf="currentRoute == '/main/contacts'" src="/assets/img/icon/contacts_white.png">
-                <img *ngIf="currentRoute != '/main/contacts'" src="/assets/img/icon/contacts_gray.png">
+                <img *ngIf="currentRoute == '/page/contacts'" src="/assets/img/icon/contacts_white.png">
+                <img *ngIf="currentRoute != '/page/contacts'" src="/assets/img/icon/contacts_gray.png">
             </div>
             <span>Contacts</span>
         </a>
