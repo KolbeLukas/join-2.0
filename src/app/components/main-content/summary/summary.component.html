@@ -17,21 +17,21 @@
     <div class="container">
         <div class="category">
             <div class="first-row d-flex">
-                <mat-card routerLink="/main/board">
+                <mat-card routerLink="/page/board">
                     <span>{{ todos }}</span>
                     <span>Tasks in Board</span>
                 </mat-card>
-                <mat-card routerLink="/main/board">
+                <mat-card routerLink="/page/board">
                     <span>{{ inProgress }}</span>
                     <span>Tasks in Progress</span>
                 </mat-card>
-                <mat-card routerLink="/main/board">
+                <mat-card routerLink="/page/board">
                     <span>{{ feedback }}</span>
                     <span>Awaiting Feedback</span>
                 </mat-card>
             </div>
 
-            <mat-card class="second-row" routerLink="/main/board">
+            <mat-card class="second-row" routerLink="/page/board">
                 <div class="urgent">
                     <img src="/assets/img/icon/urgent.png">
                     <div>
@@ -49,14 +49,14 @@
         </div>
 
         <div class="third-row">
-            <mat-card routerLink="/main/board">
+            <mat-card routerLink="/page/board">
                 <img src="/assets/img/icon/todo.png">
                 <div>
                     <span>{{ todos }}</span>
                     <span>To-do</span>
                 </div>
             </mat-card>
-            <mat-card routerLink="/main/board">
+            <mat-card routerLink="/page/board">
                 <img src="/assets/img/icon/done.png">
                 <div>
                     <span>{{ done }}</span>
