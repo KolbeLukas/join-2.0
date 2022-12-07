@@ -32,7 +32,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatRadioModule } from '@angular/material/radio';
@@ -53,6 +53,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { VerifyEmailComponent } from './components/registration/verify-email/verify-email.component';
 import { ForgotPasswordComponent } from './components/registration/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/registration/reset-password/reset-password.component';
+import { FilterPipe } from './services/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { ResetPasswordComponent } from './components/registration/reset-password
     SignUpComponent,
     VerifyEmailComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
@@ -98,6 +100,7 @@ import { ResetPasswordComponent } from './components/registration/reset-password
     MatDividerModule,
     MatListModule,
     ReactiveFormsModule,
+    FormsModule,
     MatChipsModule,
     MatRadioModule,
     MatDialogModule,

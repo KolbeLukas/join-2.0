@@ -4,7 +4,7 @@
         <div>
             <mat-form-field appearance="legacy" color="accent">
                 <mat-label>Find Task</mat-label>
-                <input matInput placeholder="Find Task">
+                <input matInput placeholder="Find Task" [(ngModel)]="searchText">
                 <mat-icon matSuffix matTooltip="Search">search</mat-icon>
             </mat-form-field>
             <button class="d-none" (click)="addTaskDialog('todo')" mat-flat-button color="primary">
@@ -27,7 +27,7 @@
             </button>
         </div>
         <div class="drop-container" cdkDropList id="todo" [cdkDropListData]="todos" (cdkDropListDropped)="drop($event)">
-            <div *ngFor="let todo of todos">
+            <div *ngFor="let todo of todos | appFilter:searchText">
                 <app-board-card [card]="todo" (click)="openOverlay(todo)"></app-board-card>
             </div>
             <div class="placeholder" *ngIf="todos.length == 0">
@@ -45,7 +45,7 @@
         </div>
         <div class="drop-container" cdkDropList id="inProgress" [cdkDropListData]="inProgress"
             (cdkDropListDropped)="drop($event)">
-            <div *ngFor="let inProgress of inProgress">
+            <div *ngFor="let inProgress of inProgress | appFilter:searchText">
                 <app-board-card [card]="inProgress" (click)="openOverlay(inProgress)"></app-board-card>
             </div>
             <div class="placeholder" *ngIf="inProgress.length == 0">
@@ -63,7 +63,7 @@
         </div>
         <div class="drop-container" cdkDropList id="feedback" [cdkDropListData]="feedback"
             (cdkDropListDropped)="drop($event)">
-            <div *ngFor="let feedback of feedback">
+            <div *ngFor="let feedback of feedback | appFilter:searchText">
                 <app-board-card [card]="feedback" (click)="openOverlay(feedback)"></app-board-card>
             </div>
             <div class="placeholder" *ngIf="feedback.length == 0">
@@ -80,7 +80,7 @@
             </button>
         </div>
         <div class="drop-container" cdkDropList id="done" [cdkDropListData]="done" (cdkDropListDropped)="drop($event)">
-            <div *ngFor="let done of done">
+            <div *ngFor="let done of done | appFilter:searchText">
                 <app-board-card [card]="done" (click)="openOverlay(done)"></app-board-card>
             </div>
             <div class="placeholder" *ngIf="done.length == 0">

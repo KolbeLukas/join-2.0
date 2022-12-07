@@ -18,6 +18,7 @@ export class BoardComponent implements OnInit {
   inProgress: string[] = [];
   feedback: string[] = [];
   done: string[] = [];
+  searchText: any;
 
   constructor(private readonly firebaseService: FirebaseService,
     public dialog: MatDialog) { }
